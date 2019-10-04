@@ -1,0 +1,5 @@
+package br.com.fazendoutopia.dao;
+
+public class CestaDAO {
+
+}

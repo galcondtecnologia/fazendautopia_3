@@ -1,0 +1,31 @@
+package br.com.fazendoutopia.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@SuppressWarnings("serial")
+@Entity
+public class Cesta extends GenericDomain {
+	private String descricao;
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private CategoriaCesta categoriaCesta;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public CategoriaCesta getCategoriaCesta() {
+		return categoriaCesta;
+	}
+
+	public void setCategoriaCesta(CategoriaCesta categoriaCesta) {
+		this.categoriaCesta = categoriaCesta;
+	}
+
+}
