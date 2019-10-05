@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Carrinho</title>
+	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/carrinho-compras.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/carrinho-compras.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+	<h:outputStylesheet library="css" name="/main.css" />
+
+</h:head>
+<h:body>
+	<div class="container">
+
+		<div>
+			<h1>Carrinho</h1>
+		</div>
+		<div>
+			<h5>Como deseja receber seus produtos?</h5>
+		</div>
+		<form action="">
+
+			<p:selectOneMenu id="tipo-entrega" class="inputSize">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Entrega" itemDescription="1"
+					itemValue="1" />
+				<f:selectItem itemLabel="Retirada" itemDescription="0"
+					itemValue="0" />
+			</p:selectOneMenu>
+
+		</form>
+
+	</div>
+	<script src="./resources/js/app.js"></script>
+</h:body>
+</html>
