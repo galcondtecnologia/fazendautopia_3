@@ -8,6 +8,11 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Meus dados</title>
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/cadastroLogin.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/cadastroLogin.css" />
+		
 	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -47,7 +52,7 @@
 								class="fa fa-user" style="width: 1em"></i></span>
 						</div>
 						<p:inputText type="text" alt="Nome" label="Nome" required="true"
-							placeholder="Nome" class="inputSize"></p:inputText>
+							placeholder="Nome" class="inputSize" autocomplete="off"></p:inputText>
 					</div>
 					<div class="input-group flex-nowrap ajustebtnB">
 						<div class="input-group-prepend">
@@ -57,7 +62,7 @@
 						<p:inputNumber label="Telefone" placeholder="Telefone"
 							required="true" maxlength="11"
 							maxValue="99999999999" decimalSeparator=""
-							thousandSeparator="" decimalPlaces="0" class="inputSize telefone"></p:inputNumber>
+							thousandSeparator="" decimalPlaces="0" class="inputSize telefone" autocomplete="off"></p:inputNumber>
 					</div>
 
 					<div class="input-group flex-nowrap ajustebtnB">
@@ -114,7 +119,7 @@
 								class="fa fa-road" style="width: 1em"></i></span>
 						</div>
 						<p:inputText type="text" label="Rua" placeholder="Rua"
-							required="true" id="rua" class="inputSize"></p:inputText>
+							required="true" id="rua" class="inputSize" autocomplete="off"></p:inputText>
 					</div>
 
 					<div class="input-group flex-nowrap ajustebtnB">
@@ -123,7 +128,7 @@
 								class="fa fa-map-marker" style="width: 1em"></i></span>
 						</div>
 						<p:inputText type="text" label="Cidade" placeholder="Cidade"
-							required="true" id="cidade" class="inputSize"></p:inputText>
+							required="true" id="cidade" class="inputSize" autocomplete="off"></p:inputText>
 					</div>
 
 					<div class="input-group flex-nowrap ajustebtnB">
@@ -132,7 +137,7 @@
 								class="fa fa-font-awesome" style="width: 1em"></i></span>
 						</div>
 						<p:inputText type="text" label="Bairro" placeholder="Bairro"
-							required="true" id="bairro" class="inputSize"></p:inputText>
+							required="true" id="bairro" class="inputSize" autocomplete="off"></p:inputText>
 					</div>
 
 					<div class="input-group flex-nowrap ajustebtnB">
@@ -201,7 +206,7 @@
 						</p:selectOneMenu>
 
 						<p:inputText type="text" label="Número" placeholder="Número"
-							required="true" id="numero"></p:inputText>
+							required="true" id="numero" autocomplete="off"></p:inputText>
 					</div>
 
 					<p:commandLink value="Voltar" class="btn btn-light tamanhoBtn"

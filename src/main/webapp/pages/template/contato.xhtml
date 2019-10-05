@@ -9,55 +9,54 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Login</title>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+	<h:outputStylesheet library="./resources/css"
+		name="/cssformulariocontato.css" />
+
 	<link rel="stylesheet" type="text/css"
-		href="../../resources/css/main.css" />
-	<h:outputStylesheet library="../../resources/css" name="/main.css" />
+		href="./resources/css/cssformulariocontato.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 
 </h:head>
 <body>
 	<ui:composition>
+		<div class="container-formulario-contato">
 
-		<div class="contato">
-			<div class="container-contato">
+			<form action="" method="post" class="formulario-contato"
+				id="formulario-contato">
 
-				<!-- Sessao de contatos -->
-				<div class="fundo-separador-contato">
-					<div class="sessao-contato" id="contato">
-						<h1>Contato</h1>
-						<p>Aguardamos anciosos pelo seu contato</p>
+				<fieldset id="fildset-formulario-contato">
+					<h1 class="titulo-formulario-contato">Contato</h1>
+					<h4 class="titulo-formulario-contato">Aguardamos anciosos pelo seu contato</h4>
+					<div id="limite-formulario">
+						<div>
+							<label class="labels">Nome</label>
+							<p:inputText name="nome" placeholder="Nome" autocomplete="off"
+								size="20" class="input-forms" />
+						</div>
+						<div>
+							<label class="labels">Email</label>
+							<p:inputText name="email" placeholder="Email" autocomplete="off"
+								size="20" class="input-forms" />
+						</div>
 
-						<div class="ui-inputgroup" style="text-align: right;">
-							<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-							<p:inputText placeholder="Nome" class="input" />
+						<div>
+							<label class="labels">Mensagem</label>
+							<p:inputTextarea name="mensagem" placeholder="Mensagem"
+								autocomplete="off" cols="20" class="input-forms" />
 						</div>
-						<div class="ui-inputgroup" style="text-align: right;">
-							<span class="ui-inputgroup-addon"><i
-								class="fa fa-envelope"></i></span>
-							<p:inputText placeholder="E-mail" class="input" />
-						</div>
-						<div class="ui-inputgroup" style="text-align: right;">
-							<span class="ui-inputgroup-addon"><i
-								class="fa fa-phone-square"></i></span>
-							<p:inputText placeholder="Telefone" class="input" />
-						</div>
-						<div class="ui-inputgroup" align="right">
-							<p:inputTextarea placeholder="Sua mensagem" autoResize="true"
-								class="input" />
-						</div>
-						<div style="text-align: right;">
+						<div class="botao-enviar">
 							<p:button value="Enviar"></p:button>
 						</div>
 					</div>
-				</div>
-				<!-- fim Sessao de contato________________________________________________________________s -->
-
-
-
-			</div>
+				</fieldset>
+			</form>
 		</div>
 
 
