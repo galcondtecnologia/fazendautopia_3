@@ -35,16 +35,50 @@
 			<h5>Como deseja receber seus produtos?</h5>
 		</div>
 		<form action="">
-
-			<p:selectOneMenu id="tipo-entrega" class="inputSize">
-				<f:selectItem itemLabel="Selecione" itemValue=""
-					noSelectionOption="true" />
-				<f:selectItem itemLabel="Entrega" itemDescription="1"
-					itemValue="1" />
-				<f:selectItem itemLabel="Retirada" itemDescription="0"
-					itemValue="0" />
-			</p:selectOneMenu>
-
+			<div>
+				<div class="card text-center">
+					<div class="card-header">Featured</div>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<p class="card-text">With supporting text below as a natural
+							lead-in to additional content.</p>
+						<div>
+							<a href="#" class="btn btn-primary">Retirar</a>
+						</div>
+						<div>
+						<a href="#" class="btn btn-primary">Entrega</a>
+						</div>
+					</div>
+					<div class="card-footer text-muted">2 days ago</div>
+				</div>
+			</div>
+			<div>
+				<p:selectOneMenu id="regiao-entrega" class="inputSize">
+					<f:selectItem itemLabel="Selecione região" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
+					<f:selectItem itemLabel="Copacabana" itemDescription="0"
+						itemValue="0" />
+				</p:selectOneMenu>
+			</div>
+			<div>
+				<p:selectOneMenu id="local-retirada" class="inputSize">
+					<f:selectItem itemLabel="Selecione uma loja" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
+					<f:selectItem itemLabel="Copacabana" itemDescription="0"
+						itemValue="0" />
+				</p:selectOneMenu>
+			</div>
+			<div>
+				<p:selectOneMenu id="possui-ecobag" class="inputSize">
+					<f:selectItem itemLabel="Selecione uma loja" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
+					<f:selectItem itemLabel="Copacabana" itemDescription="0"
+						itemValue="0" />
+				</p:selectOneMenu>
+			</div>
 		</form>
 
 	</div>
