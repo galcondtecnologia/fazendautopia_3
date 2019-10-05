@@ -1,0 +1,134 @@
+@charset "ISO-8859-1";
+
+	:root { 
+	--cor-um: #4f5e38;
+	--cor-dois: #8aa958;
+	--cor-tres: #a2af89;
+	--cor-quatro: #d3eaac;
+	--cor-cinco: #a6ce74;
+	--cor-seis: #edfeed;
+	}
+	.container{
+	background-color: white;
+	text-align: center;
+	margin: auto;
+	width: 90%;
+	height: 90vh;
+	margin-top: 1em;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	min-width: 320px;
+	max-width: 360px;
+	min-height: 490px;
+	}
+	.titulo{
+	margin: 0.8em; 
+	color: var(--cor-um); 
+	font-size: 1.2em;
+	}
+	/* Margem dos botoes */
+	.margin{
+	margin:2em 0 0 0.7em;
+	}
+	.botao-link{
+	color: var(--cor-um);
+	font-size: 1em;
+	}
+	.ajustebtnA{
+	margin: 0 0 1em 0;
+	}
+	.ajustebtnB{
+	margin: 1em 1em 1em 0;
+	}
+	.background-color{
+	background-color: var(--cor-quatro);
+	}
+	
+	.displaynone{
+	width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: block;
+	}
+	.inputSize{
+	width: 13em;
+	}
+	.ui-selectonemenu-trigger{
+	margin: 0.5em;
+	background: 0;
+	border: none;
+	box-shadow: none;
+	}
+	#numero{
+    width: 6.8em ;
+    }
+    .tamanhoBtn{
+    width: 8em;
+    }
+    
+    .margem-topo{
+    margin-top:3em;
+    }
+    
+
+
+	/* Estilo valido somente para firefox*/
+	@-moz-document url-prefix('') {
+    #numero{
+    width: 8.8em;
+    }
+    .inputSize{
+	width: 15em;
+	}
+	 .tamanhoBtn{
+    width: 9.3em;
+    }
+    .telefone input{
+    width: 15em;
+    }
+	}
+	
+	
+	
+	
+
+	@media only screen and (min-width: 820px){
+	.container{
+	background-color: white;
+	text-align: center;
+	margin: auto;
+	width: 28%;
+	height: 90vh;
+	margin-top: 1em;
+	border-radius: 15px;
+	min-width: 380px;
+	max-width: 420px;
+	min-height: 490px;
+	}
+	.titulo{
+	margin: 0.8em; 
+	color: var(--cor-um); 
+	font-size: 1.5em;
+	}
+	.margin{
+	margin:2em;
+	}
+	.botao-link{
+	color: var(--cor-um);
+	font-size: 1em;
+	}
+	.ajustebtnA{
+	margin: 0.6em;
+	}
+	.ajustebtnB{
+	margin: 1em 1em 1em 0.6em;
+	}
+	.background-color{
+	background-color: var(--cor-quatro);
+	}
+	.tamanhoBtn{
+    width: 8.4em;
+    }
+		
+	}

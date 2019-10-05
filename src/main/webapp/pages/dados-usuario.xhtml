@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Meus dados</title>
+	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/cadastroLogin.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/cadastroLogin.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+</h:head>
+<h:body class="background-color">
+
+	<div class="container">
+
+
+		<div>
+			<img src="../resources/images/icons/logo.png" alt=""
+				style="width: 7em; margin-top: 2em" />
+		</div>
+
+		<h1 class="titulo">Dados cadastrais</h1>
+
+		<div class="componente">
+
+			<h:form title="Meus dados cadastrais" class="margin"
+				prependId="false">
+				<div class="sessaoA" id="sessao1">
+					<div class="input-group flex-nowrap ajustebtnA">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-user" style="width: 1em"></i></span>
+						</div>
+						<p:inputText type="text" alt="Nome" label="Nome" required="true"
+							placeholder="Nome" class="inputSize"></p:inputText>
+					</div>
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-whatsapp" style="width: 1em"></i></span>
+						</div>
+						<p:inputNumber label="Telefone" placeholder="Telefone"
+							required="true" maxlength="11"
+							maxValue="99999999999" decimalSeparator=""
+							thousandSeparator="" decimalPlaces="0" class="inputSize telefone"></p:inputNumber>
+					</div>
+
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-map-marker" style="width: 1em"></i></span>
+						</div>
+
+						<p:selectOneMenu filter="true" value="" id="regioes"
+							onchange="mostrarCheckBox()" class="inputSize">
+							<f:selectItem itemLabel="Região" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="Centro-RJ" itemDescription="Acre"
+								itemValue="AC" />
+							<f:selectItem itemLabel="Zona Sul-RJ" itemDescription="Alagoas"
+								itemValue="AL" />
+							<f:selectItem itemLabel="Zona Oeste-RJ" itemDescription="Amapá"
+								itemValue="AP" />
+							<f:selectItem itemLabel="Leblon-RJ" itemDescription="Amazonas"
+								itemValue="AM" />
+							<f:selectItem itemLabel="Tijuca-RJ" itemDescription="Bahia"
+								itemValue="BA" />
+							<f:selectItem itemLabel="Nenhuma anterior"
+								itemDescription="Nenhuma" itemValue="0" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-inputgroup displaynone" style="margin: 0.8em 0"
+						id="avise-me">
+						<span class="ui-inputgroup-addon-checkbox"> <p:selectBooleanCheckbox />
+						</span>
+						<p:outputLabel style="font-size:0.8em;">Avise-me quando entregar em meu bairro</p:outputLabel>
+					</div>
+
+
+					<p:commandLink value="Cancelar" class="btn btn-light tamanhoBtn"></p:commandLink>
+					<p:commandButton value="Próximo" class="btn btn-success tamanhoBtn"
+						id="btn-proximo" onclick="proximoOuVoltar()"></p:commandButton>
+				</div>
+
+				<div class="sessaoB displaynone" id="sessao2">
+					<div class="input-group flex-nowrap ajustebtnA">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-address-card-o" style="width: 1em"></i></span>
+						</div>
+						<p:inputNumber alt="Cep" label="Cep" required="true"
+							placeholder="Cep" id="cep" decimalPlaces="0" decimalSeparator="" maxValue="99999999" onkeyup="atribuirCep()" thousandSeparator="" class="inputSize telefone" maxlength="8"></p:inputNumber>
+					</div>
+
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-road" style="width: 1em"></i></span>
+						</div>
+						<p:inputText type="text" label="Rua" placeholder="Rua"
+							required="true" id="rua" class="inputSize"></p:inputText>
+					</div>
+
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-map-marker" style="width: 1em"></i></span>
+						</div>
+						<p:inputText type="text" label="Cidade" placeholder="Cidade"
+							required="true" id="cidade" class="inputSize"></p:inputText>
+					</div>
+
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-font-awesome" style="width: 1em"></i></span>
+						</div>
+						<p:inputText type="text" label="Bairro" placeholder="Bairro"
+							required="true" id="bairro" class="inputSize"></p:inputText>
+					</div>
+
+					<div class="input-group flex-nowrap ajustebtnB">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="addon-wrapping"><i
+								class="fa fa-globe" style="width: 1em"></i></span>
+						</div>
+
+						<p:selectOneMenu filter="true" style="width:6.2em" id="uf">
+							<f:selectItem itemLabel="Uf" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="AC" itemDescription="Acre"
+								itemValue="AC" />
+							<f:selectItem itemLabel="AL" itemDescription="Alagoas"
+								itemValue="AL" />
+							<f:selectItem itemLabel="AP" itemDescription="Amapá"
+								itemValue="AP" />
+							<f:selectItem itemLabel="AM" itemDescription="Amazonas"
+								itemValue="AM" />
+							<f:selectItem itemLabel="BA" itemDescription="Bahia"
+								itemValue="BA" />
+							<f:selectItem itemLabel="CE" itemDescription="Ceará"
+								itemValue="CE" />
+							<f:selectItem itemLabel="DF" itemDescription="Distrito Federal"
+								itemValue="DF" />
+							<f:selectItem itemLabel="ES" itemDescription="Espírito Santo"
+								itemValue="ES" />
+							<f:selectItem itemLabel="GO" itemDescription="Goiás"
+								itemValue="GO" />
+							<f:selectItem itemLabel="MA" itemDescription="Maranhão"
+								itemValue="MA" />
+							<f:selectItem itemLabel="MT" itemDescription="Mato Grosso"
+								itemValue="MT" />
+							<f:selectItem itemLabel="MS" itemDescription="Mato Grosso do Sul"
+								itemValue="MS" />
+							<f:selectItem itemLabel="MG" itemDescription="Minas Gerais"
+								itemValue="MG" />
+							<f:selectItem itemLabel="PA" itemDescription="Pará"
+								itemValue="PA" />
+							<f:selectItem itemLabel="PB" itemDescription="Paraíba"
+								itemValue="PB" />
+							<f:selectItem itemLabel="PR" itemDescription="Paraná"
+								itemValue="PR" />
+							<f:selectItem itemLabel="PE" itemDescription="Pernambuco"
+								itemValue="PE" />
+							<f:selectItem itemLabel="PI" itemDescription="Piauí"
+								itemValue="PI" />
+							<f:selectItem itemLabel="RJ" itemDescription="Rio de Janeiro"
+								itemValue="RJ" />
+							<f:selectItem itemLabel="RN"
+								itemDescription="Rio Grando do Norte" itemValue="RN" />
+							<f:selectItem itemLabel="RS" itemDescription="Rio Grande do Sul"
+								itemValue="RS" />
+							<f:selectItem itemLabel="RO" itemDescription="Rondônia"
+								itemValue="RO" />
+							<f:selectItem itemLabel="RR" itemDescription="Roraima"
+								itemValue="RR" />
+							<f:selectItem itemLabel="SC" itemDescription="Santa Catarina"
+								itemValue="SC" />
+							<f:selectItem itemLabel="SP" itemDescription="São Paulo"
+								itemValue="SP" />
+							<f:selectItem itemLabel="SE" itemDescription="Sergipe"
+								itemValue="SE" />
+							<f:selectItem itemLabel="TO" itemDescription="Tocantins"
+								itemValue="TO" />
+						</p:selectOneMenu>
+
+						<p:inputText type="text" label="Número" placeholder="Número"
+							required="true" id="numero"></p:inputText>
+					</div>
+
+					<p:commandLink value="Voltar" class="btn btn-light tamanhoBtn"
+						onclick="proximoOuVoltar()"></p:commandLink>
+					<p:commandButton value="Concluir"
+						class="btn btn-success tamanhoBtn"></p:commandButton>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<script src="../resources/js/userdata.js"></script>
+</h:body>
+</html>

@@ -28,15 +28,15 @@
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="br.com.fazendoutopia.domain.CategoriaCesta" />
-		<mapping class="br.com.fazendoutopia.domain.CategoriaProduto" />
-		<mapping class="br.com.fazendoutopia.domain.UnidadeMedida" />
-		<mapping class="br.com.fazendoutopia.domain.Fornecedor" />
-		<mapping class="br.com.fazendoutopia.domain.Regiao" />
-		<mapping class="br.com.fazendoutopia.domain.Produto" />
-			<mapping class="br.com.fazendoutopia.domain.Cesta" />
-			<mapping class="br.com.fazendoutopia.domain.MinhaLoja" />
-				<mapping class="br.com.fazendoutopia.domain.Usuario" />
+		<mapping class="br.com.fazendautopia.domain.CategoriaCesta" />
+		<mapping class="br.com.fazendautopia.domain.CategoriaProduto" />
+		<mapping class="br.com.fazendautopia.domain.UnidadeMedida" />
+		<mapping class="br.com.fazendautopia.domain.Fornecedor" />
+		<mapping class="br.com.fazendautopia.domain.Regiao" />
+		<mapping class="br.com.fazendautopia.domain.Produto" />
+			<mapping class="br.com.fazendautopia.domain.Cesta" />
+			<mapping class="br.com.fazendautopia.domain.MinhaLoja" />
+				<mapping class="br.com.fazendautopia.domain.Usuario" />
 
 	</session-factory>
 </hibernate-configuration>

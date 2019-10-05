@@ -1,0 +1,865 @@
+@charset "ISO-8859-1";
+
+:root { 
+	--cor-um: #4f5e38;
+	--cor-dois: #8aa958;
+	--cor-tres: #a2af89;
+	--cor-quatro: #d3eaac;
+	--cor-cinco: #a6ce74;
+	--cor-seis: #edfeed;
+}
+html{
+	width: 100%;
+	font-family: sans-serif;
+	scroll-behavior: smooth;
+}
+/* Banner superior da pagina inicial do site*/
+.banner{
+	width: 100%;
+	font-family: sans-serif;
+}
+h1{
+	color: var(--cor-um);
+}
+
+/* Div que engloba todo o conteudo do site */
+.container {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+/* Cabeçalho do site onde se encontra as navs e os menus superior*/
+.header {
+	display: inline-block;
+	width: 100%;
+	font-family: sans-serif;
+}
+
+/* Nav superior da pagina inicial que engloba os menus*/
+.nav {
+	background-color: var(--cor-um);
+	color: var(--cor-quatro);
+	list-style: none;
+	width: 100%;
+	position: relative;
+	font-family: sans-serif;
+}
+
+/* itens do menu superior da pagina inicial do site*/
+.nav li {
+	list-style: none;
+	display: inline-block;
+	font-family: sans-serif;
+}
+
+/* icones do menu superior */
+i {
+	padding: 0 0.9em;
+}
+
+/* Tamanho da ul que engloba os menus superior*/
+.nav__ul {
+	display: inline-block;
+	width: 85%;
+	text-align: right;
+}
+.ul-desktop{
+	display: none;
+}
+
+/* div da sessao principal do site */
+.main{
+	width: 100%;
+	margin: auto;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+/* header/cabeçalho da sessao de produtos */
+.ui-datascroller-header{
+   background: white;
+   font-size: 0.9em;
+   border:none;
+   font-family: sans-serif;
+}
+
+/* header/cabeçalho da sessao de cestas/carrocel superior */
+.ui-carousel-header{
+	background: white;
+   font-size: 0.9em;
+   border:none;
+}
+
+.ui-widget-content{
+   background: white;
+   width:100%; 
+   padding:0.8em;
+   border: none;
+}
+#j_idt7{
+	padding: 0;
+	margin:0;
+	font-family: sans-serif;
+}
+.ui-carousel-viewport{
+	margin: 1em;
+	font-family: sans-serif;
+}
+
+.ui-carousel-item{
+	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.icone-imagens-cestas{
+	width: 7em;
+	height: 7em;
+	margin: auto;
+	padding: 0 3.9em;
+	font-family: sans-serif;
+}
+
+.ui-carousel-items li span{
+	padding: 0.5em 1em 0;
+	font-family: sans-serif;
+}
+
+
+/* background da sessao de lista de produtos*/
+.ui-datascroller .ui-datascroller-content{
+margin: 0;
+padding: 0;
+font-family: sans-serif;
+} 
+
+
+
+/* Tds da lista de produtos */
+.ui-datascroller .ui-datascroller-list tr td:first-child {
+	color: var(--cor-um);
+	width: 5em;
+	border: none;
+	font-family: sans-serif;
+	height: 2em;
+}
+.ui-datascroller .ui-datascroller-list tr td:last-child{
+	color: var(--cor-um);
+	width: 10em;
+	border: none;
+	font-family: sans-serif;
+}
+
+
+
+/* TR da lista de produtos */
+.ui-datascroller .ui-datascroller-list{
+	box-shadow: 0 4px 5px rgba(0,0,0,0.10), 0 3px 5px rgba(0,0,0,0.10);
+	font-family: sans-serif;
+	height: 5em;
+	text-align: left;
+}
+
+/* Titulo da sessao de produtos*/
+.ui-datascroller .ui-datascroller-header{
+	text-align: left;
+	margin: 1em 0;
+	font-family: sans-serif;
+	background-color: var(--cor-um);
+	color: white;
+}
+
+/* Tamanho da fonte da lista de produtos*/
+.ui-widget .ui-widget{
+	font-size: 0.9em;
+	font-family: sans-serif;
+}
+
+/* Classe de descricao de produtos da lista*/
+.descricao-produto{
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width: 8em;
+	font-family: sans-serif;
+}
+/* Classe de preço de produtos da lista*/
+.preco-produto{
+	display:block;
+	margin-left: 0.5em;
+	font-family: sans-serif;
+}
+
+/* Classe de imagem da lista de produtos*/
+.ui-panelgrid-cell{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	font-family: sans-serif;
+}
+/* Classe separador de sessoes*/
+.separador{
+	width: 100%;
+	height: 2em;
+	background-color: white;
+	font-family: sans-serif;
+}
+.sessao-produtos{
+	width: 90%;
+	margin: auto;
+	font-family: sans-serif;
+}
+
+/* tamanho do seletor da categoria de produtos*/
+.ui-selectonemenu-panel{
+	width: 80%;
+	font-family: sans-serif;
+}
+
+/* sessao de categorias*/
+.sessao-categorias{
+	background-color: var(--cor-quatro);
+	font-family: sans-serif;
+}
+
+/* Quadrante onde exibe a descrição da cesta */
+.descricao-cestas{
+	display:block; 
+	background-color:var(--cor-um);
+	font-size:0.8em;
+	color: white;
+	font-family: sans-serif;
+	border: 1em solid var(--cor-um);
+}
+
+.titulo-cestas{
+	display:block; 
+	background-color:var(--cor-um);
+	font-size:1em;
+	color: white;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+/* Quadrante onde exibe o preço da cesta */
+.preco-cestas{
+	display:block; 
+	background-color:var(--cor-um);
+	color: white;
+	font-family: sans-serif;
+}
+
+
+/* Sessao de cestas */
+.sessao_cestas{
+	width: 80%;
+	margin: auto;
+	font-family: sans-serif;
+}
+
+/* Fundo de outra cor para separar as sessoes */
+.fundo-separador, .fundo-separador-contato{
+	background-color: var(--cor-quatro);
+	padding: 1em 0;
+	font-family: sans-serif; 
+}
+
+/* Sessao sobre nos */
+.sessao-sobre{
+	width: 80%;
+	margin: auto;
+	font-family: sans-serif;
+}
+.imagemHorta{
+	width: 100%;
+	font-family: sans-serif;
+}
+
+/* Sessao de feedbacks */
+.sessao-feedbacks{
+	width: 80%;
+	margin: auto;
+	font-family: sans-serif;
+}
+
+
+/* Card feedback */
+.container-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px 0;
+  font-family: sans-serif;
+}
+
+.container-card::after {
+  content: "";
+  clear: both;
+  display: table;
+  font-family: sans-serif;
+}
+.container-card img{
+  float: left;
+  margin-right: 10px;
+  border-radius: 50%;
+  font-family: sans-serif;
+}
+.card-feedback {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 100%;
+  font-family: sans-serif;
+}
+
+.botao-comprar-cestas{
+	display:block; 
+	font-size:1.2em;
+	color: var(--cor-um);
+	text-align: right;
+	border: 1px solid white;
+}
+.botao-comprar-cestas i{
+	padding: 0.2em;	
+}
+
+/* Sessao de contato */
+.sessao-contato{
+	width: 80%;
+	margin: auto;
+	font-family: sans-serif;
+}
+
+/* Classe dos input do formulario de contato*/
+.input{
+	width: 80%;
+	margin: 0.2em 0 0.2em 0;
+	font-family: sans-serif;
+	height: 1.8em;
+}
+.footer{
+	width: 100%;
+	background-color: var(--cor-um);
+	color: white;
+	text-align: left;
+	font-family: sans-serif;
+}
+.footer p{
+	font-size: 0.9em;
+}
+.container-footer{
+	padding: 0.5em;
+	font-family: sans-serif;
+}
+.icones-redes-sociais{
+font-size: 2em;
+text-align: center;
+padding-bottom: 0.8em;
+font-family: sans-serif;
+}
+.icones{
+	color: white;
+	font-family: sans-serif;
+}
+
+.logomarca{
+	align-content:center;
+	width: 70%;
+	text-align: center;
+	font-family: sans-serif;
+}
+iframe {
+	position: relative;
+	padding-left: 4.5em;
+	font-family: sans-serif;
+}
+.sessao-produtos-desktop{
+	display: none;
+	font-family: sans-serif;
+}
+.espaco{
+	display: block;
+	padding-bottom: 0.5em;
+	margin: 0.5em;
+}
+.menu-mobile{
+	background-color: var(--cor-quatro);
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 0px;
+	overflow: hidden;
+	transition: 1s;
+    transition-timing-function: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ul-mobile{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ul-mobile li{
+	padding: 0.8em;
+	border: 0.8px dotted white;
+	margin: 0;
+	color: var(--cor-um);
+}
+.show-menu{
+	height: 380px;
+}
+
+
+/* Configurações do dialog primefaces */
+
+.div-titulo-dialog{
+display: flex;
+width: 100%;
+background-color: var(--cor-um);
+color: white;
+}
+.ui-dialog{position:fixed;padding:0;overflow:hidden;display:none}
+.ui-dialog.ui-dialog-absolute{position:absolute}
+.ui-dialog.ui-overlay-hidden{display:block}
+.ui-dialog .ui-dialog-titlebar{padding:0.5em;position:relative;border:0; background-color: white; color:  var(--cor-um);border-bottom: 1px solid var(--cor-um)}
+.ui-dialog .ui-dialog-title{float:left;margin:0;}
+.ui-dialog .ui-dialog-content{position:relative;border:0;padding:0; background:0;overflow:auto;zoom:1}
+.ui-dialog .ui-dialog-content.ui-df-content{overflow:hidden;padding:0}
+.ui-dialog .ui-dialog-footer{padding:.0em 0em;border-width:1px 0 0 0;text-align:left}
+.ui-dialog .ui-dialog-buttonpane{text-align:center;margin:0;padding:0.0em}
+.ui-dialog .ui-dialog-buttonpane button{margin:.0em .0em .0em 0;cursor:pointer}
+.ui-dialog .ui-resizable-se{width:14px;height:14px;right:3px;bottom:3px}
+.ui-draggable .ui-dialog-titlebar{cursor:move}
+.ui-dialog .ui-dialog-titlebar-close,.ui-dialog .ui-dialog-titlebar-minimize,.ui-dialog .ui-dialog-titlebar-maximize{float:right;margin:0;top:0;padding:1px;cursor:pointer}
+.ui-dialog .ui-dialog-titlebar-close span,.ui-dialog .ui-dialog-titlebar-minimize span,.ui-dialog .ui-dialog-titlebar-maximize span{display:block;margin:0}
+.ui-dialog .ui-dialog-titlebar-close:hover,.ui-dialog .ui-dialog-titlebar-close:focus,.ui-dialog .ui-dialog-titlebar-minimize:hover,.ui-dialog .ui-dialog-titlebar-minimize:focus,.ui-dialog .ui-dialog-titlebar-maximize:hover,.ui-dialog .ui-dialog-titlebar-maximize:focus{padding:0}
+.ui-dialog-docking-zone{position:fixed;bottom:0;left:0}
+.ui-dialog-minimizing{border:2px dotted gray}
+.ui-dialog .ui-dialog-message{margin-right:.5em}
+.ui-dialog-mask{width:100%;height:100%}
+.ui-confirm-dialog .ui-dialog-content{padding:1em}
+.ui-confirm-dialog-severity{float:left;margin-right:4px}
+.ui-confirm-dialog-message{display:inline-block;margin-top:1px}
+.ui-dialog-rtl{direction:rtl}
+.ui-dialog.ui-dialog-rtl .ui-dialog-title{float:right}
+.ui-dialog.ui-dialog-rtl .ui-dialog-titlebar-close,.ui-dialog.ui-dialog-rtl .ui-dialog-titlebar-minimize,.ui-dialog.ui-dialog-rtl .ui-dialog-titlebar-maximize{float:left}
+.ui-dialog.ui-dialog-rtl .ui-dialog-footer{text-align:right}
+.ui-message-dialog .ui-dialog-content{padding:1em}
+.ui-fieldset,.ui-fieldset .ui-fieldset-legend{padding:.6em 1em}
+.ui-fieldset-toggleable .ui-fieldset-legend{padding:0em 0em 0em 0em;cursor:pointer;outline:0}
+.ui-fieldset .ui-fieldset-toggler{padding-right:.1em;margin-top:0.1em;float:left}
+
+/* Icones para fechar, maximizar e minimar dialog da cesta*/
+
+
+.ui-dialog .ui-dialog-titlebar-close,.ui-dialog .ui-dialog-titlebar-minimize,.ui-dialog .ui-dialog-titlebar-maximize{float:right;margin:0;top:0;padding:1px;cursor:pointer; background-color: white}
+
+
+/* ocultar a galeria desktop, pois o layout ativo é mobile*/
+#galeria_desktop{
+	display: none;
+}
+#galeria_mobile{
+	display: block;
+}
+
+.ui-datascroller-item{
+	padding-top: 0.6em;
+	overflow: hidden;
+}
+
+.div-somos{
+width: 100%;
+}
+.p-texto-somos
+	color: var(--cor-um);
+}
+.p-texto-somos:first-letter {
+	font-size: 1.5em;
+}
+
+/* Botao flutuante */
+ab{
+  position: fixed;
+  bottom:40px;
+  right:20px;
+}
+
+.fab button{
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+  background-color: #cb60b3;
+  border: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,.4);
+  font-size: 24px;
+  color: white;
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+.fab button.main-btn{
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: var(--cor-um);
+  right: 10px;
+  bottom: 40px;
+  z-index: 20;
+  border:2px solid white;
+  box-shadow: 0 5px 4px 0 rgba(0,0,0,0.4);
+}
+
+.fab button.main-btn:before{
+  content: '';
+  font-size: 1em;
+}
+
+#imagem-produto, #imagem-cesta{
+	height: 9em;
+	width: 8em;
+}
+
+/* Div de calculo do frete*/
+.calcular-frete{
+	padding: 0.5em 0 0.5em 1em;
+	background-color: var(--cor-seis);
+}
+
+.displaynone{
+	width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: block;
+}
+
+.ui-selectonemenu-panel{
+	width: 14em !important;
+}
+.ui-selectonemenu .ui-widget{
+	width: 12em !important;
+}
+.ui-selectonemenu-label .ui-inputfield{
+	width: 12em !important;
+}
+
+.ui-dialog{
+width: 100% !important;
+height: 100% !important;	
+}
+
+.botao-colocar-no-carrinho{
+width: 77%;
+margin:0.5em;
+padding:0.8em;
+background-color:white !important;
+}
+
+/* Posicao a direita dos preços no dialog*/
+#preco-produto, #preco-cesta{
+	position: absolute;
+	right: 2em;
+}
+
+.centralizar-imagem{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imagem-tamanho-m{
+	height: 10em;
+	width: 10em;
+}
+
+.imagem-tamanho-p{
+	height: 5em;
+	width: 5em;
+}
+
+a{
+	text-decoration: none;
+	color: var(--cor-um);
+}
+a:hover{
+	color: var(--cor-um);
+}
+
+
+
+
+
+
+
+
+/* CSS para desktop____________________________________________________________ */
+@media only screen and (min-width: 820px){
+	.sessao-produtos-desktop{
+	display: block;
+	font-family: sans-serif;
+}
+
+
+.logomarca{
+	align-content:center;
+	width: 95%;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.sessao-produtos-desktop{
+	width: 80%;
+	margin: auto;
+	padding: 0;
+	font-family: sans-serif;
+}
+/* Grid lista de produtos */
+#j_idt25_content{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+/* Tamanho da ul que engloba os menus superior*/
+.nav__ul {
+	display: none;
+}
+.ul-desktop{
+	display: inline-block;
+	font-family: sans-serif;
+}
+/* Nav superior da pagina inicial que engloba os menus*/
+.nav {
+	background-color: rgba(79, 94, 56, 0.88);
+	color: var(--cor-quatro);
+	list-style: none;
+	width: 100%;
+	position: relative;
+	font-family: sans-serif;
+	position: fixed;
+	height:3.5em;
+	z-index: 1000;
+	overflow: hidden;
+}
+.ul-desktop{
+	float: right;
+	padding-right: 2em;
+}
+
+/* ocultar lista de produtos */
+.fundo-separador{
+	display: none;
+}
+.fundo-separador-desktop, .fundo-separador-contato{
+	background-color: var(--cor-quatro);
+	padding: 1em 0; 
+	font-family: sans-serif;
+}
+
+/* Header da sessao de produtos grid */
+.ui-panel-titlebar{
+	background-color: white;
+	border: none;
+	font-family: sans-serif;
+}
+
+.sessao-contato{
+	width: 60%;
+	text-align: left;
+	font-family: sans-serif;
+}
+/* Classe dos input do formulario de contato*/
+.input{
+	width: 100%;
+	margin: 0.5em 0;
+	font-size: 1em;
+	font-family: sans-serif;
+}
+.sessao-contato span{
+	display: none;
+	font-family: sans-serif;
+}
+h4, h3{
+	font-size: 1.2em;
+	font-family: sans-serif;
+}
+h5{
+	font-size: 1em;
+	font-family: sans-serif;
+}
+p, q{
+	font-family: sans-serif;
+}
+
+.sessao-endereco{
+    display:flex;
+	align-items: center;
+	margin: auto;
+	width: 70%;
+}
+
+.ul-desktop li{
+	padding: 0.2em 0.4em;
+	margin: 0;
+	border-radius: 5px;
+	transition: 1s;
+    transition-timing-function: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ul-desktop li:hover{
+	cursor: pointer;
+	background-color: var(--cor-quatro);
+	color: var(--cor-um);
+}
+.espaco{
+	display: block;
+	padding-bottom: 0.2em;
+	margin: 0.2em;
+}
+.ui-carousel-item:hover{
+	cursor:pointer;
+	box-shadow: 10px 25px 40px var(--cor-um), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+/* Sessao de feedbacks */
+.container-feedback{
+	width: 100%;
+	font-family: sans-serif;
+	display: inline-flex;
+	margin: auto;
+}
+
+.container-card{
+  display:inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  padding: 2em;
+  width: 40em;
+  margin: 0.7em;
+}
+
+.container-card:hover{
+	background-color: var(--cor-cinco);
+	color: white;
+}
+.ul-desktop li i{
+	margin: 0;
+	padding: 0.5em;
+}
+.ui-icon{
+	color: white;
+}
+
+/* Ocultar o layout mobile da galeria pois o layout ativo é desktop */
+#galeria_mobile{
+	display: none;
+}
+#galeria_desktop{
+	display: inline-block;
+}
+.galeria-img{
+	width:20%;
+	transition: 0.5s;
+    transition-timing-function: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.galeria-img:hover{
+	cursor: pointer;
+	border-left: 0.5em white solid;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+.div-somos{
+width: 100%;
+
+}
+.p-texto-somos{
+	text-align: left;
+	font-size: 1.1em;
+	color: var(--cor-um);
+}
+.p-texto-somos:first-letter {
+	font-size: 1.5em;
+}
+
+.fab button.main-btn{
+  right: 10px;
+  bottom: 10px;
+}
+
+.ui-dialog{
+width: 50% !important;
+height: 90% !important;	
+}
+
+
+#label-cesta-descricao, #label-produto-descricao{
+	width: 70%;
+}
+#descricao-cesta, #descricao-produto{
+	width: 20em !important;
+}
+
+.botao-colocar-no-carrinho{
+width: 42%;
+margin:0.5em;
+padding:0.8em;
+background-color:white !important;
+}
+/* preço dentro do dialog na faixa verde, fixada a direita*/
+#preco-produto, #preco-cesta{
+	position: absolute;
+	right: 2em;
+}
+
+/* Classe de descricao de produtos da lista*/
+.descricao-produto{
+	display:inline-block;
+	padding: 0.2em;
+	width: 30em;
+	font-family: sans-serif;
+}
+
+.imagem-tamanho-m{
+	height: 10em;
+	width: 10em;
+}
+.container-footer{
+	display:block !important;
+	padding: 0.5em !important;
+	font-family: sans-serif !important;
+	text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.container-endereco, .footer{
+ display:block !important;
+ text-align: center !important;
+ margin-left: auto !important;
+ margin-right: auto !important;
+}
+.endereco-centralizado{
+ display:block !important;
+ text-align: center !important;
+ margin-left: auto !important;
+ margin-right: auto !important;
+}
+
+a{
+	text-decoration: none;
+	color: var(--cor-quatro);
+}
+a:hover{
+	color: var(--cor-um);
+}
+li:hover a:first-child {
+	color: var(--cor-um);
+}
+.icone:hover{
+	color: var(--cor-quatro);
+}
+
+
+}

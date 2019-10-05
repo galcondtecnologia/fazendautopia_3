@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login</title>
+	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/cadastroLogin.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/cadastroLogin.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+</h:head>
+<h:body class="background-color">
+
+	<div class="container">
+
+
+		<div>
+			<img src="../resources/images/icons/logo.png" alt=""
+				style="width: 7em; margin-top: 2em" />
+		</div>
+
+		<h1 class="titulo">Bem vindo a Fazenda Utopia</h1>
+
+		<div>
+
+			<h:form title="Login" class="margin margem-topo" prependId="false">
+
+
+				<div class="alert alert-warning alert-dismissible fade show displaynone" id="alert-email">
+					<strong>E-mail</strong> inválido, verifique!
+					<button type="button" class="close" onclick="exibirOuOcultarMsg()">
+						<span>&times;</span>
+					</button>
+				</div>
+
+
+				<div class="input-group flex-nowrap ajustebtnA">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="addon-wrapping"><i
+							class="fa fa-envelope" style="width: 1em"></i></span>
+					</div>
+					<p:inputText type="email" alt="Email" label="Email" required="true"
+						onkeyup="atualizarEmail()" onchange="validMail()" id="email"
+						placeholder="Email" class="inputSize"></p:inputText>
+				</div>
+				<div class="input-group flex-nowrap ajustebtnB">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="addon-wrapping"><i
+							class="fa fa-lock" style="width: 1em"></i></span>
+					</div>
+					<p:inputText type="password" label="Senha" placeholder="Senha"
+						required="true" class="inputSize"></p:inputText>
+				</div>
+				<h:outputLink value="cadastro-usuario.xhtml"
+					class="btn btn-light tamanhoBtn">Cadastrar</h:outputLink>
+				<p:button value="Login" class="btn btn-success tamanhoBtn"></p:button>
+				<div style="margin: 2em;">
+					<p:commandLink value="Esqueci a senha"
+						class="botao-link tamanhoBtn"></p:commandLink>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<script src="../resources/js/validemail.js"></script>
+</h:body>
+</html>

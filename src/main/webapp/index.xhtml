@@ -1,58 +1,470 @@
-<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Fazenda Utopia</title>
+	<link rel="shortcut icon" href="./resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+	<h:outputStylesheet library="css" name="/main.css" />
+	<h:outputScript library="js" name="/" />
+</h:head>
+<h:body class="container">
 
-	<style type="text/css">
-.ui-g div {
-	background-color: #gray !important;
-	text-align: center;
-	border: 1px solid #fafafa;
-}
-</style>
+	<!-- Sessao do cabeçalho com banner -->
+	<div class="header">
 
-	<ui:define name="titulo">Home</ui:define>
-<!-- 	<p:growl id="msg" /> -->
-	<ui:define name="corpo">
-		<p:panelGrid>
-			<div class="ui-g-10 ui-g-nopad">
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
+		<ui:insert name="menu-superior">
+			<ui:include src="/pages/template/menu-superior.xhtml" />
+		</ui:insert>
 
+		<div id="banner">
+			<ui:insert name="banners">
+				<ui:include src="/pages/template/banners.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+	<!-- Sessao do cabeçalho -->
+
+	<div class="separador"></div>
+
+	<!-- Sessao de cestas da semana -->
+	<h:form>
+		<div class="main">
+			<div class="sessao_cestas" onclick="PF('dlgCesta').show();" id="cestas">
+				<h1>Cestas da semana</h1>
+				<p>Selecione a cesta ideal para você e sua família</p>
+				<p:carousel value="" var="cestas" numVisible="4" responsive="true"
+					vertical="true" class="card">
+					<p:graphicImage value=""
+						class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+
+					<div class="centralizar-imagem">
+						<img src="./resources/images/upload/CestaSemIcone1.png"
+							alt="icone cesta"
+							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+					</div>
+					<h:outputText value="Cesta Mini Personalizada"
+						class="titulo-cestas" />
+					<h:outputText value="6 Itens: Alface, Repolho, Tomate, Abobrinha"
+						class="descricao-cestas" />
+					<div style="display: inline-block;">
+						<span class="ui-inputgroup-addon botao-comprar-cestas"><h:outputText
+								value="R$ 50.90" /><i class="fa fa-shopping-cart"></i></span>
+					</div>
+				</p:carousel>
+			</div>
+			<!-- Sessao de cestas da semana_________________________________________________________________ -->
+
+			<div class="separador"></div>
+
+			<div class="fundo-separador">
+				<div class="sessao-produtos" id="produtos-mobile">
+					<div class="sessao-categorias">
+						<p:selectOneMenu value="" filterMatchMode="custom"
+							filterFunction="customFilter" label="Categorias"
+							labelTemplate="Categorias" title="Categorias">
+							<f:selectItems value="categoria" />
+						</p:selectOneMenu>
+					</div>
+					<p:dataScroller value="" var="Produtos" chunkSize="10"
+						class="main__produtos">
+						<f:facet name="header" class="titulo-produtos">
+          			 Produtos disponíveis
+        			</f:facet>
+						<p:panelGrid columns="4">
+							<p:graphicImage name="image" value="" />
+							<p:outputPanel>
+								<h:panelGrid columns="4" cellpadding="5"
+									onclick="PF('dlgProduto').show()">
+									<h:outputText value="Alface und. Produto orgânico"
+										class="descricao-produto" />
+									<h:outputText value="R$ 12,90" style="font-weight: bold"
+										class="preco-produto" />
+									<span class="ui-inputgroup-addon"><i
+										class="fa fa-shopping-cart"></i></span>
+								</h:panelGrid>
+							</p:outputPanel>
+						</p:panelGrid>
+					</p:dataScroller>
+				</div>
+			</div>
+
+			<div class="fundo-separador-desktop">
+				<div class="sessao-produtos-desktop" id="produtos-desktop">
+					<p:dataGrid var="car" value="" columns="3" rows="12">
+						<p:column>
+							<p:panel header="Produtos disponíveis">
+								<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
+									<p:graphicImage value="" />
+									<h:outputText value="Produto 11" />
+								</h:panelGrid>
 							</p:panel>
-						</p:link>
+						</p:column>
+					</p:dataGrid>
+				</div>
+			</div>
+
+			<div class="separador"></div>
+
+			<!-- Sessao sobre a empresa -->
+			<div class="sessao-sobre" id="sobre">
+				<h1>Sobre nós</h1>
+				<h4>Quem somos</h4>
+				<div class="div-somos">
+					<p class="p-texto-somos">
+						Somos uma iniciativa que engloba um grupo de produtores parceiros
+						(agricultores familiares locais), todos devidamente certificados
+						no <strong>cultivo orgânico</strong> dos alimentos e fazemos a
+						ligação entre as lavouras e a sua mesa. Levando comida de verdade,
+						<strong>livre de venenos</strong> para sua casa e ao mesmo tempo
+						incentivando os pequenos produtores.
+					</p>
+
+					<div class="separador"></div>
+				</div>
+				<div id="galeria_mobile" style="width: 100%">
+					<ui:insert name="galeria">
+						<ui:include src="/pages/template/galeria_mobile.xhtml" />
+					</ui:insert>
+				</div>
+
+				<div id="galeria_desktop" style="width: 100%">
+					<ui:insert name="galeria">
+						<ui:include src="/pages/template/galeria_desktop.xhtml" />
+					</ui:insert>
+				</div>
+			</div>
+			<!-- fim da sessao sobre a empresa________________________________________________________________ -->
+
+			<div class="separador"></div>
+			<div class="separador"></div>
+
+			<!-- Sessao missao da empresa -->
+			<div class="main" style="width: 80%; color: #4f5e38">
+				<h1>Nossa Missão</h1>
+				<p>
+					Levar até você toda semana opções de <strong>produtos
+						orgânicos</strong>, plantados e colhidos com todo carinho.
+				</p>
+				<div style="width: 30%; background-color: #d3eaac; height: 1em;"></div>
+			</div>
+			<!-- fim Sessao missao________________________________________________________________ -->
+
+			<div class="separador"></div>
+			<div class="separador"></div>
+
+			<!-- Sessao de feedback -->
+			<div class="sessao-feedbacks">
+				<h1>O que nossos clientes dizem</h1>
+				<h4>feedbacks</h4>
+				<div class="container-feedback" id="feedback">
+					<div class="container-card">
+						<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+							style="width: 50px" />
+						<h5>
+							<b>Sheila Jbv</b>
+						</h5>
+						<q>Recomendo, excelentes produtos e atendimento excepcional.</q>
 					</div>
 
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
-
-							</p:panel>
-						</p:link>
-
+					<div class="container-card">
+						<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+							style="width: 50px" />
+						<h5>
+							<b>Viviane Paganini Polido</b>
+						</h5>
+						<q>Orgânicos de qualidade e ótimas variedades.</q>
 					</div>
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
 
-							</p:panel>
-						</p:link>
-
+					<div class="container-card">
+						<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+							style="width: 50px" />
+						<h5>
+							<b>Nathália Netto</b>
+						</h5>
+						<q>Muito bom, adorei em todos os sentidos. Higiene,
+							organização, fresquinhos e preço justo.</q>
 					</div>
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
 
-							</p:panel>
-						</p:link>
+					<div class="container-card">
+						<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+							style="width: 50px" />
+						<h5>
+							<b>Liliane Senra</b>
+						</h5>
+						<q>Ótimos produtos, excelente qualidade e um ótimo
+							atendimento!</q>
+					</div>
+
+				</div>
+			</div>
+			<!-- fim Sessao de feedbacks________________________________________________________________ -->
+
+			<div class="separador"></div>
+			<div class="separador"></div>
+
+			<!-- Sessao de contatos -->
+			<div class="fundo-separador-contato">
+				<div class="sessao-contato" id="contato">
+					<h1>Contato</h1>
+					<p>Aguardamos anciosos pelo seu contato</p>
+
+					<div class="ui-inputgroup" style="text-align: right;">
+						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+						<p:inputText placeholder="Nome" class="input" />
+					</div>
+					<div class="ui-inputgroup" style="text-align: right;">
+						<span class="ui-inputgroup-addon"><i class="fa fa-envelope"></i></span>
+						<p:inputText placeholder="E-mail" class="input" />
+					</div>
+					<div class="ui-inputgroup" style="text-align: right;">
+						<span class="ui-inputgroup-addon"><i
+							class="fa fa-phone-square"></i></span>
+						<p:inputText placeholder="Telefone" class="input" />
+					</div>
+					<div class="ui-inputgroup" align="right">
+						<p:inputTextarea placeholder="Sua mensagem" autoResize="true"
+							class="input" />
+					</div>
+					<div style="text-align: right;">
+						<p:button value="Enviar"></p:button>
 					</div>
 				</div>
 			</div>
-		</p:panelGrid>
-	</ui:define>
+			<!-- fim Sessao de contato________________________________________________________________s -->
+		</div>
 
-</ui:composition>
+
+
+
+	</h:form>
+
+	<!-- Sessao dialog da cesta selecionada -->
+	<p:dialog header="Selecionado" widgetVar="dlgCesta" minimizable="true"
+		minHeight="540" minWidth="480" modal="true" maximizable="true"
+		id="dialog" closeOnEscape="true" responsive="true" resizable="true"
+		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+		 position="top" fitViewport="true">
+
+		<!-- Formulario da cesta selecionada -->
+		<h:form prependId="false">
+			<div class="centralizar-imagem">
+				<!-- Imagem da cesta selecionada -->
+				<img src="./resources/images/upload/CestaSemIcone1.png"
+					alt="icone cesta" class="centralizar-imagem imagem-tamanho-m" />
+
+				<!-- Inserir a imagem aqui_______________ -->
+				<p:graphicImage value=""
+					class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p"
+					alt="" />
+			</div>
+			<div class="div-titulo-dialog">
+
+				<!-- Informações da cesta selecionada (Descrição + qtd itens) -->
+				<h:outputLabel style="padding:0.9em" id="label-cesta-descricao">Cesta Mini 06 itens</h:outputLabel>
+
+				<!-- Informações da cesta selecionada (Preço com cifrão o padrão deve ser R$ 99,99) -->
+				<h:outputLabel style="padding:0.9em" id="preco-cesta">R$ 50,90</h:outputLabel>
+
+			</div>
+			<div style="margin-bottom: 1em">
+				<p:dataScroller value="" var="Produtos" chunkSize="10"
+					class="main__produtos">
+					<p:panelGrid columns="3" style="">
+						<i class="fa fa-product-hunt"></i>
+						<p:outputPanel>
+							<h:panelGrid columns="3" cellpadding="10">
+
+								<!-- Informações dos produtos da cesta (Descrição) -->
+								<h:outputText value="1 und Alface Americana"
+									class="descricao-produto" id="descricao-cesta" />
+
+
+								<!-- Icone para alterar o produto da cesta -->
+								<i class="fa fa-refresh" style="padding-left: 3em"></i>
+
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:panelGrid>
+				</p:dataScroller>
+			</div>
+			
+			<!-- Botao calcular frete desabilitado -->
+			<p:commandButton value="" id="calcular-frete-cesta"
+				style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white display: none; width: 0; height: 0;"></p:commandButton>
+
+
+			<div class="calcular-frete displaynone" id="div-calcular-frete-cesta" style="display: none; width: 0; height: 0;">
+				<p:selectOneMenu id="select-calcular-frete-cesta" value="9.22"
+					style="width:200px">
+					<f:selectItem itemLabel="Selecione sua região" itemValue=""></f:selectItem>
+					<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
+					<f:selectItem itemLabel="Região dois" itemValue="9.20"></f:selectItem>
+					<f:selectItem itemLabel="Região tres" itemValue="9.15"></f:selectItem>
+					<f:selectItems value="" itemLabel="" itemValue=""></f:selectItems>
+				</p:selectOneMenu>
+				<div style="padding: 0.5em 0 0.8em 0">
+					<p:outputLabel value="Frete R$ 9.15" id="label-frete-cesta"></p:outputLabel>
+				</div>
+			</div>
+
+			<div
+				style="display: inline-block; margin: auto; width: 100%; text-align: center">
+
+				<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
+				<h:outputText value="Total R$ 50,90"
+					style="font-weight: bold; padding:0.2em" class="preco-produto"
+					id="total-cesta" />
+
+				<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
+				<p:commandButton value="-" id="bt-dialog-menos-cesta"
+					style="background-color:white"></p:commandButton>
+
+				<p:inputNumber id="input-qtd-cesta" value="1" minValue="1"
+					maxValue="99" disabled="true"></p:inputNumber>
+
+				<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
+				<p:commandButton value="+" id="bt-dialog-mais-cesta"
+					style="background-color:white"></p:commandButton>
+			</div>
+			<div
+				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 3em;">
+				<p:commandButton value="Colocar no carrinho"
+					class="botao-colocar-no-carrinho" style=""></p:commandButton>
+			</div>
+		</h:form>
+	</p:dialog>
+	<!-- fim dialog cesta selecionada________________________________________________________________ -->
+
+
+
+
+
+
+
+	<!-- Sessao dialog produto selecionado -->
+	<p:dialog header="Selecionado" widgetVar="dlgProduto"
+		minimizable="true" minHeight="540" minWidth="480" modal="true"
+		maximizable="true" id="dialog-produto" closeOnEscape="true"
+		responsive="true" resizable="true"
+		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+		position="top" fitViewport="true">
+
+		<!-- Formulario do produto selecionada -->
+		<h:form prependId="false">
+			<div class="centralizar-imagem">
+
+				<!-- Imagem do produto selecionado -->
+				<img src="./resources/images/upload/azeite.png"
+					alt="imagem do produto" class="centralizar-imagem imagem-tamanho-m" />
+				<p:graphicImage value=""
+					class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p"
+					alt="" />
+			</div>
+			<div class="div-titulo-dialog" style="margin-bottom: 0.5em">
+
+				<!-- Informações do produto selecionado (Descrição + qtd itens) -->
+				<h:outputLabel style="padding:0.9em" class="descricao-produto"
+					id="descricao-produto">Azeite 200ml Und</h:outputLabel>
+
+				<!-- Informações do produto selecionado (Preço com cifrão o padrão deve ser R$ 99,99) -->
+				<h:outputLabel style="padding:0.9em" id="preco-produto">R$ 12,90</h:outputLabel>
+
+			</div>
+			<div style="margin-bottom: 1em">
+				<h:outputText value="Categoria: Especiais"
+					style="padding:1em; font-size:0.9em" />
+				<div style="width: 90%; padding: 1em; text-align: left;">
+					<h:outputText
+						value="Dados nutricionais: Produto 100% orgânico, acuçar 100g, gordura 0,1%, sais minerais 180g"
+						style="font-size:0.8em;" />
+				</div>
+
+				<!-- Botao calcular frete desabilitado -->
+				<p:commandButton value="" id="calcular-frete-produto"
+					style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white; display: none; width: 0; height: 0;"></p:commandButton>
+
+
+				<div class="calcular-frete displaynone"
+					id="div-calcular-frete-produto">
+					<p:selectOneMenu id="select-calcular-frete-produto" value="9.22" autoWidth="false">
+						<f:selectItem itemLabel="Selecione sua região"
+							noSelectionOption="true" style="width:1em"></f:selectItem>
+						<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
+						<f:selectItem itemLabel="Região dois" itemValue="9.20"></f:selectItem>
+						<f:selectItem itemLabel="Região tres" itemValue="9.15"></f:selectItem>
+						<f:selectItems value="" itemLabel="" itemValue=""></f:selectItems>
+					</p:selectOneMenu>
+					<div style="padding: 0.5em 0 0.8em 0">
+						<p:outputLabel value="Frete R$ 9.15" id="label-frete-produto"></p:outputLabel>
+					</div>
+				</div>
+
+			</div>
+
+			<div
+				style="display: inline-block; margin: auto; width: 100%; text-align: center">
+
+				<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
+				<h:outputText value="Total R$ 12,90"
+					style="font-weight: bold; padding:0.2em" class="preco-produto"
+					id="total-produto" />
+
+				<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
+				<p:commandButton value="-" id="bt-dialog-menos-produto"
+					style="background-color:white"></p:commandButton>
+
+				<p:inputNumber id="input-qtd-produto" value="1" minValue="1"
+					maxValue="99" disabled="true"></p:inputNumber>
+
+				<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
+				<p:commandButton value="+" id="bt-dialog-mais-produto"
+					style="background-color:white"></p:commandButton>
+			</div>
+			<div
+				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 3em;">
+				<p:commandButton value="Colocar no carrinho"
+					class="botao-colocar-no-carrinho"></p:commandButton>
+			</div>
+		</h:form>
+	</p:dialog>
+	<!-- fim dialog produto selecionado________________________________________________________________ -->
+
+
+
+
+
+
+
+
+
+	<!-- Botão flutuante -->
+	<div class="fab">
+		<button class="main-btn">
+			<i class="fa fa-question-circle" style="margin: 0; padding: 0"></i>
+		</button>
+	</div>
+
+
+
+	<!-- Rodape buscando base template -->
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/pages/template/footer.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<script src="./resources/js/app.js"></script>
+
+
+</h:body>
+</html>
