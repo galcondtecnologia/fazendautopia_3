@@ -1,7 +1,0 @@
-package br.com.fazendoutopia.dao;
-
-import br.com.fazendoutopia.domain.Fornecedor;
-
-public class MinhaLojaDAO extends GenericDAO<Fornecedor> {
-
-}
