@@ -90,12 +90,17 @@ i {
    font-size: 0.9em;
    border:none;
 }
+.ui-carousel{
+	width: auto;
+	height: auto;
+}
 
 .ui-widget-content{
    background: white;
    width:100%; 
    padding:0.8em;
    border: none;
+   height: auto;
 }
 #j_idt7{
 	padding: 0;
@@ -109,6 +114,8 @@ i {
 
 .ui-carousel-item{
 	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+	width: 15em;
+	height: auto;
 }
 
 .icone-imagens-cestas{
@@ -251,6 +258,7 @@ font-family: sans-serif;
 
 /* Sessao de cestas */
 .sessao_cestas{
+	display: block;
 	width: 80%;
 	margin: auto;
 	font-family: sans-serif;

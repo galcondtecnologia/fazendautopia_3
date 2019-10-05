@@ -12,8 +12,8 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
 	<h:outputStylesheet library="css" name="/main.css" />
+	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
 	<h:outputScript library="js" name="/" />
 </h:head>
 <h:body class="container">
@@ -38,11 +38,12 @@
 	<!-- Sessao de cestas da semana -->
 	<h:form>
 		<div class="main">
-			<div class="sessao_cestas" onclick="PF('dlgCesta').show();" id="cestas">
+			<div class="sessao_cestas" onclick="PF('dlgCesta').show();"
+				id="cestas">
 				<h1>Cestas da semana</h1>
 				<p>Selecione a cesta ideal para você e sua família</p>
 				<p:carousel value="" var="cestas" numVisible="4" responsive="true"
-					vertical="true" class="card">
+					class="card">
 					<p:graphicImage value=""
 						class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
 
@@ -211,35 +212,17 @@
 			<div class="separador"></div>
 			<div class="separador"></div>
 
-			<!-- Sessao de contatos -->
-			<div class="fundo-separador-contato">
-				<div class="sessao-contato" id="contato">
-					<h1>Contato</h1>
-					<p>Aguardamos anciosos pelo seu contato</p>
 
-					<div class="ui-inputgroup" style="text-align: right;">
-						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-						<p:inputText placeholder="Nome" class="input" />
-					</div>
-					<div class="ui-inputgroup" style="text-align: right;">
-						<span class="ui-inputgroup-addon"><i class="fa fa-envelope"></i></span>
-						<p:inputText placeholder="E-mail" class="input" />
-					</div>
-					<div class="ui-inputgroup" style="text-align: right;">
-						<span class="ui-inputgroup-addon"><i
-							class="fa fa-phone-square"></i></span>
-						<p:inputText placeholder="Telefone" class="input" />
-					</div>
-					<div class="ui-inputgroup" align="right">
-						<p:inputTextarea placeholder="Sua mensagem" autoResize="true"
-							class="input" />
-					</div>
-					<div style="text-align: right;">
-						<p:button value="Enviar"></p:button>
-					</div>
-				</div>
+
+			<!--  contato section goes here -->
+			<!-- Rodape buscando base template -->
+			<div id="contato">
+				<ui:insert name="contato">
+					<ui:include src="/pages/template/contato.xhtml" />
+				</ui:insert>
 			</div>
-			<!-- fim Sessao de contato________________________________________________________________s -->
+
+
 		</div>
 
 
@@ -252,7 +235,7 @@
 		minHeight="540" minWidth="480" modal="true" maximizable="true"
 		id="dialog" closeOnEscape="true" responsive="true" resizable="true"
 		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
-		 position="top" fitViewport="true">
+		position="top" fitViewport="true">
 
 		<!-- Formulario da cesta selecionada -->
 		<h:form prependId="false">
@@ -296,13 +279,14 @@
 					</p:panelGrid>
 				</p:dataScroller>
 			</div>
-			
+
 			<!-- Botao calcular frete desabilitado -->
 			<p:commandButton value="" id="calcular-frete-cesta"
 				style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white display: none; width: 0; height: 0;"></p:commandButton>
 
 
-			<div class="calcular-frete displaynone" id="div-calcular-frete-cesta" style="display: none; width: 0; height: 0;">
+			<div class="calcular-frete displaynone" id="div-calcular-frete-cesta"
+				style="display: none; width: 0; height: 0;">
 				<p:selectOneMenu id="select-calcular-frete-cesta" value="9.22"
 					style="width:200px">
 					<f:selectItem itemLabel="Selecione sua região" itemValue=""></f:selectItem>
@@ -395,7 +379,8 @@
 
 				<div class="calcular-frete displaynone"
 					id="div-calcular-frete-produto">
-					<p:selectOneMenu id="select-calcular-frete-produto" value="9.22" autoWidth="false">
+					<p:selectOneMenu id="select-calcular-frete-produto" value="9.22"
+						autoWidth="false">
 						<f:selectItem itemLabel="Selecione sua região"
 							noSelectionOption="true" style="width:1em"></f:selectItem>
 						<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
