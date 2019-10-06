@@ -51,7 +51,7 @@
 
 
 			<!-- Sessao dialog da cesta selecionada -->
-			<p:dialog header="Entregar" widgetVar="dlgEntrega" minimizable="true"
+			<p:dialog header="Meio de entrega" widgetVar="dlgEntrega" minimizable="true"
 				minHeight="540" minWidth="480" modal="true" maximizable="true"
 				id="dialog" closeOnEscape="true" responsive="true" resizable="true"
 				style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
@@ -104,9 +104,9 @@
 													class="fa fa-map-marker" style="width: 1em"></i></span>
 											</div>
 
-											<p:selectOneMenu filter="true" value="" id="regioes"
+											<p:selectOneMenu filter="true" value=""
 												onchange="mostrarCheckBox()" class="inputSize"
-												disabled="true">
+												 widgetVar="lista-regioes" disabled="" id="regioes">
 												<f:selectItem itemLabel="Região" itemValue=""
 													noSelectionOption="true" />
 												<f:selectItem itemLabel="Centro-RJ" itemDescription="Acre"
@@ -271,7 +271,7 @@
 									</div>
 
 									<p:commandLink value="Outro endereço"
-										class="btn btn-light tamanhoBtn" onclick="proximoOuVoltar()"></p:commandLink>
+										class="btn btn-light tamanhoBtn" onclick="ativarCamposEndereco()"></p:commandLink>
 									<p:commandButton value="Confirmar"
 										class="tamanhoBtn btn btn-success"></p:commandButton>
 

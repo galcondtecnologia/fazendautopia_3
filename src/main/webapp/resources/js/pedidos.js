@@ -5,6 +5,8 @@ var $btnEntregar = document.getElementById("btnEntregar");
 var $headerEntrega = document.getElementById("header-entrega");
 var $headerRetirada = document.getElementById("header-retirada");
 var $enderecoRetirada = document.getElementById("div-endereco-retirada");
+var $inputs = document.querySelectorAll("input");
+var $regioes = document.getElementById("regioes");
 
 
 $btnRetirar.addEventListener("click", function(){
@@ -24,4 +26,11 @@ $btnEntregar.addEventListener("click", function(){
 
 function exibirEnderecoRetirada() {
 	$enderecoRetirada.classList.remove("displaynone");
+}
+function ativarCamposEndereco() {
+	for(var i = 0;i < $inputs.length; i++){
+		$inputs[i].classList.remove("ui-state-disabled");
+		$inputs[i].removeAttribute("disabled");
+	}
+		$regioes.removeAttribute("disabled");
 }
