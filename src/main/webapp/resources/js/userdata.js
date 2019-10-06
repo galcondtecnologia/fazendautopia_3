@@ -54,7 +54,6 @@ function validPhone($phone) {
 
 function atribuirCep() {
 	var cep = $cep.value;
-	console.log(cep);
 	validCep(cep);
 }
 

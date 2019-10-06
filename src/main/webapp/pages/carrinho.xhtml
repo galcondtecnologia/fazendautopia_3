@@ -27,51 +27,264 @@
 </h:head>
 <h:body>
 	<div class="container" style="padding: 7em 0 0 0">
-		<form action="" >
+		<form action="">
 			<div style="margin: auto">
 				<div class="card text-center">
 					<div class="card-header">Pedidos</div>
 					<div class="card-body" style="margin: 2em 0">
 						<h4 class="card-title">Entregas e retiradas</h4>
-						<p class="card-text" style="margin: 2em 0">Como deseja receber seus produtos?</p>
+						<p class="card-text" style="margin: 2em 0">Como deseja receber
+							seus produtos?</p>
 						<div id="botoes">
-							<p:commandButton class="btn btn-success" value="Retirar"></p:commandButton> 
-							<p:commandButton class="btn btn-success" value="Entregar"></p:commandButton>
+							<p:commandButton class="btn btn-success" value="Retirar"
+								id="btnRetirar"></p:commandButton>
+							<p:commandButton class="btn btn-success" value="Entregar"
+								id="btnEntregar"></p:commandButton>
 						</div>
 					</div>
 					<div class="card-footer text-muted">...</div>
 				</div>
 			</div>
-			<div style="display: none">
-				<p:selectOneMenu id="regiao-entrega" class="inputSize">
-					<f:selectItem itemLabel="Selecione região" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
-					<f:selectItem itemLabel="Copacabana" itemDescription="0"
-						itemValue="0" />
-				</p:selectOneMenu>
-			</div>
-			<div style="display: none">
-				<p:selectOneMenu id="local-retirada" class="inputSize">
-					<f:selectItem itemLabel="Selecione uma loja" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
-					<f:selectItem itemLabel="Copacabana" itemDescription="0"
-						itemValue="0" />
-				</p:selectOneMenu>
-			</div>
-			<div style="display: none">
-				<p:selectOneMenu id="possui-ecobag" class="inputSize">
-					<f:selectItem itemLabel="Selecione uma loja" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItem itemLabel="Centro" itemDescription="1" itemValue="1" />
-					<f:selectItem itemLabel="Copacabana" itemDescription="0"
-						itemValue="0" />
-				</p:selectOneMenu>
-			</div>
-		</form>
 
+
+
+
+
+			<!-- Sessao dialog da cesta selecionada -->
+			<p:dialog header="Entregar" widgetVar="dlgEntrega" minimizable="true"
+				minHeight="540" minWidth="480" modal="true" maximizable="true"
+				id="dialog" closeOnEscape="true" responsive="true" resizable="true"
+				style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+				position="top" fitViewport="true">
+
+				<!-- Formulario da cesta selecionada -->
+				<h:form prependId="false">
+					<div class="div-titulo-dialog" id="header-entrega">
+
+						<!-- Titulo -->
+						<h:outputLabel style="padding:0.9em" id="label-cesta-descricao">Entregar em meu endereço</h:outputLabel>
+
+					</div>
+					<div class="div-titulo-dialog" id="header-retirada">
+
+						<!-- Titulo Retirada-->
+						<h:outputLabel style="padding:0.9em" id="label-cesta-descricao-2">Retirar</h:outputLabel>
+
+					</div>
+					<div style="margin-bottom: 1em">
+						<div class="componente">
+
+							<h:form title="Meus dados cadastrais" class="margin"
+								prependId="false">
+								<div class="container-endereco">
+									<div class="sessaoA" id="sessao1">
+										<div class="input-group flex-nowrap ajustebtnA">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-user" style="width: 1em"></i></span>
+											</div>
+											<p:inputText type="text" alt="Nome" label="Nome"
+												required="true" placeholder="Nome" class="inputSize"
+												autocomplete="off"></p:inputText>
+										</div>
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-whatsapp" style="width: 1em"></i></span>
+											</div>
+											<p:inputNumber label="Telefone" placeholder="Telefone"
+												required="true" maxlength="11" maxValue="99999999999"
+												decimalSeparator="" thousandSeparator="" decimalPlaces="0"
+												class="inputSize telefone" autocomplete="off"></p:inputNumber>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-map-marker" style="width: 1em"></i></span>
+											</div>
+
+											<p:selectOneMenu filter="true" value="" id="regioes"
+												onchange="mostrarCheckBox()" class="inputSize"
+												disabled="true">
+												<f:selectItem itemLabel="Região" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItem itemLabel="Centro-RJ" itemDescription="Acre"
+													itemValue="AC" />
+												<f:selectItem itemLabel="Zona Sul-RJ"
+													itemDescription="Alagoas" itemValue="AL" />
+												<f:selectItem itemLabel="Zona Oeste-RJ"
+													itemDescription="Amapá" itemValue="AP" />
+												<f:selectItem itemLabel="Leblon-RJ"
+													itemDescription="Amazonas" itemValue="AM" />
+												<f:selectItem itemLabel="Tijuca-RJ" itemDescription="Bahia"
+													itemValue="BA" />
+												<f:selectItem itemLabel="Nenhuma anterior"
+													itemDescription="Nenhuma" itemValue="0" />
+											</p:selectOneMenu>
+										</div>
+
+										<div class="ui-inputgroup displaynone"
+											style="margin: 0.8em 0;" id="avise-me">
+											<div class="alert alert-warning">
+												<strong>Lamentamos! </strong>Entregamos apenas para as
+												regiões citadas acima
+											</div>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnA">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-address-card-o" style="width: 1em"></i></span>
+											</div>
+											<p:inputNumber alt="Cep" label="Cep" required="true"
+												placeholder="Cep" id="cep" decimalPlaces="0"
+												decimalSeparator="" maxValue="99999999"
+												onkeyup="atribuirCep()" thousandSeparator=""
+												class="inputSize telefone" maxlength="8" disabled="true"></p:inputNumber>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-road" style="width: 1em"></i></span>
+											</div>
+											<p:inputText type="text" label="Rua" placeholder="Rua"
+												required="true" id="rua" class="inputSize"
+												autocomplete="off" disabled="true"></p:inputText>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-map-marker" style="width: 1em"></i></span>
+											</div>
+											<p:inputText type="text" label="Cidade" placeholder="Cidade"
+												required="true" id="cidade" class="inputSize"
+												autocomplete="off" disabled="true"></p:inputText>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-font-awesome" style="width: 1em"></i></span>
+											</div>
+											<p:inputText type="text" label="Bairro" placeholder="Bairro"
+												required="true" id="bairro" class="inputSize"
+												autocomplete="off" disabled="true"></p:inputText>
+										</div>
+
+										<div class="input-group flex-nowrap ajustebtnB">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="addon-wrapping"><i
+													class="fa fa-globe" style="width: 1em"></i></span>
+											</div>
+
+											<p:selectOneMenu filter="true" style="width:6.2em" id="uf"
+												disabled="true">
+												<f:selectItem itemLabel="Uf" itemValue=""
+													noSelectionOption="true" />
+												<f:selectItem itemLabel="AC" itemDescription="Acre"
+													itemValue="AC" />
+												<f:selectItem itemLabel="AL" itemDescription="Alagoas"
+													itemValue="AL" />
+												<f:selectItem itemLabel="AP" itemDescription="Amapá"
+													itemValue="AP" />
+												<f:selectItem itemLabel="AM" itemDescription="Amazonas"
+													itemValue="AM" />
+												<f:selectItem itemLabel="BA" itemDescription="Bahia"
+													itemValue="BA" />
+												<f:selectItem itemLabel="CE" itemDescription="Ceará"
+													itemValue="CE" />
+												<f:selectItem itemLabel="DF"
+													itemDescription="Distrito Federal" itemValue="DF" />
+												<f:selectItem itemLabel="ES"
+													itemDescription="Espírito Santo" itemValue="ES" />
+												<f:selectItem itemLabel="GO" itemDescription="Goiás"
+													itemValue="GO" />
+												<f:selectItem itemLabel="MA" itemDescription="Maranhão"
+													itemValue="MA" />
+												<f:selectItem itemLabel="MT" itemDescription="Mato Grosso"
+													itemValue="MT" />
+												<f:selectItem itemLabel="MS"
+													itemDescription="Mato Grosso do Sul" itemValue="MS" />
+												<f:selectItem itemLabel="MG" itemDescription="Minas Gerais"
+													itemValue="MG" />
+												<f:selectItem itemLabel="PA" itemDescription="Pará"
+													itemValue="PA" />
+												<f:selectItem itemLabel="PB" itemDescription="Paraíba"
+													itemValue="PB" />
+												<f:selectItem itemLabel="PR" itemDescription="Paraná"
+													itemValue="PR" />
+												<f:selectItem itemLabel="PE" itemDescription="Pernambuco"
+													itemValue="PE" />
+												<f:selectItem itemLabel="PI" itemDescription="Piauí"
+													itemValue="PI" />
+												<f:selectItem itemLabel="RJ"
+													itemDescription="Rio de Janeiro" itemValue="RJ" />
+												<f:selectItem itemLabel="RN"
+													itemDescription="Rio Grando do Norte" itemValue="RN" />
+												<f:selectItem itemLabel="RS"
+													itemDescription="Rio Grande do Sul" itemValue="RS" />
+												<f:selectItem itemLabel="RO" itemDescription="Rondônia"
+													itemValue="RO" />
+												<f:selectItem itemLabel="RR" itemDescription="Roraima"
+													itemValue="RR" />
+												<f:selectItem itemLabel="SC"
+													itemDescription="Santa Catarina" itemValue="SC" />
+												<f:selectItem itemLabel="SP" itemDescription="São Paulo"
+													itemValue="SP" />
+												<f:selectItem itemLabel="SE" itemDescription="Sergipe"
+													itemValue="SE" />
+												<f:selectItem itemLabel="TO" itemDescription="Tocantins"
+													itemValue="TO" />
+											</p:selectOneMenu>
+
+											<p:inputText type="text" label="Número" placeholder="Número"
+												required="true" id="numero" autocomplete="off"
+												disabled="true"></p:inputText>
+
+										</div>
+									</div>
+									<div class="sessaoB Retirar" id="sessao2">
+
+										<p:selectOneMenu value="" class="ajustebtnB" onchange="exibirEnderecoRetirada()">
+											<f:selectItem itemLabel="Selecione ponto de retirada"
+												itemValue="" noSelectionOption="true" />
+											<f:selectItem itemLabel="Loja 1 - Centro - RJ"
+												itemDescription="Loja 1" itemValue="1" />
+											<f:selectItem itemLabel="Loja 2 - Sul - RJ"
+												itemDescription="Loja 2" itemValue="2" />
+										</p:selectOneMenu>
+
+										<div>
+
+											<div class="alert alert-success displaynone" style="margin: 1em 0" id="div-endereco-retirada">
+												<h4 class="alert-heading">Endereço:</h4>
+												<p>Avenida Te90, Bairro Centro, Rio de Janeiro - RJ</p>
+												<p class="mb-0">Horário 08:00 às 17:00h</p>
+											</div>
+
+										</div>
+
+
+									</div>
+
+									<p:commandLink value="Outro endereço"
+										class="btn btn-light tamanhoBtn" onclick="proximoOuVoltar()"></p:commandLink>
+									<p:commandButton value="Confirmar"
+										class="tamanhoBtn btn btn-success"></p:commandButton>
+
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</h:form>
+			</p:dialog>
+			<!-- fim dialog cesta selecionada________________________________________________________________ -->
+		</form>
 	</div>
-	<script src="./resources/js/app.js"></script>
+	<script src="../resources/js/pedidos.js"></script>
+	<script src="../resources/js/userdata.js"></script>
 </h:body>
 </html>
