@@ -20,7 +20,7 @@
                         
         
         <property name="java-output-path" value="/fazendautopia/target/classes"/>
-        <property name="context-root" value="FazendoUtopia"/>
+        <property name="context-root" value="FazendaUtopia"/>
                     
     
     </wb-module>
