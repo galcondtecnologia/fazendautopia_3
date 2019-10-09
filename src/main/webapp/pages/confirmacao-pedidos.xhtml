@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Carrinho</title>
+	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/carrinho-compras.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/carrinho-compras.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+	<h:outputStylesheet library="css" name="/main.css" />
+
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+
+
+	<script>
+	var array = [ "Banana", "Abobora", "Lima", "Uva", "Abacate" ];
+	function itens() {
+	    return array;
+	}
+    </script>
+</h:head>
+<h:body>
+
+
+
+
+	<div class="container">
+		<div>
+			<h1>Lista de itens</h1>
+		</div>
+
+
+		<p:dataTable var="" value="" editable="true">
+			<f:facet name="header"> Lista de itens no carrinho
+ 			</f:facet>
+			<p:column headerText="Item">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="Cesta Mini Personalizada" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Qtd">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="01" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Preço">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="R$ 52,90" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column>
+				<p:rowEditor />
+			</p:column>
+		</p:dataTable>
+
+		<div style="float: right; padding-top: 2em">
+		<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
+			class="tamanhoBtn btn btn-success"></p:linkButton>
+		</div>
+	</div>
+
+
+
+</h:body>
+</html>
