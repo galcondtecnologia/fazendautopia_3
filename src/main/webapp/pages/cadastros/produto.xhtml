@@ -41,7 +41,7 @@
 					<p:column headerText="Status">
 						<h:outputText value="#{produto.status}" />
 					</p:column>
-					<p:column headerText="Opções" width="100">
+					<p:column headerText="Opções" width="120">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{produtoBean.excluir}"
 							update=":formListagem:tabela">
@@ -81,7 +81,7 @@
 					<h:outputLabel value="Categoria Produto" />
 					<p:selectOneMenu value="#{produtoBean.produto.categoriaProduto}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="" noSelectionOption="tre" />
+						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.categoriaProdutos}"
 							var="categoria" itemLabel="#{categoria.descricao}"
 							itemValue="#{categoria}" />
@@ -93,7 +93,7 @@
 					<h:outputLabel value="Uni. Medida" />
 					<p:selectOneMenu value="#{produtoBean.produto.unidadeMedida}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="" noSelectionOption="tre" />
+						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.unidadeMedidas}" var="unidade"
 							itemLabel="#{unidade.descricao}" itemValue="#{unidade}" />
 					</p:selectOneMenu>
@@ -106,7 +106,7 @@
 					<p:selectOneMenu id="fornecedor"
 						value="#{produtoBean.produto.fornecedor}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="" noSelectionOption="tre" />
+						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.fornecedores}"
 							var="fornecedor"
 							itemLabel="#{fornecedor.nomefantasia} - #{fornecedor.cnpj}"
@@ -118,7 +118,7 @@
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<h:commandButton value="Salvar"
+					<p:commandButton value="Salvar"
 						actionListener="#{produtoBean.salvar1}"
 						update=":formCadastro:painel :formListagem:tabela" />
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"

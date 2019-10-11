@@ -28,27 +28,6 @@
 						</p:panelGrid>
 					</f:facet>
 
-					<p:column headerText="Opções" width="100">
-						<p:commandButton icon="ui-icon-trash"
-							actionListener="#{fornecedorBean.excluir}"
-							update=":formListagem:tabela">
-							<p:confirm header="Confirmação"
-								message="Deseja excluir essa fornecedor?" icon="ui-icon-alert" />
-							<f:attribute name="fornecedorSelecionado" value="#{fornecedor}" />
-						</p:commandButton>
-
-
-						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
-							actionListener="#{fornecedorBean.editar}"
-							oncomplete="PF('dialogo').show();">
-							<f:attribute name="fornecedorSelecionado" value="#{fornecedor}" />
-							<f:actionListener
-								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-
-						</p:commandButton>
-					</p:column>
-
-
 					<p:column headerText="Razão Social">
 						<h:outputText value="#{fornecedor.razaoSocial}" />
 					</p:column>
@@ -83,6 +62,26 @@
 					<p:column headerText="E-mail">
 						<h:outputText value="#{fornecedor.email}" />
 					</p:column>
+					
+					<p:column headerText="Opções" width="120">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{fornecedorBean.excluir}"
+							update=":formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir essa fornecedor?" icon="ui-icon-alert" />
+							<f:attribute name="fornecedorSelecionado" value="#{fornecedor}" />
+						</p:commandButton>
+
+
+						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
+							actionListener="#{fornecedorBean.editar}"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="fornecedorSelecionado" value="#{fornecedor}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+
+						</p:commandButton>
+					</p:column>
 
 				</p:dataTable>
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -97,20 +96,22 @@
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
+				
+					<p:outputLabel value="CNPJ" for="cnpj" />
+					<p:inputMask id="cnpj" mask="99.999.999/9999-99" onkeyup="atribuirCnpj()" onchange=""
+						value="#{fornecedorBean.fornecedor.cnpj}" size="30">
+					</p:inputMask>
+					
+					
 					<p:outputLabel value="Razão Social: " for="razacaosocial" />
-					<p:inputText maxlength="150" size="50" id="razacaosocial"
+					<p:inputText maxlength="150" size="30" id="razacaosocial"
 						required="true" rendered="true"
 						value="#{fornecedorBean.fornecedor.razaoSocial}" />
 
 					<p:outputLabel value="Nome Fantazia: " for="fantasia" />
-					<p:inputText maxlength="150" size="50" id="fantasia"
+					<p:inputText maxlength="150" size="30" id="fantasia"
 						required="true" rendered="true"
 						value="#{fornecedorBean.fornecedor.nomefantasia}" />
-
-					<p:outputLabel value="CNPJ" for="cnpj" />
-					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
-						value="#{fornecedorBean.fornecedor.cnpj}">
-					</p:inputMask>
 
 					<p:outputLabel value="CEP:" for="cep" />
 					<p:inputMask id="cep" mask="99999-999" size="30"
@@ -122,11 +123,11 @@
 
 					<p:outputLabel value="Cidade" for="cidade" />
 					<p:inputText id="cidade" required="true"
-						value="#{fornecedorBean.fornecedor.cidade}" />
+						value="#{fornecedorBean.fornecedor.cidade}" size="30" />
 
 					<p:outputLabel value="Estado" for="estado" />
 					<p:inputText id="estado" required="true"
-						value="#{fornecedorBean.fornecedor.estado}" />
+						value="#{fornecedorBean.fornecedor.estado}" size="30"/>
 
 					<p:outputLabel value="Endereço:" for="endereco" />
 					<p:inputText id="endereco" maxlength="50" size="30"
@@ -134,7 +135,7 @@
 
 					<p:outputLabel value="Nº: " for="n" />
 					<p:inputNumber id="n" decimalPlaces="0"
-						value="#{fornecedorBean.fornecedor.numero}"></p:inputNumber>
+						value="#{fornecedorBean.fornecedor.numero}" size="30"></p:inputNumber>
 					<p:outputLabel value="Telefone:" for="telefone" />
 					<p:inputMask id="telefone" mask="(99)9999-9999" size="30"
 						value="#{fornecedorBean.fornecedor.telefone}" />
