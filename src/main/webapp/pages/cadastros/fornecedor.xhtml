@@ -62,7 +62,7 @@
 					<p:column headerText="E-mail">
 						<h:outputText value="#{fornecedor.email}" />
 					</p:column>
-					
+
 					<p:column headerText="Opções" width="120">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{fornecedorBean.excluir}"
@@ -93,16 +93,17 @@
 			</p:panel>
 		</h:form>
 		<p:dialog header="Fornecedor - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false">
-			<h:form id="formCadastro">
+			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
+			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="2">
-				
+
 					<p:outputLabel value="CNPJ" for="cnpj" />
-					<p:inputMask id="cnpj" mask="99.999.999/9999-99" onkeyup="atribuirCnpj()" onchange=""
+					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+						onchange="atribuirCnpj()"
 						value="#{fornecedorBean.fornecedor.cnpj}" size="30">
 					</p:inputMask>
-					
-					
+
+
 					<p:outputLabel value="Razão Social: " for="razacaosocial" />
 					<p:inputText maxlength="150" size="30" id="razacaosocial"
 						required="true" rendered="true"
@@ -117,7 +118,8 @@
 					<p:inputMask id="cep" mask="99999-999" size="30"
 						value="#{fornecedorBean.fornecedor.cep}">
 						<p:ajax event="change" update="@this"></p:ajax>
-						<p:ajax event="blur" listener="#{fornecedorBean.encontraCEP()}" update="cidade estado endereco">
+						<p:ajax event="blur" listener="#{fornecedorBean.encontraCEP()}"
+							update="cidade estado endereco">
 						</p:ajax>
 					</p:inputMask>
 
@@ -125,17 +127,21 @@
 					<p:inputText id="cidade" required="true"
 						value="#{fornecedorBean.fornecedor.cidade}" size="30" />
 
+					<p:outputLabel value="Bairro" for="bairro" />
+					<p:inputText id="bairro" required="true"
+						value="" size="30" />
+
 					<p:outputLabel value="Estado" for="estado" />
 					<p:inputText id="estado" required="true"
-						value="#{fornecedorBean.fornecedor.estado}" size="30"/>
+						value="#{fornecedorBean.fornecedor.estado}" size="30" />
 
 					<p:outputLabel value="Endereço:" for="endereco" />
 					<p:inputText id="endereco" maxlength="50" size="30"
 						value="#{fornecedorBean.fornecedor.logradouro}" />
 
 					<p:outputLabel value="Nº: " for="n" />
-					<p:inputNumber id="n" decimalPlaces="0"
-						value="#{fornecedorBean.fornecedor.numero}" size="30"></p:inputNumber>
+					<p:inputText id="n" decimalPlaces="0"
+						value="#{fornecedorBean.fornecedor.numero}" size="30"></p:inputText>
 					<p:outputLabel value="Telefone:" for="telefone" />
 					<p:inputMask id="telefone" mask="(99)9999-9999" size="30"
 						value="#{fornecedorBean.fornecedor.telefone}" />
@@ -151,6 +157,7 @@
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" />
 				</h:panelGrid>
+				<script src="../../resources/js/buscaCnpj.js"></script>
 			</h:form>
 		</p:dialog>
 	</ui:define>
