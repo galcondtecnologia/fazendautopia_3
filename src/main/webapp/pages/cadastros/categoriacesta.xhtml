@@ -34,7 +34,7 @@
 					<p:column headerText="Quantidade" sortBy="#{categorias.quantidadeitens}" sortable="true">
 						<h:outputText value="#{categorias.quantidadeitens}">
 							<f:convertNumber minFractionDigits="0" integerOnly="true"
-								locale="pt-BR" />
+								locale="pt_BR" />
 						</h:outputText>
 					</p:column>
 					<p:column headerText="Status" sortBy="#{categorias.status}" sortable="true">
@@ -74,7 +74,7 @@
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
-					<p:inputText maxlength="150" size="50" id="descricao"
+					<p:inputText maxlength="150" size="30" id="descricao"
 						required="true" rendered="true"
 						value="#{categoriaCestasBean.categoria.descricao}" />
 					<h:panelGrid id="painel-Label" columns="2">
@@ -82,11 +82,11 @@
 					</h:panelGrid>
 					<h:panelGrid id="painel-input" columns="2">
 						<p:inputNumber id="qtd" decimalPlaces="0"
-							value="#{categoriaCestasBean.categoria.quantidadeitens}"></p:inputNumber>
+							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5"></p:inputNumber>
 						
 						
 				<p:selectOneMenu id="status" value="#{categoriaCestasBean.categoria.status}"
-					style="width:235px">
+					style="width:195px">
 					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 					<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 					<f:selectItems value="#{categoriaCestasBean.categoria.status}"></f:selectItems>

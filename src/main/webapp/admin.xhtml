@@ -5,51 +5,211 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<style type="text/css">
+	<style style="text/css">
 .ui-g div {
 	background-color: #gray !important;
 	text-align: center;
 	border: 1px solid #fafafa;
 }
+a:hover{
+border:1px solid red;
+}
 </style>
 
 	<ui:define name="titulo">Home</ui:define>
-<!-- 	<p:growl id="msg" /> -->
+	<!-- 	<p:growl id="msg" /> -->
 	<ui:define name="corpo">
-		<p:panelGrid>
-			<div class="ui-g-10 ui-g-nopad">
+		<p:panelGrid style="width:99vw">
+			<div class="ui-g-10 ui-g-nopad" style="width:99vw">
 				<div class="ui-g">
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
-
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;"  href="../fazendautopia/pages/cadastros/categoriaproduto.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Categ.
+										de produtos</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-cubes" aria-hidden="true"></i>
+									</div>
+								</div>
 							</p:panel>
 						</p:link>
 					</div>
 
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
-
-							</p:panel>
-						</p:link>
-
-					</div>
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
-
-							</p:panel>
-						</p:link>
-
-					</div>
-					<div class="ui-g-12 ui-md-6 ui-lg-3">
-						<p:link>
-							<p:panel>
-
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/produto.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Produtos</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-lemon-o" aria-hidden="true"></i>
+									</div>
+								</div>
 							</p:panel>
 						</p:link>
 					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/categoriacesta.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Categ.
+										de Cestas</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-cubes" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/cesta.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Cestas</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/unidademedida.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Unidades
+										de Medidas</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-balance-scale" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/regiao.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Regiões</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/fornecedor.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Fornecedores</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-handshake-o" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../fazendautopia/pages/cadastros/lojas.xhtml">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Minhas
+										Lojas</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-building-o" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Fretes</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-truck" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Relat.
+										de pedidos</h5>
+									<div
+										style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+									</div>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="../../webapp/pages/cadastros/">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Produtos
+										em Pedidos</h5>
+								</div>
+								<div
+								style="margin: 0; padding: 0; color: Darkgreen; text-align: center; font-size: 2em">
+								<i class="fa fa-tasks" aria-hidden="true"></i>
+							</div>
+							</p:panel>
+						</p:link>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-3"
+						style="box-shadow: 1px 1px 5px gray; border-radius: 8px; margin: 0.5em; width: 23%; height: 11em">
+						<p:link style="text-decoration: none;" href="mailto:galcondtecnologia@gmail.com">
+							<p:panel style="border:none">
+								<div>
+									<h5
+										style="text-align: center; font-weight: bold; letter-spacing: 1.2px; font-family: sans-serif; text-decoration: none; text-transform: uppercase;">Suporte</h5>
+								</div>
+								<div
+									style="margin: 0.2em; padding: 0; color: Darkgreen; text-align: center; font-size: 2em;">
+									<i class="fa fa-question-circle" aria-hidden="true"></i>
+								</div>
+							</p:panel>
+						</p:link>
+					</div>
+
 				</div>
 			</div>
 		</p:panelGrid>
