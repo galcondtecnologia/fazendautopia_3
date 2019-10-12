@@ -109,7 +109,7 @@
 
 					<h:outputLabel value="Uni. Medida" />
 					<p:selectOneMenu value="#{produtoBean.produto.unidadeMedida}"
-						converter="omnifaces.SelectItemsConverter">
+						converter="omnifaces.SelectItemsConverter" style="width:160px">
 						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.unidadeMedidas}" var="unidade"
 							itemLabel="#{unidade.descricao}" itemValue="#{unidade}" />
@@ -118,16 +118,16 @@
 					<h:panelGrid columns="1">						
 					<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status"
-							value="#{produtoBean.produto.status}" style="width:285px">
+							value="#{produtoBean.produto.status}" style="width:190px">
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItems value="#{produtoBean.produto.status}"></f:selectItems>
 						</p:selectOneMenu>	
 					</h:panelGrid>
-										<h:panelGrid columns="1">
+				<h:panelGrid columns="1">
 					<h:outputLabel value="Informações Nuticionais: " for="info" />
-					<h:inputTextarea id="info"
-						value="#{produtoBean.produto.informacoes}" />
+					<p:inputTextarea id="info"
+						value="#{produtoBean.produto.informacoes}" cols="44"/>
 				</h:panelGrid>
 				</h:panelGrid>
 				
