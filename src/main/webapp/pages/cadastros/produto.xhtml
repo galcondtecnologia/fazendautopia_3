@@ -75,21 +75,21 @@
 			<h:form id="formCadastro" enctype="multipart/form-data" prependId="false">
 				<h:panelGrid id="painel" columns="2">
 				<h:panelGrid columns="1">
-					<h:inputFile id="foto" value="#{produtoBean.img}" />
+				<div class="image-upload"><label for="foto"><img src="../../resources/images/icons/SemImagem-300x300px.png" style="height:120px; width:120px; margin-top:1em"/>
+					<h:inputFile id="foto" value="#{produtoBean.img}" style="display:none;"/></label>
+					<h:message for="foto" />
+					</div>
 				</h:panelGrid>
 				<h:panelGrid columns="1">	
 					<h:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText maxlength="150" size="40" id="descricao"
 						required="true" rendered="true"
-						value="#{produtoBean.produto.descricao}" />
-				</h:panelGrid>
-				<h:panelGrid columns="1">
-				</h:panelGrid>
+						value="#{produtoBean.produto.descricao}"/>
 				<h:panelGrid columns="2">
 				<h:panelGrid columns="1">
 				<h:outputLabel value="Categoria Produto" />
 					<p:selectOneMenu value="#{produtoBean.produto.categoriaProduto}"
-						converter="omnifaces.SelectItemsConverter" style="width:200px">
+						converter="omnifaces.SelectItemsConverter" style="width:198px">
 						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.categoriaProdutos}"
 							var="categoria" itemLabel="#{categoria.descricao}"
@@ -102,14 +102,17 @@
 				</h:panelGrid>
 				</h:panelGrid>
 				</h:panelGrid>
+				</h:panelGrid>
+	
+				
 				
 					
-				<h:panelGrid columns="3">
+				<h:panelGrid columns="2">
 					<h:panelGrid columns="1">
 
 					<h:outputLabel value="Uni. Medida" />
 					<p:selectOneMenu value="#{produtoBean.produto.unidadeMedida}"
-						converter="omnifaces.SelectItemsConverter" style="width:160px">
+						converter="omnifaces.SelectItemsConverter" style="width:250px">
 						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.unidadeMedidas}" var="unidade"
 							itemLabel="#{unidade.descricao}" itemValue="#{unidade}" />
@@ -118,24 +121,19 @@
 					<h:panelGrid columns="1">						
 					<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status"
-							value="#{produtoBean.produto.status}" style="width:190px">
+							value="#{produtoBean.produto.status}" style="width:235px">
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItems value="#{produtoBean.produto.status}"></f:selectItems>
 						</p:selectOneMenu>	
 					</h:panelGrid>
-				<h:panelGrid columns="1">
-					<h:outputLabel value="Informações Nuticionais: " for="info" />
-					<p:inputTextarea id="info"
-						value="#{produtoBean.produto.informacoes}" cols="44"/>
-				</h:panelGrid>
 				</h:panelGrid>
 				
 				<h:panelGrid columns="1">
-					<h:outputLabel value="Forncedor: " for="fornecedor" />
+					<h:outputLabel value="Forncedor: " for="fornecedor"/>
 					<p:selectOneMenu id="fornecedor"
 						value="#{produtoBean.produto.fornecedor}"
-						converter="omnifaces.SelectItemsConverter">
+						converter="omnifaces.SelectItemsConverter"  style="width:494px">
 						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{produtoBean.fornecedores}"
 							var="fornecedor"
@@ -143,6 +141,11 @@
 							itemValue="#{categoria}" />
 					</p:selectOneMenu>
 					</h:panelGrid>
+					<h:panelGrid columns="1">
+					<h:outputLabel value="Informações Nutricionais: " for="info" />
+					<p:inputTextarea id="info"
+						value="#{produtoBean.produto.informacoes}" cols="58"/>
+				</h:panelGrid>
 				
 
 				<h:panelGrid columns="2">
