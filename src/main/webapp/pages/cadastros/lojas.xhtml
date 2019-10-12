@@ -96,67 +96,88 @@
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="2">
-					<p:outputLabel value="CNPJ" for="cnpj"/>
-					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
-						value="#{minhaLojaBean.minhaloja.cnpj}" size="30" onchange="atribuirCnpj()">
-					</p:inputMask>
-
-					<p:outputLabel value="Razão Social: " for="razacaosocial" />
-					<p:inputText maxlength="150" size="30" id="razacaosocial"
-						required="true" rendered="true"
-						value="#{minhaLojaBean.minhaloja.razaoSocial}" />
-
-					<p:outputLabel value="Nome Fantazia: " for="fantasia" />
-					<p:inputText maxlength="150" size="30" id="fantasia"
-						required="true" rendered="true"
-						value="#{minhaLojaBean.minhaloja.nomefantasia}" />
-
-					<p:outputLabel value="CEP:" for="cep" />
-					<p:inputMask id="cep" mask="99999-999" size="30"
-						value="#{minhaLojaBean.minhaloja.cep}">
-						<p:ajax event="change" update="@this"></p:ajax>
-						<p:ajax event="blur" listener="#{minhaLojaBean.encontraCEP()}"
-							update="cidade estado endereco">
-						</p:ajax>
-					</p:inputMask>
-
-					<p:outputLabel value="Cidade" for="cidade" />
-					<p:inputText id="cidade" required="true"
-						value="#{minhaLojaBean.minhaloja.cidade}" size="30"/>
-
-					<p:outputLabel value="Bairro" for="bairro" />
-					<p:inputText id="bairro" required="true" value="" size="30" />
-
-					<p:outputLabel value="Estado" for="estado" />
-					<p:inputText id="estado" required="true"
-						value="#{minhaLojaBean.minhaloja.estado}" size="30"/>
-
-					<p:outputLabel value="Endereço:" for="endereco" />
-					<p:inputText id="endereco" maxlength="50" size="30"
-						value="#{minhaLojaBean.minhaloja.logradouro}" />
-
-					<p:outputLabel value="Nº: " for="n" />
-					<p:inputText id="n" decimalPlaces="0"
-						value="#{minhaLojaBean.minhaloja.numero}" size="30"></p:inputText>
-					<p:outputLabel value="Telefone:" for="telefone" />
-					<p:inputMask id="telefone" mask="(99)9999-9999" size="30"
-						value="#{minhaLojaBean.minhaloja.telefone}" />
-					<p:outputLabel value="Email:" for="email" />
-					<p:inputText id="email" maxlength="50" size="30"
-						value="#{minhaLojaBean.minhaloja.email}" />
-					
-	
-				<p:outputLabel value="Status:" for="status" />
-				<p:selectOneMenu id="status" value="#{minhaLojaBean.minhaloja.status}"
-					style="width:285px">
-					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-					<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
-					<f:selectItems value="#{minhaLojaBean.minhaloja.status}"></f:selectItems>
-				</p:selectOneMenu>		
-						
-						
-						
+					<h:panelGrid columns="1">
+						<p:outputLabel value="CNPJ" for="cnpj" />
+						<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+							value="#{minhaLojaBean.minhaloja.cnpj}" size="30"
+							onchange="atribuirCnpj()">
+						</p:inputMask>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Razão Social: " for="razacaosocial" />
+						<p:inputText maxlength="150" size="30" id="razacaosocial"
+							required="true" rendered="true"
+							value="#{minhaLojaBean.minhaloja.razaoSocial}" />
+					</h:panelGrid>
 				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Nome Fantazia: " for="fantasia" />
+						<p:inputText maxlength="150" size="30" id="fantasia" rendered="true"
+							value="#{minhaLojaBean.minhaloja.nomefantasia}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="CEP:" for="cep" />
+						<p:inputMask id="cep" mask="99999-999" size="30"
+							value="#{minhaLojaBean.minhaloja.cep}">
+							<p:ajax event="change" update="@this"></p:ajax>
+							<p:ajax event="blur" listener="#{minhaLojaBean.encontraCEP()}"
+								update="cidade estado endereco">
+							</p:ajax>
+						</p:inputMask>
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Cidade" for="cidade" />
+						<p:inputText id="cidade" required="true"
+							value="#{minhaLojaBean.minhaloja.cidade}" size="24" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Bairro" for="bairro" />
+						<p:inputText id="bairro" required="true" value="" size="25" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Estado" for="estado" />
+						<p:inputText id="estado" required="true"
+							value="#{minhaLojaBean.minhaloja.estado}" size="5" />
+					</h:panelGrid>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Rua:" for="endereco" />
+						<p:inputText id="endereco" maxlength="50" size="25"
+							value="#{minhaLojaBean.minhaloja.logradouro}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Nº: " for="n" />
+						<p:inputText id="n" decimalPlaces="0"
+							value="#{minhaLojaBean.minhaloja.numero}" size="5"></p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Telefone:" for="telefone" />
+						<p:inputMask id="telefone" mask="(99)9999-9999" size="25"
+							value="#{minhaLojaBean.minhaloja.telefone}" />
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Email:" for="email" />
+						<p:inputText id="email" maxlength="50" size="32"
+							value="#{minhaLojaBean.minhaloja.email}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Status:" for="status" />
+						<p:selectOneMenu id="status"
+							value="#{minhaLojaBean.minhaloja.status}" style="width:285px">
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItems value="#{minhaLojaBean.minhaloja.status}"></f:selectItems>
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</h:panelGrid>
+
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"

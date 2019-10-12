@@ -92,62 +92,97 @@
 				</p:confirmDialog>
 			</p:panel>
 		</h:form>
+
+
 		<p:dialog header="Fornecedor - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
+			draggable="false" resizable="false" modal="true" closable="false"
+			closeOnEscape="true">
 			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="2">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="CNPJ" for="cnpj" />
+						<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+							onchange="atribuirCnpj()"
+							value="#{fornecedorBean.fornecedor.cnpj}" size="30">
+						</p:inputMask>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Razão Social: " for="razacaosocial" />
+						<p:inputText maxlength="150" size="30" id="razacaosocial"
+							required="true" rendered="true"
+							value="#{fornecedorBean.fornecedor.razaoSocial}" />
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Nome Fantazia: " for="fantasia" />
+						<p:inputText maxlength="150" size="30" id="fantasia" rendered="true"
+							value="#{fornecedorBean.fornecedor.nomefantasia}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="CEP:" for="cep" />
+						<p:inputMask id="cep" mask="99999-999" size="30"
+							value="#{fornecedorBean.fornecedor.cep}">
+							<p:ajax event="change" update="@this"></p:ajax>
+							<p:ajax event="blur" listener="#{fornecedorBean.encontraCEP()}"
+								update="cidade estado endereco">
+							</p:ajax>
+						</p:inputMask>
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Cidade" for="cidade" />
+						<p:inputText id="cidade" required="true"
+							value="#{fornecedorBean.fornecedor.cidade}" size="25" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Estado" for="estado" />
+						<p:inputText id="estado" required="true"
+							value="#{fornecedorBean.fornecedor.estado}" size="5" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Bairro" for="bairro" />
+						<p:inputText id="bairro" required="true" value="" size="24" />
+					</h:panelGrid>
+				</h:panelGrid>
 
-					<p:outputLabel value="CNPJ" for="cnpj" />
-					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
-						onchange="atribuirCnpj()"
-						value="#{fornecedorBean.fornecedor.cnpj}" size="30">
-					</p:inputMask>
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Rua:" for="endereco" />
+						<p:inputText id="endereco" maxlength="50" size="27"
+							value="#{fornecedorBean.fornecedor.logradouro}" />
 
+					</h:panelGrid>
+					<h:panelGrid columns="1">
 
-					<p:outputLabel value="Razão Social: " for="razacaosocial" />
-					<p:inputText maxlength="150" size="30" id="razacaosocial"
-						required="true" rendered="true"
-						value="#{fornecedorBean.fornecedor.razaoSocial}" />
+						<p:outputLabel value="Nº: " for="n" />
+						<p:inputText id="n" decimalPlaces="0"
+							value="#{fornecedorBean.fornecedor.numero}" size="5"></p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Telefone:" for="telefone" />
+						<p:inputMask id="telefone" mask="(99)9999-9999" size="22"
+							value="#{fornecedorBean.fornecedor.telefone}" />
+					</h:panelGrid>
+				</h:panelGrid>
 
-					<p:outputLabel value="Nome Fantazia: " for="fantasia" />
-					<p:inputText maxlength="150" size="30" id="fantasia"
-						required="true" rendered="true"
-						value="#{fornecedorBean.fornecedor.nomefantasia}" />
-
-					<p:outputLabel value="CEP:" for="cep" />
-					<p:inputMask id="cep" mask="99999-999" size="30"
-						value="#{fornecedorBean.fornecedor.cep}">
-						<p:ajax event="change" update="@this"></p:ajax>
-						<p:ajax event="blur" listener="#{fornecedorBean.encontraCEP()}"
-							update="cidade estado endereco">
-						</p:ajax>
-					</p:inputMask>
-
-					<p:outputLabel value="Cidade" for="cidade" />
-					<p:inputText id="cidade" required="true"
-						value="#{fornecedorBean.fornecedor.cidade}" size="30" />
-
-					<p:outputLabel value="Bairro" for="bairro" />
-					<p:inputText id="bairro" required="true"
-						value="" size="30" />
-
-					<p:outputLabel value="Estado" for="estado" />
-					<p:inputText id="estado" required="true"
-						value="#{fornecedorBean.fornecedor.estado}" size="30" />
-
-					<p:outputLabel value="Endereço:" for="endereco" />
-					<p:inputText id="endereco" maxlength="50" size="30"
-						value="#{fornecedorBean.fornecedor.logradouro}" />
-
-					<p:outputLabel value="Nº: " for="n" />
-					<p:inputText id="n" decimalPlaces="0"
-						value="#{fornecedorBean.fornecedor.numero}" size="30"></p:inputText>
-					<p:outputLabel value="Telefone:" for="telefone" />
-					<p:inputMask id="telefone" mask="(99)9999-9999" size="30"
-						value="#{fornecedorBean.fornecedor.telefone}" />
-					<p:outputLabel value="Email:" for="email" />
-					<p:inputText id="email" maxlength="50" size="30"
-						value="#{fornecedorBean.fornecedor.email}" />
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Email:" for="email" />
+						<p:inputText id="email" maxlength="50" size="45"
+							value="#{fornecedorBean.fornecedor.email}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Status:" for="status" />
+						<p:selectOneMenu id="status"
+							value=""
+							style="width:170px">
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItems value=""></f:selectItems>
+						</p:selectOneMenu>
+					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
