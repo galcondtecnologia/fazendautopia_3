@@ -31,7 +31,7 @@ public class FornecedorBean implements Serializable {
 			FornecedorDAO dao = new FornecedorDAO();
 			fornecedores = dao.listar();
 		} catch (RuntimeException e) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar listar as Categoria Cestas!");
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar os Fornecedores!");
 			e.printStackTrace();
 
 		}
@@ -40,6 +40,7 @@ public class FornecedorBean implements Serializable {
 
 	public void novo() {
 		fornecedor = new Fornecedor();
+		
 	}
 
 	public void salvar() {
@@ -100,6 +101,7 @@ public class FornecedorBean implements Serializable {
 			fornecedor.setLogradouro(cepWebService.getLogradouro());
 			fornecedor.setEstado(cepWebService.getEstado());
 			fornecedor.setCidade(cepWebService.getCidade());
+			fornecedor.setBairro(cepWebService.getBairro());
 
 		} else {
 

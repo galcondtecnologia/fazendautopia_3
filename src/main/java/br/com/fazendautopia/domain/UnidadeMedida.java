@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 @Entity
 public class UnidadeMedida extends GenericDomain {
 	private String descricao;
-	private boolean status;
+	private String status;
 
 	public String getDescricao() {
 		return descricao;
@@ -16,11 +16,11 @@ public class UnidadeMedida extends GenericDomain {
 		this.descricao = descricao;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

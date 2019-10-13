@@ -37,8 +37,8 @@ public class CepWebService {
 				if (element.getQualifiedName().equals("cidade"))
 					setCidade(element.getText());
 
-				if (element.getQualifiedName().equals("tipo_logradouro"))
-					setTipoLogradouro(element.getText());
+				if (element.getQualifiedName().equals("bairro"))
+					setBairro(element.getText());
 
 				if (element.getQualifiedName().equals("logradouro"))
 					setLogradouro(element.getText());

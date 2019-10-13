@@ -29,7 +29,7 @@ public class Produto extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Fornecedor fornecedor;
-	private boolean status;
+	private String status;
 
 	private String informacoes;
 
@@ -49,11 +49,13 @@ public class Produto extends GenericDomain {
 		this.precoVenda = precoVenda;
 	}
 
-	public boolean isStatus() {
+	
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

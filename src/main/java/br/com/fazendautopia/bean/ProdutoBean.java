@@ -51,6 +51,11 @@ public class ProdutoBean implements Serializable {
 
 			ProdutoDAO dao = new ProdutoDAO();
 			produtos = dao.listar();
+			FornecedorDAO dao2 = new FornecedorDAO();
+			fornecedores = dao2.listar();
+
+			UnidadeMedidaDAO dao3 = new UnidadeMedidaDAO();
+			unidadeMedidas = dao3.listar();
 
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as Categoria Cestas!");
@@ -138,7 +143,7 @@ public class ProdutoBean implements Serializable {
 			System.out.println("Imagem " + produto.getImagemBase64().toString());
 			produto.setDataCadastro(new Date());
 			dao.merge(produto);
-			
+
 			produto = new Produto();
 
 			ProdutoDAO dao1 = new ProdutoDAO();

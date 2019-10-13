@@ -1,7 +1,5 @@
 package br.com.fazendautopia.domain;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -24,7 +22,7 @@ public class Cesta extends GenericDomain {
 	@JoinColumn(nullable = false)
 	private CategoriaCesta categoriaCesta;
 	private DualListModel<Produto> dualListModelProdu;
-	private boolean status;
+	private String status;
 	private int quantItens;
 	private Double precovenda;
 
@@ -68,8 +66,6 @@ public class Cesta extends GenericDomain {
 		this.imagemBase64 = imagemBase64;
 	}
 
-	
-
 	public DualListModel<Produto> getDualListModelProdu() {
 		return dualListModelProdu;
 	}
@@ -78,11 +74,11 @@ public class Cesta extends GenericDomain {
 		this.dualListModelProdu = dualListModelProdu;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
