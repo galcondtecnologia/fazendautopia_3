@@ -40,7 +40,7 @@
 					<p:column headerText="Status">
 						<h:outputText value="#{cesta.status}" />
 					</p:column>
-					
+
 					<p:column headerText="Produtos">
 						<h:outputText value="#{cesta.dualListModelProdu.target}" />
 					</p:column>
@@ -71,12 +71,35 @@
 				</p:confirmDialog>
 			</p:panel>
 		</h:form>
+		
+		
 		<p:dialog header="Cesta - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
+			draggable="false" resizable="false" modal="true" closable="false"
+			closeOnEscape="true">
 			<h:form id="formCadastro" enctype="multipart/form-data">
+
+
 				<p:panelGrid id="painel" columns="2">
-					<h:outputLabel value="Foto" for="foto" />
-					<h:inputFile id="foto" value="#{cestaBean.img}" />
+					<p:panelGrid columns="1">
+						<h:inputFile id="foto" value="#{cestaBean.img}" />
+
+						<p:outputLabel value="Status:" for="status" />
+						<p:selectOneMenu id="status" value="#{cestaBean.cesta.status}"
+							style="width:235px">
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItems value="#{cestaBean.cesta.status}"></f:selectItems>
+						</p:selectOneMenu>
+
+						<h:outputLabel value="Qtd Itens " for="qtd" />
+						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}" />
+
+						<h:outputLabel value="Preço de venda: " for="preco" />
+						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}" />
+
+					</p:panelGrid>
+					<p:panelGrid columns="2">
+					
 					<h:outputLabel value="Descrição: " for="descricao" />
 					<h:inputText maxlength="150" size="50" id="descricao"
 						required="true" rendered="true"
@@ -84,29 +107,19 @@
 					<h:outputLabel value="Categoria Cesta" />
 					<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="" noSelectionOption="tre" />
+						<f:selectItem itemLabel="" noSelectionOption="true" />
 						<f:selectItems value="#{cestaBean.categoriacestas}"
 							var="categoria" itemLabel="#{categoria.descricao}"
 							itemValue="#{categoria}" />
 					</p:selectOneMenu>
 
-					<h:outputLabel value="Qtd Itens " for="qtd" />
-					<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}" />
 
-					<h:outputLabel value="Preço de venda: " for="preco" />
-					<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}" />
-
-
-
-					<h:outputLabel value="Status: " for="status" />
-					<h:selectBooleanCheckbox id="status"
-						value="#{cestaBean.cesta.status}" />
-					<h:outputLabel value="Status: " for="status" />
 
 
 					<p:pickList id="pickList" value="#{cestaBean.dualList}"
 						var="produto" itemLabel="#{produto}" itemValue="#{produto}" />
 
+				</p:panelGrid>
 				</p:panelGrid>
 
 				<h:panelGrid columns="2">
