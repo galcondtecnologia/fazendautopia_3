@@ -41,7 +41,9 @@
 			<h:form title="Login" class="margin margem-topo" prependId="false">
 
 
-				<div class="alert alert-warning alert-dismissible fade show displaynone" id="alert-email">
+				<div
+					class="alert alert-warning alert-dismissible fade show displaynone"
+					id="alert-email">
 					<strong>E-mail</strong> inválido, verifique!
 					<button type="button" class="close" onclick="exibirOuOcultarMsg()">
 						<span>&times;</span>
@@ -56,7 +58,8 @@
 					</div>
 					<p:inputText type="email" alt="Email" label="Email" required="true"
 						onkeyup="atualizarEmail()" onchange="validMail()" id="email"
-						placeholder="Email" class="inputSize"></p:inputText>
+						value="#{autenticacaoBean.usuario.email}" placeholder="Email"
+						class="inputSize"></p:inputText>
 				</div>
 				<div class="input-group flex-nowrap ajustebtnB">
 					<div class="input-group-prepend">
@@ -64,11 +67,13 @@
 							class="fa fa-lock" style="width: 1em"></i></span>
 					</div>
 					<p:inputText type="password" label="Senha" placeholder="Senha"
-						required="true" class="inputSize"></p:inputText>
+						required="true" class="inputSize"
+						value="#{autenticacaoBean.usuario.senha}"></p:inputText>
 				</div>
 				<h:outputLink value="cadastro-usuario.xhtml"
 					class="btn btn-light tamanhoBtn">Cadastrar</h:outputLink>
-				<p:button value="Login" class="btn btn-success tamanhoBtn"></p:button>
+				<p:commandButton value="Login" class="btn btn-success tamanhoBtn"
+					actionListener="#{autenticacaoBean.autenticar()}" />
 				<div style="margin: 2em;">
 					<p:commandLink value="Esqueci a senha"
 						class="botao-link tamanhoBtn"></p:commandLink>

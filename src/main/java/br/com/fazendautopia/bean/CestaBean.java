@@ -56,14 +56,15 @@ public class CestaBean implements Serializable {
 
 			CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
 			categoriacestas = dao2.listar();
-			if (dualList.getTarget().size() == 0) {
-				dualList = new DualListModel<>(produtos, produtoCaturado);
-			} else if (dualList.getTarget().size() != 0) {
-				
-				produtoListado = dualList.getSource();
-				
-			}
-			// esta faltando a consição de editar
+			dualList = new DualListModel<>(produtos, getProdutoCaturado());
+			// if (dualList.getTarget().size() == 0) {
+			// dualList = new DualListModel<>(produtos, produtoCaturado);
+			// } else if (dualList.getTarget().size() != 0) {
+			//
+			// produtoListado = dualList.getSource();
+			//
+			// }
+			// // esta faltando a consição de editar
 
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as cestas!");
@@ -75,6 +76,7 @@ public class CestaBean implements Serializable {
 
 	public void novo() {
 		cesta = new Cesta();
+
 	}
 
 	public void salvar() throws IOException {

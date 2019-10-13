@@ -27,6 +27,15 @@ public class Fornecedor extends GenericDomain {
 	private String telefone;
 	@Column(length = 100)
 	private String email;
+	private boolean status;
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	public String getRazaoSocial() {
 		return razaoSocial;
@@ -108,4 +117,4 @@ public class Fornecedor extends GenericDomain {
 		this.email = email;
 	}
 
-	}
+}

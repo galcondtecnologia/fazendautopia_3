@@ -38,19 +38,22 @@
 
 		<div>
 
-			<h:form title="Cadastro de usuário" class="margin margem-topo" prependId="false">
-				
-				
-				
-				<div class="alert alert-warning alert-dismissible fade show displaynone" id="alert-email">
+			<h:form title="Cadastro de usuário" class="margin margem-topo"
+				prependId="false">
+
+
+
+				<div
+					class="alert alert-warning alert-dismissible fade show displaynone"
+					id="alert-email">
 					<strong>E-mail</strong> inválido, verifique!
 					<button type="button" class="close" onclick="exibirOuOcultarMsg()">
 						<span>&times;</span>
 					</button>
 				</div>
-				
-				
-				
+
+
+
 				<div class="input-group flex-nowrap ajustebtnA">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="addon-wrapping"><i
@@ -58,7 +61,8 @@
 					</div>
 					<p:inputText type="email" alt="Email" label="Email" required="true"
 						placeholder="Email" class="inputSize" onkeyup="atualizarEmail()"
-						onchange="validMail()" id="email"></p:inputText>
+						value="#{usuarioBean.usuario.email}" onchange="validMail()"
+						id="email"></p:inputText>
 				</div>
 				<div class="input-group flex-nowrap ajustebtnB">
 					<div class="input-group-prepend">
@@ -66,11 +70,12 @@
 							class="fa fa-lock" style="width: 1em"></i></span>
 					</div>
 					<p:inputText type="password" label="Senha" placeholder="Senha"
-						required="true" class="inputSize"></p:inputText>
+						required="true" class="inputSize"
+						value="#{usuarioBean.usuario.senha}"></p:inputText>
 				</div>
 				<h:outputLink value="login.xhtml" class="btn btn-light tamanhoBtn">Login</h:outputLink>
 				<p:button value="Cadastrar" class="btn btn-success tamanhoBtn"
-					style="width:8em"></p:button>
+					onclick="#{usuarioBean.salvar()}" style="width:8em"></p:button>
 				<div style="margin: 2em;">
 					<p:commandLink value="Esqueci a senha" class="botao-link"></p:commandLink>
 				</div>
