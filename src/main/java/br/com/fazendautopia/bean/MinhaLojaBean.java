@@ -100,6 +100,7 @@ public class MinhaLojaBean implements Serializable {
 			minhaloja.setLogradouro(cepWebService.getLogradouro());
 			minhaloja.setEstado(cepWebService.getEstado());
 			minhaloja.setCidade(cepWebService.getCidade());
+			minhaloja.setBairro(cepWebService.getBairro());
 
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,

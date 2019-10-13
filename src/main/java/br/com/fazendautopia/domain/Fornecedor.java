@@ -21,19 +21,29 @@ public class Fornecedor extends GenericDomain {
 	private String estado;
 	@Column(length = 100)
 	private String logradouro;
+	@Column(length = 100)
+	private String bairro;
 	@Column()
 	private int numero;
 	@Column(length = 13)
 	private String telefone;
 	@Column(length = 100)
 	private String email;
-	private boolean status;
+	private String status;
 
-	public boolean isStatus() {
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

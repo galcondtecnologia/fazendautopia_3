@@ -122,7 +122,7 @@
 							value="#{minhaLojaBean.minhaloja.cep}">
 							<p:ajax event="change" update="@this"></p:ajax>
 							<p:ajax event="blur" listener="#{minhaLojaBean.encontraCEP()}"
-								update="cidade estado endereco">
+								update="cidade estado endereco bairro">
 							</p:ajax>
 						</p:inputMask>
 					</h:panelGrid>
@@ -135,7 +135,7 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Bairro" for="bairro" />
-						<p:inputText id="bairro" required="true" value="" size="25" />
+						<p:inputText id="bairro" required="true" value="#{minhaLojaBean.minhaloja.bairro}" size="25" />
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Estado" for="estado" />

@@ -41,7 +41,7 @@
         
         
         <property name="java-output-path" value="/fazendautopia/target/classes"/>
-        <property name="context-root" value="fazendautopia"/>
+        <property name="context-root" value="FazendaUtopia"/>
                                             
     
     
