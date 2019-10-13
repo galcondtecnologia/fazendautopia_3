@@ -16,31 +16,43 @@
 
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+
+
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/confirmacao-pedido.css" />
+	<h:outputStylesheet library="../resources/css"
+		name="/confirmacao-pedido.css" />
+
+
+
 </h:head>
 <h:body>
 
 
 
-<div style="width:100%; height:4em; background-color:Darkgreen">
-
-</div>
-	<div class="container">
-		<div>
-			<h1>Pedido 45006570</h1>
+	<div class="div-header">
+		<div class="container">
+			<h1 style="color: white">Pedido 45006570</h1>
 		</div>
+	</div>
 
 
+	<div class="container">
+		<div class="div-banner">
+			<!-- Banner aqui -->
+		</div>
 		<p:dataTable var="" value="" editable="true">
 			<f:facet name="header"> Lista de itens no carrinho
  			</f:facet>
-			<p:column headerText="Descrição" style="width:25em">
+			<p:column headerText="Descrição" class="coluna-descricao">
 				<h:outputText value="Cesta Mini Personalizada" />
 			</p:column>
-			<p:column headerText="Preço und." style="width:8em">
+			<p:column headerText="Preço und." class="coluna-preco-e-qtd">
 				<h:outputText value="R$ 52,90" />
 			</p:column>
-			<p:column headerText="Qtd" style="width:8em">
+			<p:column headerText="Qtd" class="coluna-preco-e-qtd">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="01" />
@@ -50,42 +62,57 @@
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-			<p:column headerText="Editar" style="width:5em">
+			<p:column headerText="Editar" class="coluna-editar">
 				<p:rowEditor />
 			</p:column>
-			<p:column headerText="Excluir" style="width:5em">
+			<p:column headerText="Excluir" class="coluna-editar">
 				<i class="fa fa-trash"></i>
 			</p:column>
 		</p:dataTable>
-		
-		<div style="margin-top:1em">
-		<h5>Frete</h5>
-		<p>R$ 9,90</p>
-		</div>
-		
-		<div style="margin-top:1em">
-		<h3>Total</h3>
-		<p>R$ 62,80</p>
-		</div>
 
-		<div style="display:block; width:20em; margin-top:2em">
-		<h3>Jamile F. santos</h3>
-		<p>Avenida Afonso Pena, 50, Apartamento 102
-		Centro
-		Itumbiara - GO
-		CEP 75503-380</p>
-		</div>
-		
-		<p>Em caso de dúvida entre em contato contato@fazendautopia.com</p>
-
-
-<div style="padding-top: 2em">
-		<p:linkButton value="Home" href=".xhtml"
-			class="btn btn-primary"></p:linkButton>
-			<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
-			class="tamanhoBtn btn btn-success"></p:linkButton>
-		</div>
+		<div class="banner-promocional">
+			<h1 style="color: red">
+				<strong>Ganhe 20%</strong>
+			</h1>
+			<h4>de desconto na assinatura mensal</h4>
+			<p>Serão 4 cestas, 01 por semana</p>
+			<hr />
+			<div class="ui-inputgroup check-ecobag" style="padding: 0 3.5em">
+				<span class="ui-inputgroup-addon-checkbox"><p:selectBooleanCheckbox label="Desconto" title="Desconto" itemLabel="Obter desconto e assinar"/></span>
 			</div>
+		</div>
+
+		<div>
+			<div class="ui-inputgroup check-ecobag">
+				<span class="ui-inputgroup-addon-checkbox"><p:selectBooleanCheckbox label="Ecobag retornável" title="Ecobag" itemLabel="Ecobag Retornável R$ 6,00"/></span>
+			</div>
+			<h5>Frete</h5>
+			<p>R$ 9,90</p>
+		</div>
+
+		<div style="margin-top: 1em">
+			<h3>Total</h3>
+			<p>R$ 62,80</p>
+		</div>
+
+		<div class="div-endereco-entrega">
+			<h3>Jamile F. santos</h3>
+			<p>Avenida Afonso Pena, 50, Apartamento 102 Centro Itumbiara - GO
+				CEP 75503-380</p>
+		</div>
+
+		<p>
+			Em caso de dúvida entre em contato: <strong>contato</strong>@fazendautopia.com
+		</p>
+
+
+		<div style="padding-top: 2em">
+			<p:linkButton value="Home" href=".xhtml"
+				class="btn btn-primary botao-secundario"></p:linkButton>
+			<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
+				class="tamanhoBtn btn btn-success botao-primario"></p:linkButton>
+		</div>
+	</div>
 
 </h:body>
 </html>

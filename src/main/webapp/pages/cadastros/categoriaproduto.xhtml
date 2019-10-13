@@ -28,7 +28,14 @@
 						</p:panelGrid>
 					</f:facet>
 
-					<p:column headerText="Opções" width="100">
+					<p:column headerText="Descrição">
+						<h:outputText value="#{categorias.descricao}" />
+					</p:column>
+					<p:column headerText="Status">
+						<h:outputText value="#{categorias.status}" />
+					</p:column>
+
+					<p:column headerText="Opções" width="120">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{categoriaProdutoBean.excluir}"
 							update=":formListagem:tabela">
@@ -48,14 +55,6 @@
 						</p:commandButton>
 					</p:column>
 
-
-					<p:column headerText="Descrição">
-						<h:outputText value="#{categorias.descricao}" />
-					</p:column>
-					<p:column headerText="Status">
-						<h:outputText value="#{categorias.status}" />
-					</p:column>
-
 				</p:dataTable>
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 					<p:commandButton value="Sim" type="button"
@@ -66,17 +65,24 @@
 			</p:panel>
 		</h:form>
 		<p:dialog header="Categoria Produtos - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false">
+			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
 			<h:form id="formCadastro">
-				<h:panelGrid id="painel" columns="2">
+				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
-					<p:inputText maxlength="150" size="50" id="descricao"
+					<p:inputText maxlength="150" size="30" id="descricao"
 						required="true" rendered="true"
 						value="#{categoriaProdutoBean.categoriaProduto.descricao}" />
 
 					<p:outputLabel value="Status: " for="status" />
-					<p:selectBooleanCheckbox id="status"
-						value="#{categoriaProdutoBean.categoriaProduto.status}" />
+					<p:selectOneMenu id="status"
+						value="#{categoriaProdutoBean.categoriaProduto.status}"
+						style="width:285px">
+						<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+						<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+						<f:selectItems
+							value="#{categoriaProdutoBean.categoriaProduto.status}"></f:selectItems>
+					</p:selectOneMenu>
+
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

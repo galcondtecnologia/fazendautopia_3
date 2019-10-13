@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+
 	<ui:define name="titulo">Categoria Cesta</ui:define>
 
 	<ui:define name="corpo">
@@ -12,8 +13,8 @@
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" rows="10" paginatorPosition="bottom"
-					style="text-align: center;" value="#{categoriaCestasBean.categorias}"
-					var="categorias">
+					style="text-align: center;"
+					value="#{categoriaCestasBean.categorias}" var="categorias">
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
@@ -28,7 +29,20 @@
 						</p:panelGrid>
 					</f:facet>
 
-					<p:column headerText="Opções" width="100">
+					<p:column headerText="Descrição" sortBy="#{categorias.descricao}" sortable="true" sortOrder="descending">
+						<h:outputText value="#{categorias.descricao}"/>
+					</p:column>
+					<p:column headerText="Quantidade" sortBy="#{categorias.quantidadeitens}" sortable="true">
+						<h:outputText value="#{categorias.quantidadeitens}">
+							<f:convertNumber minFractionDigits="0" integerOnly="true"
+								locale="pt_BR" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Status" sortBy="#{categorias.status}" sortable="true">
+						<h:outputText value="#{categorias.status}" />
+					</p:column>
+
+					<p:column headerText="Opções" width="120">
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{categoriaCestasBean.excluir}"
 							update=":formListagem:tabela">
@@ -44,22 +58,7 @@
 							<f:attribute name="categoriaselecionada" value="#{categorias}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-
 						</p:commandButton>
-					</p:column>
-
-
-					<p:column headerText="Descrição">
-						<h:outputText value="#{categorias.descricao}" />
-					</p:column>
-					<p:column headerText="Quantidade">
-						<h:outputText value="#{categorias.quantidadeitens}">
-							<f:convertNumber minFractionDigits="0" integerOnly="true"
-								locale="pt-br" />
-						</h:outputText>
-					</p:column>
-					<p:column headerText="Status">
-						<h:outputText value="#{categorias.status}" />
 					</p:column>
 
 				</p:dataTable>
@@ -72,19 +71,32 @@
 			</p:panel>
 		</h:form>
 		<p:dialog header="Categoria Cestas - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false">
+			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
 			<h:form id="formCadastro">
-				<h:panelGrid id="painel" columns="2">
+				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
-					<p:inputText maxlength="150" size="50" id="descricao"
+					<p:inputText maxlength="150" size="30" id="descricao"
 						required="true" rendered="true"
 						value="#{categoriaCestasBean.categoria.descricao}" />
-					<p:outputLabel value="Qtd: " for="qtd" />
-					<p:inputNumber id="qtd" decimalPlaces="0"
-						value="#{categoriaCestasBean.categoria.quantidadeitens}"></p:inputNumber>
-					<p:outputLabel value="Status: " for="status" />
-					<p:selectBooleanCheckbox id="status"
-						value="#{categoriaCestasBean.categoria.status}" />
+					<h:panelGrid id="painel-Label" columns="2">
+						<p:outputLabel value="Qtd itens: " for="qtd" />
+					</h:panelGrid>
+					<h:panelGrid id="painel-input" columns="2">
+						<p:inputNumber id="qtd" decimalPlaces="0"
+							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5"></p:inputNumber>
+						
+						
+				<p:selectOneMenu id="status" value="#{categoriaCestasBean.categoria.status}"
+					style="width:195px">
+					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+					<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+					<f:selectItems value="#{categoriaCestasBean.categoria.status}"></f:selectItems>
+				</p:selectOneMenu>
+						
+						
+						
+
+					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
