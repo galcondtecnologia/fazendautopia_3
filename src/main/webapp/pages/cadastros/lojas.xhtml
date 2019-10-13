@@ -17,7 +17,7 @@
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
-							<p:outputLabel style="text-align:left">Lojas - Listagem                  </p:outputLabel>
+							<p:outputLabel style="text-align:left">Lojas - Listagem</p:outputLabel>
 							<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 								style="align:right !important"
 								actionListener="#{minhaLojaBean.novo}"
@@ -52,7 +52,7 @@
 					<p:column headerText="Número">
 						<h:outputText value="#{loja.numero}">
 							<f:convertNumber minFractionDigits="0" integerOnly="true"
-								locale="pt-br" />
+								locale="pt_BR" />
 						</h:outputText>
 					</p:column>
 

@@ -71,63 +71,71 @@
 				</p:confirmDialog>
 			</p:panel>
 		</h:form>
-		
-		
+
+
 		<p:dialog header="Cesta - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true">
 			<h:form id="formCadastro" enctype="multipart/form-data">
+				<h:panelGrid id="painel" columns="2">
+					<h:panelGrid columns="1">
 
 
-				<p:panelGrid id="painel" columns="2">
-					<p:panelGrid columns="1">
-						<h:inputFile id="foto" value="#{cestaBean.img}" />
+							<label for="foto"><img
+								src="../../resources/images/icons/SemImagem-300x300px.png"
+								style="height: 140px; width: 140px; margin-top: 1em" /> <h:inputFile
+									id="foto" value="#{cestaBean.img}" style="width:140px" /></label>
+							<h:message for="foto" />
+
+
 
 						<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status" value="#{cestaBean.cesta.status}"
-							style="width:235px">
+							style="width:150px">
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItems value="#{cestaBean.cesta.status}"></f:selectItems>
 						</p:selectOneMenu>
-
 						<h:outputLabel value="Qtd Itens " for="qtd" />
-						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}" />
-
+						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
+							size="13" decimalSeparator="" thousandSeparator=""
+							decimalPlaces="0" />
 						<h:outputLabel value="Preço de venda: " for="preco" />
-						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}" />
+						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}"
+							size="13" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:panelGrid columns="1">
+	
+								<h:outputLabel value="Descrição: " for="descricao" />
+								<p:inputText maxlength="150" size="40" id="descricao"
+									required="true" rendered="true"
+									value="#{cestaBean.cesta.descricao}" />
 
-					</p:panelGrid>
-					<p:panelGrid columns="2">
-					
-					<h:outputLabel value="Descrição: " for="descricao" />
-					<h:inputText maxlength="150" size="50" id="descricao"
-						required="true" rendered="true"
-						value="#{cestaBean.cesta.descricao}" />
-					<h:outputLabel value="Categoria Cesta" />
-					<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="" noSelectionOption="true" />
-						<f:selectItems value="#{cestaBean.categoriacestas}"
-							var="categoria" itemLabel="#{categoria.descricao}"
-							itemValue="#{categoria}" />
-					</p:selectOneMenu>
+	
+								<h:outputLabel value="Categoria Cesta" />
+								<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"
+									converter="omnifaces.SelectItemsConverter" style="width:365px">
+									<f:selectItem itemLabel="" noSelectionOption="true" />
+									<f:selectItems value="#{cestaBean.categoriacestas}"
+										var="categoria" itemLabel="#{categoria.descricao}"
+										itemValue="#{categoria}" />
+								</p:selectOneMenu>
+		
+						</h:panelGrid>
 
+						<p:pickList id="pickList" value="#{cestaBean.dualList}"
+							var="produto" itemLabel="#{produto}" itemValue="#{produto}"
+							responsive="true" />
+					</h:panelGrid>
 
-
-
-					<p:pickList id="pickList" value="#{cestaBean.dualList}"
-						var="produto" itemLabel="#{produto}" itemValue="#{produto}" />
-
-				</p:panelGrid>
-				</p:panelGrid>
-
+				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{cestaBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" />
+						update=":formCadastro:painel :formListagem:tabela" style="padding:0.2em 1em;"/>
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
-						update=":formCadastro:painel" />
+						update=":formCadastro:painel" style="padding:0.2em 1em;"/>
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
