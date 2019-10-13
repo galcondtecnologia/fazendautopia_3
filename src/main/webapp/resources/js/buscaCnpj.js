@@ -42,6 +42,10 @@ function atribuirCnpj() {
 
 function retorno(dados) {
     console.log(dados);
+    if(dados.nome == undefined){
+	alert("CNPJ inválido");
+    }else{
+	
     document.getElementById("razacaosocial").value = dados.nome;
     document.getElementById("fantasia").value = dados.fantasia;
     document.getElementById("cep").value = dados.cep;
@@ -52,6 +56,7 @@ function retorno(dados) {
     document.getElementById("bairro").value = dados.bairro;
     document.getElementById("email").value = dados.email;
     document.getElementById("telefone").value = dados.telefone;
+    }
 
   }
 
