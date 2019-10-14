@@ -14,12 +14,6 @@ function exibirImagem(imagem) {
     }
 }
 
-
-$btnUploadImg.addEventListener('change', function(e) {
-    exibirImagem(this.files);
-});
-
-
 function teste(e) {
     exibirImagem(e.files);
 }
