@@ -81,7 +81,7 @@
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
 								style="height: 120px; width: 120px; margin-top: 1em" id="foto-preview"/> <h:inputFile
-									id="foto" value="#{produtoBean.img}" style="display:none;" /></label>
+									id="foto" value="#{produtoBean.img}" style="display:none;" onchange="teste(this)" /></label>
 							<h:message for="foto" />
 						</div>
 					</h:panelGrid>
@@ -162,8 +162,9 @@
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;"/>
 				</h:panelGrid>
-				<script src="../../resources/js/uploadImg.js"></script>
+				
 			</h:form>
+			<script src="../../resources/js/uploadImg.js"></script>
 		</p:dialog>
 	</ui:define>
 </ui:composition>
