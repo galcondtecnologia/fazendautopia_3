@@ -71,7 +71,7 @@
 						value="#{autenticacaoBean.usuario.senha}"></p:inputText>
 				</div>
 				<h:outputLink value="cadastro-usuario.xhtml"
-					class="btn btn-light tamanhoBtn">Cadastrar</h:outputLink>
+					class="btn btn-light tamanhoBtn" onclick="#{usuarioBean.novo()}">Cadastrar</h:outputLink>
 				<p:commandButton value="Login" class="btn btn-success tamanhoBtn"
 					actionListener="#{autenticacaoBean.autenticar()}" />
 				<div style="margin: 2em;">

@@ -74,15 +74,18 @@
 						value="#{usuarioBean.usuario.senha}"></p:inputText>
 				</div>
 				<h:outputLink value="login.xhtml" class="btn btn-light tamanhoBtn">Login</h:outputLink>
-				<p:button value="Cadastrar" class="btn btn-success tamanhoBtn"
-					onclick="#{usuarioBean.salvar()}" style="width:8em"></p:button>
+				<p:commandButton value="Cadastrar"
+					class="btn btn-success tamanhoBtn"
+					actionListener="#{usuarioBean.salvar()}" style="width:8em" />
 				<div style="margin: 2em;">
 					<p:commandLink value="Esqueci a senha" class="botao-link"></p:commandLink>
 				</div>
 			</h:form>
 		</div>
 	</div>
-
+	<script>
+ Window.load "#{usuarioBean.novo()}"
+</script>
 	<script src="../resources/js/validemail.js"></script>
 </h:body>
 </html>
