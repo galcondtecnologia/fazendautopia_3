@@ -114,9 +114,10 @@
 						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
 							size="13" decimalSeparator="" thousandSeparator=""
 							decimalPlaces="0" maxValue="99" maxlength="2" minValue="0" />
+							
 						<h:outputLabel value="Preço de venda: " for="preco" />
 						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}"
-							size="13" maxlength="6" maxValue="999" minValue="0" />
+							size="13" maxlength="6" maxValue="999" minValue="0" decimalPlaces="2" decimalSeparator=","/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<h:panelGrid columns="1">
