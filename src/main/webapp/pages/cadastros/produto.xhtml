@@ -9,7 +9,7 @@
 		<h:form id="formListagem">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="10" paginatorPosition="bottom"
+					paginator="true" rows="6" paginatorPosition="bottom"
 					style="text-align: center;" value="#{produtoBean.produtos}"
 					var="produto">
 					<f:facet name="header">
@@ -34,10 +34,12 @@
 						</h:commandLink>
 					</p:column>
 					
-					<p:column headerText="Descrição" sortBy="#{produto.descricao}" sortable="true" sortOrder="descending">
+					<p:column headerText="Descrição" sortBy="#{produto.descricao}" sortable="true" sortOrder="descending"
+					filterBy="#{produto.descricao}" footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{produto.descricao}" />
 					</p:column>
-					<p:column headerText="Categoria" sortBy="#{produto.categoriaProduto.descricao}" sortable="true">
+					<p:column headerText="Categoria" sortBy="#{produto.categoriaProduto.descricao}" sortable="true"
+					filterBy="#{produto.categoriaProduto.descricao}" footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{produto.categoriaProduto.descricao}" />
 					</p:column>
 					

@@ -9,7 +9,7 @@
 		<h:form id="formListagem">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="10" paginatorPosition="bottom"
+					paginator="true" rows="6" paginatorPosition="bottom"
 					style="text-align: center;" value="#{cestaBean.cestas}" var="cesta">
 					<f:facet name="header">
 						<p:panelGrid columns="2"
@@ -31,19 +31,26 @@
 							<f:param name="fileDownloadId" value="#{cesta.codigo}"></f:param>
 						</h:commandLink>
 					</p:column>
-					<p:column headerText="Descrição">
+					<p:column headerText="Descrição" sortBy="#{cesta.descricao}"
+						sortable="true" sortOrder="descending"
+						filterBy="#{cesta.descricao}" footerText="Contém"
+						filterMatchMode="contains" width="190">
 						<h:outputText value="#{cesta.descricao}" />
 					</p:column>
-					<p:column headerText="Categoria Cesta">
+					<p:column headerText="Categoria Cesta" sortBy="#{cesta.descricao}"
+						sortable="true" filterBy="#{cesta.categoriaCesta.descricao}"
+						footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{cesta.categoriaCesta.descricao}" />
+					</p:column>
+					<p:column headerText="Produtos" sortBy="#{cesta.dualListModelProdu}"
+						sortable="true" filterBy="#{cesta.dualListModelProdu}"
+						footerText="Contém" filterMatchMode="contains" width="190">
+						<h:outputText value="#{cesta.dualListModelProdu.target}" />
 					</p:column>
 					<p:column headerText="Status">
 						<h:outputText value="#{cesta.status}" />
 					</p:column>
 
-					<p:column headerText="Produtos">
-						<h:outputText value="#{cesta.dualListModelProdu.target}" />
-					</p:column>
 					<p:column headerText="Preço">
 						<h:outputText value="#{cesta.precovenda}" />
 					</p:column>
@@ -79,19 +86,22 @@
 		<p:dialog header="Cesta - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true">
-			<h:form id="formCadastro" enctype="multipart/form-data" prependId="false">
+			<h:form id="formCadastro" enctype="multipart/form-data"
+				prependId="false">
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
-								
-							
-							<div class="image-upload">
+
+
+						<div class="image-upload">
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin-top: 1em" id="foto-preview"/> <h:inputFile
-									id="foto" value="#{cestaBean.img}" style="display:none;" onchange="teste(this)"/></label>
+								style="height: 120px; width: 120px; margin-top: 1em"
+								id="foto-preview" /> <h:inputFile id="foto"
+									value="#{cestaBean.img}" style="display:none;"
+									onchange="teste(this)" /></label>
 							<h:message for="foto" />
 						</div>
-						
+
 
 						<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status" value="#{cestaBean.cesta.status}"
@@ -103,29 +113,29 @@
 						<h:outputLabel value="Qtd Itens " for="qtd" />
 						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
 							size="13" decimalSeparator="" thousandSeparator=""
-							decimalPlaces="0" maxValue="99" maxlength="2" minValue="0"/>
+							decimalPlaces="0" maxValue="99" maxlength="2" minValue="0" />
 						<h:outputLabel value="Preço de venda: " for="preco" />
 						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}"
-							size="13" maxlength="6" maxValue="999" minValue="0"/>
+							size="13" maxlength="6" maxValue="999" minValue="0" />
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<h:panelGrid columns="1">
-	
-								<h:outputLabel value="Descrição: " for="descricao" />
-								<p:inputText maxlength="33" size="40" id="descricao"
-									required="true" rendered="true"
-									value="#{cestaBean.cesta.descricao}"/>
 
-	
-								<h:outputLabel value="Categoria Cesta" />
-								<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"
-									converter="omnifaces.SelectItemsConverter" style="width:365px">
-									<f:selectItem itemLabel="" noSelectionOption="true" />
-									<f:selectItems value="#{cestaBean.categoriacestas}"
-										var="categoria" itemLabel="#{categoria.descricao}"
-										itemValue="#{categoria}" />
-								</p:selectOneMenu>
-		
+							<h:outputLabel value="Descrição: " for="descricao" />
+							<p:inputText maxlength="33" size="40" id="descricao"
+								required="true" rendered="true"
+								value="#{cestaBean.cesta.descricao}" />
+
+
+							<h:outputLabel value="Categoria Cesta" />
+							<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"
+								converter="omnifaces.SelectItemsConverter" style="width:365px">
+								<f:selectItem itemLabel="" noSelectionOption="true" />
+								<f:selectItems value="#{cestaBean.categoriacestas}"
+									var="categoria" itemLabel="#{categoria.descricao}"
+									itemValue="#{categoria}" />
+							</p:selectOneMenu>
+
 						</h:panelGrid>
 
 						<p:pickList id="pickList" value="#{cestaBean.dualList}"
@@ -137,14 +147,15 @@
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{cestaBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" style="padding:0.2em 1em;"/>
+						update=":formCadastro:painel :formListagem:tabela"
+						style="padding:0.2em 1em;" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
-						update=":formCadastro:painel" style="padding:0.2em 1em;"/>
+						update=":formCadastro:painel" style="padding:0.2em 1em;" />
 				</h:panelGrid>
-				
-				
+
+
 			</h:form>
-				<script src="../../resources/js/uploadImg.js"></script>
+			<script src="../../resources/js/uploadImg.js"></script>
 		</p:dialog>
 	</ui:define>
 </ui:composition>

@@ -11,7 +11,7 @@
 		<h:form id="formListagem">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="10" paginatorPosition="bottom"
+					paginator="true" rows="6" paginatorPosition="bottom"
 					style="text-align: center;" value="#{fornecedorBean.fornecedores}"
 					var="fornecedor">
 					<f:facet name="header">
@@ -27,22 +27,14 @@
 							</p:commandButton>
 						</p:panelGrid>
 					</f:facet>
-
-					<p:column headerText="Razão Social">
+					<p:column headerText="CNPJ" filterBy="#{fornecedor.cnpj}" footerText="Contém" filterMatchMode="contains" width="190">
+						<h:outputText value="#{fornecedor.cnpj}"/>
+					</p:column>
+					<p:column headerText="Razão Social" sortBy="#{fornecedor.razaoSocial}" sortable="true" sortOrder="descending"
+					filterBy="#{fornecedor.razaoSocial}" footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{fornecedor.razaoSocial}" />
 					</p:column>
-					<p:column headerText="Nome Fantasia">
-						<h:outputText value="#{fornecedor.nomefantasia}">
-						</h:outputText>
-					</p:column>
-					<p:column headerText="CNPJ">
-						<h:outputText value="#{fornecedor.cnpj}" />
-					</p:column>
-
-					<p:column headerText="CEP">
-						<h:outputText value="#{fornecedor.cep}" />
-					</p:column>
-					<p:column headerText="Cidade - Estado">
+					<p:column headerText="Local" sortBy="#{fornecedor.estado}" sortable="true">
 						<h:outputText value="#{fornecedor.cidade} - #{fornecedor.estado}" />
 					</p:column>
 					<p:column headerText="Endereço">
