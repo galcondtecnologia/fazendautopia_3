@@ -134,12 +134,12 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Cidade" for="cidade" />
 						<p:inputText id="cidade" required="true"
-							value="#{fornecedorBean.fornecedor.cidade}" size="25" />
+							value="#{fornecedorBean.fornecedor.cidade}" size="25" maxlength="80"/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Estado" for="estado" />
 						<p:inputText id="estado" required="true"
-							value="#{fornecedorBean.fornecedor.estado}" size="5" />
+							value="#{fornecedorBean.fornecedor.estado}" size="5" maxlength="2"/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Bairro" for="bairro" />
@@ -159,7 +159,7 @@
 
 						<p:outputLabel value="Nº: " for="n" />
 						<p:inputText id="n" decimalPlaces="0"
-							value="#{fornecedorBean.fornecedor.numero}" size="5"></p:inputText>
+							value="#{fornecedorBean.fornecedor.numero}" size="5" maxlength="9"></p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Telefone:" for="telefone" />
