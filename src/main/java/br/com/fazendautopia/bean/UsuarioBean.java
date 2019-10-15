@@ -1,6 +1,7 @@
 package br.com.fazendautopia.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -45,7 +46,9 @@ public class UsuarioBean implements Serializable {
 	public void salvar() {
 
 		try {
-
+			if (usuario.getDataCadastro() == null) {
+				usuario.setDataCadastro(new Date());
+			}
 			UsuarioDAO dao = new UsuarioDAO();
 			dao.merge(usuario);
 
