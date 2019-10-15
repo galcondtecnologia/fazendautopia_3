@@ -34,17 +34,17 @@
 						</h:commandLink>
 					</p:column>
 					
-					<p:column headerText="Descrição">
+					<p:column headerText="Descrição" sortBy="#{produto.descricao}" sortable="true" sortOrder="descending">
 						<h:outputText value="#{produto.descricao}" />
 					</p:column>
-					<p:column headerText="Categoria">
+					<p:column headerText="Categoria" sortBy="#{produto.categoriaProduto.descricao}" sortable="true">
 						<h:outputText value="#{produto.categoriaProduto.descricao}" />
 					</p:column>
 					
-					<p:column headerText="Status">
+					<p:column headerText="Status" sortBy="#{produto.status}" sortable="true">
 						<h:outputText value="#{produto.status}" />
 					</p:column>
-					<p:column headerText="Preço">
+					<p:column headerText="Preço" sortBy="#{produto.precoVenda}" sortable="true">
 						<h:outputText value="#{produto.precoVenda}" />
 					</p:column>
 					<p:column headerText="Unid. Medida">
