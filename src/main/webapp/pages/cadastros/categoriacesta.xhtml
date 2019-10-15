@@ -75,21 +75,21 @@
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
-					<p:inputText maxlength="150" size="30" id="descricao"
+					<p:inputText maxlength="33" size="30" id="descricao"
 						required="true" rendered="true"
 						value="#{categoriaCestasBean.categoria.descricao}" />
 					<h:panelGrid id="painel-Label" columns="2">
-						<p:outputLabel value="Qtd itens: " for="qtd" />
+						<p:outputLabel value="Qtd itens: " for="qtd"/>
 					</h:panelGrid>
 					<h:panelGrid id="painel-input" columns="2">
 						<p:inputNumber id="qtd" decimalPlaces="0"
-							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5"></p:inputNumber>
+							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5" maxValue="99" maxlength="2" minValue="0"></p:inputNumber>
 						
 						
 				<p:selectOneMenu id="status" value="#{categoriaCestasBean.categoria.status}"
 					style="width:195px">
-					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 					<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 					<f:selectItems value="#{categoriaCestasBean.categoria.status}"></f:selectItems>
 				</p:selectOneMenu>
 						

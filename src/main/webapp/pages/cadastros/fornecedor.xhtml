@@ -177,8 +177,8 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status"  style="width:170px">
-							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItems value="#{fornecedorBean.fornecedor.status}"></f:selectItems>
 						</p:selectOneMenu>
 					</h:panelGrid>

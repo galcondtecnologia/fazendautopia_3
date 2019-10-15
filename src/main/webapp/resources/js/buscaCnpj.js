@@ -42,7 +42,7 @@ function atribuirCnpj() {
 
 function retorno(dados) {
     console.log(dados);
-    if(dados.nome == undefined){
+    if(dados.status == "ERROR"){
 	alert("CNPJ inválido");
     }else{
 	
