@@ -131,16 +131,16 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Cidade" for="cidade" />
 						<p:inputText id="cidade" required="true"
-							value="#{minhaLojaBean.minhaloja.cidade}" size="24" />
+							value="#{minhaLojaBean.minhaloja.cidade}" size="24" maxlength="80"/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Bairro" for="bairro" />
-						<p:inputText id="bairro" required="true" value="#{minhaLojaBean.minhaloja.bairro}" size="25" />
+						<p:inputText id="bairro" required="true" value="#{minhaLojaBean.minhaloja.bairro}" size="25" maxlength="80"/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Estado" for="estado" />
 						<p:inputText id="estado" required="true"
-							value="#{minhaLojaBean.minhaloja.estado}" size="5" />
+							value="#{minhaLojaBean.minhaloja.estado}" size="5" maxlength="2"/>
 					</h:panelGrid>
 				</h:panelGrid>
 
@@ -153,7 +153,7 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Nº: " for="n" />
 						<p:inputText id="n" decimalPlaces="0"
-							value="#{minhaLojaBean.minhaloja.numero}" size="5"></p:inputText>
+							value="#{minhaLojaBean.minhaloja.numero}" size="5" maxlength="9"></p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Telefone:" for="telefone" />
@@ -171,8 +171,8 @@
 						<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status"
 							value="#{minhaLojaBean.minhaloja.status}" style="width:285px">
-							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItems value="#{minhaLojaBean.minhaloja.status}"></f:selectItems>
 						</p:selectOneMenu>
 					</h:panelGrid>

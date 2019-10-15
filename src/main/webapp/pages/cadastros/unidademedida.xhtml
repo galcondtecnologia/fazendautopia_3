@@ -73,7 +73,7 @@
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
-					<p:inputText maxlength="150" size="30" id="descricao"
+					<p:inputText maxlength="10" size="30" id="descricao"
 						required="true" rendered="true"
 						value="#{unidadeMedidaBean.unidadeMedida.descricao}" />
 
@@ -81,8 +81,8 @@
 					<p:selectOneMenu id="status"
 						value="#{unidadeMedidaBean.unidadeMedida.status}"
 						style="width:285px">
-						<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 						<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+						<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 						<f:selectItems value="#{unidadeMedidaBean.unidadeMedida.status}"></f:selectItems>
 					</p:selectOneMenu>
 
