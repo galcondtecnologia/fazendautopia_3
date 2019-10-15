@@ -14,7 +14,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
 	<h:outputStylesheet library="css" name="/main.css" />
-	<link rel="stylesheet" type="text/css" href="./resources/css/cssformulariocontato.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/cssformulariocontato.css" />
 	<h:outputStylesheet library="css" name="./cssformulariocontato.css" />
 	<h:outputScript library="js" name="/" />
 </h:head>
@@ -44,24 +45,29 @@
 				id="cestas">
 				<h1>Cestas da semana</h1>
 				<p>Selecione a cesta ideal para você e sua família</p>
-				<p:carousel value="" var="cestas" numVisible="4" responsive="true"
-					class="card">
+				<p:carousel value="#{cestaBean.cestas}" var="cestas" numVisible="4"
+					responsive="true" class="card">
 					<p:graphicImage value=""
 						class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
 
 					<div class="centralizar-imagem">
-						<img src="./resources/images/upload/CestaSemIcone1.png"
-							alt="icone cesta"
+						<!-- 						<img src="./resources/images/upload/CestaSemIcone1.png" -->
+						<!-- 							alt="icone cesta" -->
+						<!-- 							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" /> -->
+
+						<h:graphicImage value="#{cestas.imagemnome}" width="auto"
+							height="auto" alt="icone cesta"
 							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+
 					</div>
 					<h:outputText value="Cesta Mini Personalizada"
 						class="titulo-cestas" />
-					<h:outputText value="6 Itens: Alface, Repolho, Tomate, Abobrinha"
-						class="descricao-cestas" />
-					<div style="display: inline-block;">
-						<span class="ui-inputgroup-addon botao-comprar-cestas"><h:outputText
-								value="R$ 50.90" /><i class="fa fa-shopping-cart"></i></span>
-					</div>
+					<h:outputText value="Descrição:" />
+					<h:outputText value="#{cestas.descricao}" />
+					<br></br>
+					<h:outputText value="Preço de venda:" />
+					<h:outputText value="#{cestas.precovenda}" />
+
 				</p:carousel>
 			</div>
 			<!-- Sessao de cestas da semana_________________________________________________________________ -->
@@ -77,13 +83,14 @@
 							<f:selectItems value="categoria" />
 						</p:selectOneMenu>
 					</div>
-					<p:dataScroller value="" var="Produtos" chunkSize="10"
-						class="main__produtos">
+					<p:dataScroller value="#{produtoBean.produtos}" var="produto1"
+						chunkSize="10" class="main__produtos">
 						<f:facet name="header" class="titulo-produtos">
-          			 Produtos disponíveis
-        			</f:facet>
+          			 			Produtos disponíveis
+        				</f:facet>
 						<p:panelGrid columns="4">
-							<p:graphicImage name="image" value="" />
+							<h:graphicImage value="#{produto1.imagemnome}" width="60"
+								height="60" />
 							<p:outputPanel>
 								<h:panelGrid columns="4" cellpadding="5"
 									onclick="PF('dlgProduto').show()">
@@ -102,14 +109,21 @@
 
 			<div class="fundo-separador-desktop">
 				<div class="sessao-produtos-desktop" id="produtos-desktop">
-					<p:dataGrid var="car" value="" columns="3" rows="12">
-						<p:column>
-							<p:panel header="Produtos disponíveis">
-								<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
-									<p:graphicImage value="" />
-									<h:outputText value="Produto 11" />
-								</h:panelGrid>
-							</p:panel>
+					<p:dataGrid value="#{produtoBean.produtos}" var="produto2"
+						columns="3" rows="12">
+						<p:column header="#{produto2.codigo}">
+							<div>
+								<p:panel header="Produtos disponíveis">
+									<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
+										<h:graphicImage value="#{produto2.imagemnome}" width="60"
+											height="60" alt="icone cesta"
+											class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+										<h:outputLabel value="Descrição:" />
+										<h:outputText value="#{produto2.descricao}" />
+									</h:panelGrid>
+								</p:panel>
+							</div>
+
 						</p:column>
 					</p:dataGrid>
 				</div>
@@ -247,7 +261,7 @@
 					alt="icone cesta" class="centralizar-imagem imagem-tamanho-m" />
 
 				<!-- Inserir a imagem aqui_______________ -->
-				<p:graphicImage value=""
+				<h:graphicImage value=""
 					class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p"
 					alt="" />
 			</div>
