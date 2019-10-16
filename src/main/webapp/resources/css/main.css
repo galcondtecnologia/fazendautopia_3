@@ -147,7 +147,7 @@ font-family: sans-serif;
 	width: 5em;
 	border: none;
 	font-family: sans-serif;
-	height: 2em;
+	height: auto;
 }
 .ui-datascroller .ui-datascroller-list tr td:last-child{
 	color: var(--cor-um);
@@ -162,7 +162,7 @@ font-family: sans-serif;
 .ui-datascroller .ui-datascroller-list{
 	box-shadow: 0 4px 5px rgba(0,0,0,0.10), 0 3px 5px rgba(0,0,0,0.10);
 	font-family: sans-serif;
-	height: 5em;
+	height: auto;
 	text-align: left;
 }
 
@@ -471,6 +471,7 @@ color: white;
 .ui-datascroller-item{
 	padding-top: 0.6em;
 	overflow: hidden;
+	box-shadow: 3px 3px 3px lightgray;
 }
 
 .div-somos{
@@ -594,6 +595,25 @@ a:hover{
 	color: var(--cor-um);
 }
 
+.carrocel-dados-cestas{
+	margin: 0.6em;
+	padding: 0.6em;
+}
+.cesta-lista-item{
+	margin: 0.6em;
+	padding: 0.6em;
+	border-radius: 15px;
+}
+.main__produtos{
+	display: inline-block;
+	overflow: auto;
+	height: auto;
+}
+
+
+
+
+
 
 
 
@@ -606,6 +626,7 @@ a:hover{
 	.sessao-produtos-desktop{
 	display: block;
 	font-family: sans-serif;
+	overflow: hidden;
 }
 
 
@@ -869,6 +890,20 @@ li:hover a:first-child {
 .icone:hover{
 	color: var(--cor-quatro);
 }
+
+.quadrante-produto-desktop{
+	width: auto;
+	width: 11em !important;
+	overflow: hidden;
+	margin: 0;
+	padding: 1em;
+	border-radius: 5px;
+	box-shadow: 1px 5px 10px lightgray;
+}
+
+
+
+
 
 
 }
