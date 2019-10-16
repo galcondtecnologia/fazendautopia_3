@@ -92,14 +92,14 @@
 						<div class="image-upload">
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin-top: 1em" id="foto-preview"/> <h:inputFile
-									id="foto" value="#{produtoBean.img}" style="display:none;" onchange="teste(this)" /></label>
+								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius:15px" id="foto-preview"/> <input type="file" accept=".png,.jpg,.jpeg" 
+								required="required"	id="foto" value="#{produtoBean.img}" style="display:none;" onchange="teste(this)" /></label>
 							<h:message for="foto" />
 						</div>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Descrição: " for="descricao" />
-						<p:inputText maxlength="33" size="40" id="descricao"
+						<p:inputText maxlength="33" size="38" id="descricao"
 							required="true" rendered="true"
 							value="#{produtoBean.produto.descricao}" />
 						<h:panelGrid columns="2">
@@ -116,7 +116,7 @@
 							<h:panelGrid columns="1">
 								<h:outputLabel value="Preço de venda: " for="preco" />
 								<p:inputNumber id="preco"
-									value="#{produtoBean.produto.precoVenda}" size="14" minValue="0" maxValue="999" maxlength="5" decimalSeparator="," decimalPlaces="2" />
+									value="#{produtoBean.produto.precoVenda}" size="12" minValue="0" maxValue="999" maxlength="5" decimalSeparator="," decimalPlaces="2" />
 							</h:panelGrid>
 						</h:panelGrid>
 					</h:panelGrid>

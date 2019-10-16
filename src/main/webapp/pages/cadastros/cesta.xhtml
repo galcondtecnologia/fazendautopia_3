@@ -95,29 +95,29 @@
 						<div class="image-upload">
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin-top: 1em"
-								id="foto-preview" /> <h:inputFile id="foto"
+								style="height: 120px; width: 120px; margin-top: 1em;box-shadow: 1px 1px 5px lightgray; border-radius:15px"
+								id="foto-preview" /> <input type="file" accept=".png,.jpg,.jpeg" id="foto"
 									value="#{cestaBean.img}" style="display:none;"
-									onchange="teste(this)" /></label>
+									onchange="teste(this)" required="required" /></label>
 							<h:message for="foto" />
 						</div>
 
 
 						<p:outputLabel value="Status:" for="status" />
 						<p:selectOneMenu id="status" value="#{cestaBean.cesta.status}"
-							style="width:150px">
+							style="width:140px">
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
 							<f:selectItems value="#{cestaBean.cesta.status}"></f:selectItems>
 						</p:selectOneMenu>
 						<h:outputLabel value="Qtd Itens " for="qtd" />
 						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
-							size="13" decimalSeparator="" thousandSeparator=""
+							size="12" decimalSeparator="" thousandSeparator=""
 							decimalPlaces="0" maxValue="99" maxlength="2" minValue="0" />
 							
 						<h:outputLabel value="Preço de venda: " for="preco" />
 						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}"
-							size="13" maxlength="6" maxValue="999" minValue="0" decimalPlaces="2" decimalSeparator=","/>
+							size="12" maxlength="6" maxValue="999" minValue="0" decimalPlaces="2" decimalSeparator=","/>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<h:panelGrid columns="1">
