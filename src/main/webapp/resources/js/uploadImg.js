@@ -5,6 +5,7 @@ var $fotoPreview = document.getElementById("foto-preview");
 
 function exibirImagem(imagem) {
     var tamanoImagemMB = parseFloat(imagem[0].size) / 1024;
+    console.log(imagem);
     
     // Tratar o tamanho da imagem
     if(tamanoImagemMB >= 60){
@@ -22,6 +23,6 @@ function exibirImagem(imagem) {
 }
 }
 
-function teste(e) {
+function atribuirImagem(e) {
     exibirImagem(e.files);
 }

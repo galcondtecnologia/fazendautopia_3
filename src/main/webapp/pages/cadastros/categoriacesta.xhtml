@@ -32,7 +32,7 @@
 					<p:column headerText="Descrição" sortBy="#{categorias.descricao}" sortable="true" sortOrder="descending">
 						<h:outputText value="#{categorias.descricao}"/>
 					</p:column>
-					<p:column headerText="Quantidade" sortBy="#{categorias.quantidadeitens}" sortable="true">
+					<p:column headerText="Qtd. de alterações permitidas" sortBy="#{categorias.quantidadeitens}" sortable="true">
 						<h:outputText value="#{categorias.quantidadeitens}">
 							<f:convertNumber minFractionDigits="0" integerOnly="true"
 								locale="pt_BR" />
@@ -79,7 +79,7 @@
 						required="true" rendered="true"
 						value="#{categoriaCestasBean.categoria.descricao}" />
 					<h:panelGrid id="painel-Label" columns="2">
-						<p:outputLabel value="Qtd itens: " for="qtd"/>
+						<p:outputLabel value="Qtd alter.: " for="qtd"/>
 					</h:panelGrid>
 					<h:panelGrid id="painel-input" columns="2">
 						<p:inputNumber id="qtd" decimalPlaces="0"

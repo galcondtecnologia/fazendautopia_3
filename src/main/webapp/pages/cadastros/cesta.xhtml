@@ -96,9 +96,9 @@
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
 								style="height: 120px; width: 120px; margin-top: 1em;box-shadow: 1px 1px 5px lightgray; border-radius:15px"
-								id="foto-preview" /> <input type="file" accept=".png,.jpg,.jpeg" id="foto"
+								id="foto-preview" /> <h:inputFile id="foto"
 									value="#{cestaBean.img}" style="display:none;"
-									onchange="teste(this)" required="required" /></label>
+									onchange="atribuirImagem(this)" accept="image/png"  /></label>
 							<h:message for="foto" />
 						</div>
 
