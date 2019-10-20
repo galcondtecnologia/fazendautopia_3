@@ -193,26 +193,37 @@
 							<p:ajax event="blur" update="@this" />
 						</p:inputText>
 					</h:panelGrid>
-					<h:panelGrid columns="3">
-						<p:outputLabel value="Status: " for="status" />
-						<p:selectBooleanCheckbox id="status"
-							value="#{fornecedorBean.fornecedor.status}">
-							<p:ajax event="change" update="@this labe" />
-						</p:selectBooleanCheckbox>
+					<h:panelGrid columns="2">
+							
+					<h:panelGrid columns="1">
+						<p:outputLabel value="Status: " for="listCheck" />
+						<p:selectOneMenu style="width:168px" onchange="alterarCheck()"
+							id="listCheck">
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+						</p:selectOneMenu>
+					</h:panelGrid>
 
-						<p:outputLabel id="labe"
-							value="#{fornecedorBean.fornecedor.status}" />
+					<h:panelGrid columns="1" style="display:none">
+						<p:outputLabel value="Status: " for="status" />
+						<h:selectBooleanCheckbox id="status"
+							value="#{fornecedorBean.fornecedor.status}">
+							<p:ajax event="change" update="@this" />
+						</h:selectBooleanCheckbox>
+					</h:panelGrid>
+				
 					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{fornecedorBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" />
+						update=":formCadastro:painel :formListagem:tabela"  oncomplete="alterarCheck()" />
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" />
 				</h:panelGrid>
 				<script src="../../resources/js/buscaCnpj.js"></script>
+				<script src="../../resources/js/alteraStatus.js"></script>
 			</h:form>
 		</p:dialog>
 	</ui:define>
