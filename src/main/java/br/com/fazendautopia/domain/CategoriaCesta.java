@@ -9,7 +9,7 @@ public class CategoriaCesta extends GenericDomain {
 	@Column(length = 100, nullable = false)
 	private String descricao;
 
-	private String status;
+	private boolean status;
 	private int quantidadeitens;
 
 	public String getDescricao() {
@@ -20,14 +20,11 @@ public class CategoriaCesta extends GenericDomain {
 		this.descricao = descricao;
 	}
 
-	
-	
-
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
