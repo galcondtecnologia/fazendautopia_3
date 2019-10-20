@@ -22,7 +22,7 @@ public class Cesta extends GenericDomain {
 	@JoinColumn(nullable = false)
 	private CategoriaCesta categoriaCesta;
 	private DualListModel<Produto> dualListModelProdu;
-	private String status;
+	private boolean status;
 	private int quantItens;
 	private Double precovenda;
 
@@ -74,11 +74,11 @@ public class Cesta extends GenericDomain {
 		this.dualListModelProdu = dualListModelProdu;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

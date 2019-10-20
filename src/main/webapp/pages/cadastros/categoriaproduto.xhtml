@@ -65,24 +65,27 @@
 			</p:panel>
 		</h:form>
 		<p:dialog header="Categoria Produtos - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
+			draggable="false" resizable="false" modal="true" closable="false"
+			closeOnEscape="true">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText maxlength="33" size="30" id="descricao"
 						required="true" rendered="true"
-						value="#{categoriaProdutoBean.categoriaProduto.descricao}" />
+						value="#{categoriaProdutoBean.categoriaProduto.descricao}"
+						converter="upperCaseConverter">
+						<p:ajax event="blur" update="@this" />
+					</p:inputText>
 
-					<p:outputLabel value="Status: " for="status" />
-					<p:selectOneMenu id="status"
-						value="#{categoriaProdutoBean.categoriaProduto.status}"
-						style="width:285px">
-						<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
-						<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-						<f:selectItems
-							value="#{categoriaProdutoBean.categoriaProduto.status}"></f:selectItems>
-					</p:selectOneMenu>
-
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Status: " for="status" />
+						<p:selectBooleanCheckbox id="status"
+							value="#{categoriaProdutoBean.categoriaProduto.status}">
+							<p:ajax event="change" update="@this labe" />
+						</p:selectBooleanCheckbox>
+						<p:outputLabel id="labe"
+							value="#{categoriaProdutoBean.categoriaProduto.status}" />
+					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

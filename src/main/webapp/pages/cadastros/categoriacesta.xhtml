@@ -29,16 +29,19 @@
 						</p:panelGrid>
 					</f:facet>
 
-					<p:column headerText="Descrição" sortBy="#{categorias.descricao}" sortable="true" sortOrder="descending">
-						<h:outputText value="#{categorias.descricao}"/>
+					<p:column headerText="Descrição" sortBy="#{categorias.descricao}"
+						sortable="true" sortOrder="descending">
+						<h:outputText value="#{categorias.descricao}" />
 					</p:column>
-					<p:column headerText="Qtd. de alterações permitidas" sortBy="#{categorias.quantidadeitens}" sortable="true">
+					<p:column headerText="Quantidade"
+						sortBy="#{categorias.quantidadeitens}" sortable="true">
 						<h:outputText value="#{categorias.quantidadeitens}">
 							<f:convertNumber minFractionDigits="0" integerOnly="true"
 								locale="pt_BR" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Status" sortBy="#{categorias.status}" sortable="true">
+					<p:column headerText="Status" sortBy="#{categorias.status}"
+						sortable="true">
 						<h:outputText value="#{categorias.status}" />
 					</p:column>
 
@@ -71,30 +74,38 @@
 			</p:panel>
 		</h:form>
 		<p:dialog header="Categoria Cestas - Cadastro" widgetVar="dialogo"
-			draggable="false" resizable="false" modal="true" closable="false" closeOnEscape="true">
+			draggable="false" resizable="false" modal="true" closable="false"
+			closeOnEscape="true">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText maxlength="33" size="30" id="descricao"
 						required="true" rendered="true"
-						value="#{categoriaCestasBean.categoria.descricao}" />
+						value="#{categoriaCestasBean.categoria.descricao}"
+						converter="upperCaseConverter">
+						<p:ajax event="blur" update="@this" />
+					</p:inputText>
 					<h:panelGrid id="painel-Label" columns="2">
-						<p:outputLabel value="Qtd alter.: " for="qtd"/>
+						<p:outputLabel value="Qtd itens: " for="qtd" />
 					</h:panelGrid>
 					<h:panelGrid id="painel-input" columns="2">
 						<p:inputNumber id="qtd" decimalPlaces="0"
-							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5" maxValue="99" maxlength="2" minValue="0"></p:inputNumber>
-						
-						
-				<p:selectOneMenu id="status" value="#{categoriaCestasBean.categoria.status}"
-					style="width:195px">
-					<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
-					<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-					<f:selectItems value="#{categoriaCestasBean.categoria.status}"></f:selectItems>
-				</p:selectOneMenu>
-						
-						
-						
+							value="#{categoriaCestasBean.categoria.quantidadeitens}" size="5"
+							maxValue="99" maxlength="2" minValue="0"></p:inputNumber>
+
+
+
+
+
+					</h:panelGrid>
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Status: " for="status" />
+						<p:selectBooleanCheckbox id="status"
+							value="#{categoriaCestasBean.categoria.status}">
+							<p:ajax event="change" update="@this labe" />
+						</p:selectBooleanCheckbox>
+						<p:outputLabel id="labe"
+							value="#{categoriaCestasBean.categoria.status}" />
 
 					</h:panelGrid>
 				</h:panelGrid>

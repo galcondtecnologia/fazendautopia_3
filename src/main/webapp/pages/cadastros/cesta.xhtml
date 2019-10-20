@@ -42,9 +42,10 @@
 						footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{cesta.categoriaCesta.descricao}" />
 					</p:column>
-					<p:column headerText="Produtos" sortBy="#{cesta.dualListModelProdu}"
-						sortable="true" filterBy="#{cesta.dualListModelProdu}"
-						footerText="Contém" filterMatchMode="contains" width="190">
+					<p:column headerText="Produtos"
+						sortBy="#{cesta.dualListModelProdu}" sortable="true"
+						filterBy="#{cesta.dualListModelProdu}" footerText="Contém"
+						filterMatchMode="contains" width="190">
 						<h:outputText value="#{cesta.dualListModelProdu.target}" />
 					</p:column>
 					<p:column headerText="Status">
@@ -59,7 +60,7 @@
 							actionListener="#{cestaBean.excluir}"
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
-								message="Deseja excluir essa cesta?" icon="ui-icon-alert" />
+								message="Deseja excluir essa categoria?" icon="ui-icon-alert" />
 							<f:attribute name="cestaSelecionada" value="#{cesta}" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
@@ -95,10 +96,11 @@
 						<div class="image-upload">
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin-top: 1em;box-shadow: 1px 1px 5px lightgray; border-radius:15px"
-								id="foto-preview" /> <h:inputFile id="foto"
-									value="#{cestaBean.img}" style="display:none;"
-									onchange="atribuirImagem(this)" accept="image/png"  /></label>
+								style="height: 120px; width: 120px; margin-top: 1em; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
+								id="foto-preview" /> <input type="file"
+								accept=".png,.jpg,.jpeg" id="foto" value="#{cestaBean.img}"
+								style="display: none;" onchange="teste(this)"
+								required="required" /></label>
 							<h:message for="foto" />
 						</div>
 
@@ -114,10 +116,11 @@
 						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
 							size="12" decimalSeparator="" thousandSeparator=""
 							decimalPlaces="0" maxValue="99" maxlength="2" minValue="0" />
-							
+
 						<h:outputLabel value="Preço de venda: " for="preco" />
 						<p:inputNumber id="preco" value="#{cestaBean.cesta.precovenda}"
-							size="12" maxlength="6" maxValue="999" minValue="0" decimalPlaces="2" decimalSeparator=","/>
+							size="12" maxlength="6" maxValue="999" minValue="0"
+							decimalPlaces="2" decimalSeparator="," />
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<h:panelGrid columns="1">
@@ -125,8 +128,10 @@
 							<h:outputLabel value="Descrição: " for="descricao" />
 							<p:inputText maxlength="33" size="40" id="descricao"
 								required="true" rendered="true"
-								value="#{cestaBean.cesta.descricao}" />
-
+								value="#{cestaBean.cesta.descricao}"
+								converter="upperCaseConverter">
+								<p:ajax event="blur" update="@this" />
+							</p:inputText>
 
 							<h:outputLabel value="Categoria Cesta" />
 							<p:selectOneMenu value="#{cestaBean.cesta.categoriaCesta}"

@@ -27,14 +27,18 @@
 							</p:commandButton>
 						</p:panelGrid>
 					</f:facet>
-					<p:column headerText="CNPJ" filterBy="#{fornecedor.cnpj}" footerText="Contém" filterMatchMode="contains" width="190">
-						<h:outputText value="#{fornecedor.cnpj}"/>
+					<p:column headerText="CNPJ" filterBy="#{fornecedor.cnpj}"
+						footerText="Contém" filterMatchMode="contains" width="190">
+						<h:outputText value="#{fornecedor.cnpj}" />
 					</p:column>
-					<p:column headerText="Razão Social" sortBy="#{fornecedor.razaoSocial}" sortable="true" sortOrder="descending"
-					filterBy="#{fornecedor.razaoSocial}" footerText="Contém" filterMatchMode="contains" width="190">
+					<p:column headerText="Razão Social"
+						sortBy="#{fornecedor.razaoSocial}" sortable="true"
+						sortOrder="descending" filterBy="#{fornecedor.razaoSocial}"
+						footerText="Contém" filterMatchMode="contains" width="190">
 						<h:outputText value="#{fornecedor.razaoSocial}" />
 					</p:column>
-					<p:column headerText="Local" sortBy="#{fornecedor.estado}" sortable="true">
+					<p:column headerText="Local" sortBy="#{fornecedor.estado}"
+						sortable="true">
 						<h:outputText value="#{fornecedor.cidade} - #{fornecedor.estado}" />
 					</p:column>
 					<p:column headerText="Endereço">
@@ -102,14 +106,20 @@
 						<p:outputLabel value="Razão Social: " for="razacaosocial" />
 						<p:inputText maxlength="150" size="30" id="razacaosocial"
 							required="true" rendered="true"
-							value="#{fornecedorBean.fornecedor.razaoSocial}" />
+							value="#{fornecedorBean.fornecedor.razaoSocial}"
+							converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Nome Fantasia: " for="fantasia" />
 						<p:inputText maxlength="150" size="30" id="fantasia"
-							rendered="true" value="#{fornecedorBean.fornecedor.nomefantasia}" />
+							rendered="true" value="#{fornecedorBean.fornecedor.nomefantasia}"
+							converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="CEP:" for="cep" />
@@ -126,17 +136,26 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Cidade" for="cidade" />
 						<p:inputText id="cidade" required="true"
-							value="#{fornecedorBean.fornecedor.cidade}" size="25" maxlength="80"/>
+							value="#{fornecedorBean.fornecedor.cidade}" size="25"
+							maxlength="80" converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Estado" for="estado" />
 						<p:inputText id="estado" required="true"
-							value="#{fornecedorBean.fornecedor.estado}" size="5" maxlength="2"/>
+							value="#{fornecedorBean.fornecedor.estado}" size="5"
+							maxlength="2" converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Bairro" for="bairro" />
 						<p:inputText id="bairro" required="true"
-							value="#{fornecedorBean.fornecedor.bairro}" size="24" />
+							value="#{fornecedorBean.fornecedor.bairro}" size="24"
+							converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
 				</h:panelGrid>
 
@@ -144,14 +163,19 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Rua:" for="endereco" />
 						<p:inputText id="endereco" maxlength="50" size="27"
-							value="#{fornecedorBean.fornecedor.logradouro}" />
+							value="#{fornecedorBean.fornecedor.logradouro}"
+							converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
+
 
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 
 						<p:outputLabel value="Nº: " for="n" />
 						<p:inputText id="n" decimalPlaces="0"
-							value="#{fornecedorBean.fornecedor.numero}" size="5" maxlength="9"></p:inputText>
+							value="#{fornecedorBean.fornecedor.numero}" size="5"
+							maxlength="9"></p:inputText>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Telefone:" for="telefone" />
@@ -164,15 +188,20 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Email:" for="email" />
 						<p:inputText id="email" maxlength="50" size="45"
-							value="#{fornecedorBean.fornecedor.email}" />
+							value="#{fornecedorBean.fornecedor.email}"
+							converter="upperCaseConverter">
+							<p:ajax event="blur" update="@this" />
+						</p:inputText>
 					</h:panelGrid>
-					<h:panelGrid columns="1">
-						<p:outputLabel value="Status:" for="status" />
-						<p:selectOneMenu id="status"  style="width:170px">
-							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
-							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-							<f:selectItems value="#{fornecedorBean.fornecedor.status}"></f:selectItems>
-						</p:selectOneMenu>
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Status: " for="status" />
+						<p:selectBooleanCheckbox id="status"
+							value="#{fornecedorBean.fornecedor.status}">
+							<p:ajax event="change" update="@this labe" />
+						</p:selectBooleanCheckbox>
+
+						<p:outputLabel id="labe"
+							value="#{fornecedorBean.fornecedor.status}" />
 					</h:panelGrid>
 				</h:panelGrid>
 

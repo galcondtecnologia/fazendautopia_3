@@ -30,5 +30,4 @@ public class Regiao extends GenericDomain {
 		return "Regiao [descricao=" + descricao + ", status=" + status + "]";
 	}
 
-	
 }

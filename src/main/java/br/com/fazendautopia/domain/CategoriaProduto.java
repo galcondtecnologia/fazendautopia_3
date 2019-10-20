@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 public class CategoriaProduto extends GenericDomain {
 
 	private String descricao;
-	private String status;
+	private boolean status;
 
 	public String getDescricao() {
 		return descricao;
@@ -17,13 +17,11 @@ public class CategoriaProduto extends GenericDomain {
 		this.descricao = descricao;
 	}
 
-	
-
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

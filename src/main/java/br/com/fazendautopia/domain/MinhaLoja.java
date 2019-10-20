@@ -29,9 +29,7 @@ public class MinhaLoja extends GenericDomain {
 	private String telefone;
 	@Column(length = 100)
 	private String email;
-	private String status;
-
-	
+	private boolean status;
 
 	public String getBairro() {
 		return bairro;
@@ -41,11 +39,11 @@ public class MinhaLoja extends GenericDomain {
 		this.bairro = bairro;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
