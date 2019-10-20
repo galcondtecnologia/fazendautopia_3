@@ -18,8 +18,8 @@
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
-							<p:outputLabel style="text-align:left">Categoria Cestas - Listagem                  </p:outputLabel>
-							<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+							<p:outputLabel style="text-align:left">Categoria Cestas - Listagem</p:outputLabel>
+							<p:commandButton value="Novo" oncomplete="PF('dialogo').show(); alterarCheck()"
 								style="align:right !important"
 								actionListener="#{categoriaCestasBean.novo()}"
 								update=":formCadastro:painel">
@@ -33,7 +33,7 @@
 						sortable="true" sortOrder="descending">
 						<h:outputText value="#{categorias.descricao}" />
 					</p:column>
-					<p:column headerText="Quantidade"
+					<p:column headerText="Qtd. Alterações permitidas"
 						sortBy="#{categorias.quantidadeitens}" sortable="true">
 						<h:outputText value="#{categorias.quantidadeitens}">
 							<f:convertNumber minFractionDigits="0" integerOnly="true"
@@ -76,7 +76,7 @@
 		<p:dialog header="Categoria Cestas - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true">
-			<h:form id="formCadastro">
+			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText maxlength="33" size="30" id="descricao"
@@ -86,7 +86,7 @@
 						<p:ajax event="blur" update="@this" />
 					</p:inputText>
 					<h:panelGrid id="painel-Label" columns="2">
-						<p:outputLabel value="Qtd itens: " for="qtd" />
+						<p:outputLabel value="Qtd Alter.: " for="qtd" />
 					</h:panelGrid>
 					<h:panelGrid id="painel-input" columns="2">
 						<p:inputNumber id="qtd" decimalPlaces="0"
@@ -95,28 +95,30 @@
 
 
 
-
-
+						<p:selectOneMenu style="width:195px" onchange="alterarCheck()" id="listCheck">
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+						</p:selectOneMenu>
+	
 					</h:panelGrid>
-					<h:panelGrid columns="3">
+					
+					<h:panelGrid columns="3" style="display:none">
 						<p:outputLabel value="Status: " for="status" />
-						<p:selectBooleanCheckbox id="status"
+						<h:selectBooleanCheckbox id="status"
 							value="#{categoriaCestasBean.categoria.status}">
-							<p:ajax event="change" update="@this labe" />
-						</p:selectBooleanCheckbox>
-						<p:outputLabel id="labe"
-							value="#{categoriaCestasBean.categoria.status}" />
-
+							<p:ajax event="change" update="@this" />
+						</h:selectBooleanCheckbox>
 					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{categoriaCestasBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" />
+						update=":formCadastro:painel :formListagem:tabela" oncomplete="alterarCheck()"/> 
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" />
 				</h:panelGrid>
+				<script src="../../resources/js/alteraStatus.js"></script>
 			</h:form>
 		</p:dialog>
 	</ui:define>

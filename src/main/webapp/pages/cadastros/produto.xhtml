@@ -16,7 +16,8 @@
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
 							<p:outputLabel style="text-align:left">Produto - Listagem</p:outputLabel>
-							<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+							<p:commandButton value="Novo"
+								oncomplete="PF('dialogo').show(); alterarCheck()"
 								style="align:right !important"
 								actionListener="#{produtoBean.novo()}"
 								update=":formCadastro:painel">
@@ -64,7 +65,7 @@
 							actionListener="#{produtoBean.excluir}"
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
-								message="Deseja excluir essa categoria?" icon="ui-icon-alert" />
+								message="Deseja excluir esse produto?" icon="ui-icon-alert" />
 							<f:attribute name="produtoSelecionado" value="#{produto}" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
@@ -99,10 +100,9 @@
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
 								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								id="foto-preview" /> <input type="file"
-								accept=".png,.jpg,.jpeg" required="required" id="foto"
-								value="#{produtoBean.img}" style="display: none;"
-								onchange="teste(this)" /></label>
+								id="foto-preview" /> <h:inputFile accept=".png,.jpg,.jpeg"
+									required="required" id="foto" value="#{produtoBean.img}"
+									style="display: none;" onchange="teste(this)" /></label>
 							<h:message for="foto" />
 						</div>
 					</h:panelGrid>
@@ -136,40 +136,63 @@
 
 
 
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="4">
 					<h:panelGrid columns="1">
 
 						<h:outputLabel value="Uni. Medida" />
 						<p:selectOneMenu value="#{produtoBean.produto.unidadeMedida}"
-							converter="omnifaces.SelectItemsConverter" style="width:250px">
+							converter="omnifaces.SelectItemsConverter" style="width:150px">
 							<f:selectItem itemLabel="" noSelectionOption="true" />
 							<f:selectItems value="#{produtoBean.unidadeMedidas}"
 								var="unidade" itemLabel="#{unidade.descricao}"
 								itemValue="#{unidade}" />
 						</p:selectOneMenu>
 					</h:panelGrid>
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Status:" for="status" />
-						<p:selectBooleanCheckbox id="status"
-							value="#{produtoBean.produto.status}">
-							<p:ajax event="change" update="@this labe" />
-						</p:selectBooleanCheckbox>
-						<p:outputLabel id="labe" value="#{produtoBean.produto.status}" />
+					<h:panelGrid columns="1">
+						<h:outputLabel value="Status" />
+						<p:selectOneMenu style="width:155px" onchange="alterarCheck()"
+							id="listCheck">
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+						</p:selectOneMenu>
+					</h:panelGrid>
 
+					<!--  Falta implementar na classe java____________________________________________ -->
+					<h:panelGrid columns="1">
+						<h:outputLabel value="Tipo de produto" />
+						<p:selectOneMenu style="width:170px" id="tipo-produto">
+							<f:selectItem itemLabel="Normal" itemValue="0"></f:selectItem>
+							<f:selectItem itemLabel="Extra" itemValue="1"></f:selectItem>
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<!-- _____________________________________________________________________________ -->
+
+					<h:panelGrid columns="2" style="display:none">
+						<p:outputLabel value="Status:" for="status" />
+						<h:selectBooleanCheckbox id="status"
+							value="#{produtoBean.produto.status}">
+							<p:ajax event="change" update="@this" />
+						</h:selectBooleanCheckbox>
 					</h:panelGrid>
 				</h:panelGrid>
 
-				<h:panelGrid columns="1">
-					<h:outputLabel value="Forncedor: " for="fornecedor" />
-					<p:selectOneMenu id="fornecedor"
-						value="#{produtoBean.produto.fornecedor}"
-						converter="omnifaces.SelectItemsConverter" style="width:494px">
-						<f:selectItem itemLabel="" noSelectionOption="true" />
-						<f:selectItems value="#{produtoBean.fornecedores}"
-							var="fornecedor"
-							itemLabel="#{fornecedor.nomefantasia} - #{fornecedor.cnpj}"
-							itemValue="#{categoria}" />
-					</p:selectOneMenu>
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<h:outputLabel value="Forncedores: " for="fornecedor" />
+						<p:selectCheckboxMenu id="fornecedor" multiple="true"
+							value="#{produtoBean.produto.fornecedor}" label="Selecione"
+							converter="omnifaces.SelectItemsConverter" style="width:368px; height:2.1em" filter="true" filterMatchMode="startsWith" panelStyle="width:368px">
+							<f:selectItems value="#{produtoBean.fornecedores}" var="fornecedor" />
+						</p:selectCheckboxMenu>
+					</h:panelGrid>
+					<!--  Falta implementar na classe java____________________________________________ -->
+					<h:panelGrid columns="1">
+						<h:outputLabel value="Fator Mult." />
+						<p:inputNumber id="fator-multiplicador"
+							value="" size="8" minValue="1"
+							maxValue="9" maxlength="1" decimalSeparator="" decimalPlaces="0" />
+					</h:panelGrid>
+					<!-- _____________________________________________________________________________ -->
 				</h:panelGrid>
 				<h:panelGrid columns="1">
 					<h:outputLabel value="Informações Nutricionais: " for="info" />
@@ -183,13 +206,14 @@
 					<h:commandButton value="Salvar"
 						actionListener="#{produtoBean.salvar1}"
 						update=":formCadastro:painel :formListagem:tabela"
-						style="padding:0.2em 1em;" />
+						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
 				</h:panelGrid>
 
-			</h:form>
+			<script src="../../resources/js/alteraStatus.js"></script>
 			<script src="../../resources/js/uploadImg.js"></script>
+			</h:form>
 		</p:dialog>
 	</ui:define>
 </ui:composition>

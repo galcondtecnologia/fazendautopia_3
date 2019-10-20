@@ -8,8 +8,9 @@ function exibirImagem(imagem) {
     
     // Tratar o tamanho da imagem
     if(tamanoImagemMB >= 60){
-	console.log(tamanoImagemMB);
 	alert("Imagem maior que o tamanho permitido,\n tente com uma imagem menor 200 x 200px");
+    }else if(imagem[0].type != "image/png"){
+	alert("Selecione uma imagem em formato PNG");
     }else{  
     if (imagem && imagem[0]) {
 	var reader = new FileReader();

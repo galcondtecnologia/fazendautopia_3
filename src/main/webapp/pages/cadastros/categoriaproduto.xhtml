@@ -67,7 +67,7 @@
 		<p:dialog header="Categoria Produtos - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true">
-			<h:form id="formCadastro">
+			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
 					<p:inputText maxlength="33" size="30" id="descricao"
@@ -76,25 +76,32 @@
 						converter="upperCaseConverter">
 						<p:ajax event="blur" update="@this" />
 					</p:inputText>
+					
+					<h:panelGrid columns="2">
+					<p:outputLabel value="Status: " for="listCheck" />
+					<p:selectOneMenu style="width:230px" onchange="alterarCheck()" id="listCheck">
+							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+					</p:selectOneMenu>
+					</h:panelGrid>
 
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="3" style="display:none">
 						<p:outputLabel value="Status: " for="status" />
-						<p:selectBooleanCheckbox id="status"
+						<h:selectBooleanCheckbox id="status"
 							value="#{categoriaProdutoBean.categoriaProduto.status}">
-							<p:ajax event="change" update="@this labe" />
-						</p:selectBooleanCheckbox>
-						<p:outputLabel id="labe"
-							value="#{categoriaProdutoBean.categoriaProduto.status}" />
+							<p:ajax event="change" update="@this" />
+						</h:selectBooleanCheckbox>
 					</h:panelGrid>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{categoriaProdutoBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" />
+						update=":formCadastro:painel :formListagem:tabela" oncomplete="alterarCheck()"/>
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" />
 				</h:panelGrid>
+				<script src="../../resources/js/alteraStatus.js"></script>
 			</h:form>
 		</p:dialog>
 	</ui:define>

@@ -60,7 +60,7 @@
 							actionListener="#{cestaBean.excluir}"
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
-								message="Deseja excluir essa categoria?" icon="ui-icon-alert" />
+								message="Deseja excluir essa cesta?" icon="ui-icon-alert" />
 							<f:attribute name="cestaSelecionada" value="#{cesta}" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
@@ -91,27 +91,37 @@
 				prependId="false">
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
-
-
 						<div class="image-upload">
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin-top: 1em; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								id="foto-preview" /> <input type="file"
-								accept=".png,.jpg,.jpeg" id="foto" value="#{cestaBean.img}"
-								style="display: none;" onchange="teste(this)"
-								required="required" /></label>
-							<h:message for="foto" />
+								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
+								id="foto-preview" /> <h:inputFile accept=".png,.jpg,.jpeg"
+									required="required" id="foto" value="#{cestaBean.img}"
+									style="display: none;" onchange="teste(this)" /></label>
 						</div>
 
 
-						<p:outputLabel value="Status:" for="status" />
-						<p:selectOneMenu id="status" value="#{cestaBean.cesta.status}"
-							style="width:140px">
+					
+						<h:panelGrid columns="1">
+						<h:outputLabel value="Status" />
+						<p:selectOneMenu style="width:140px" onchange="alterarCheck()"
+							id="listCheck">
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-							<f:selectItems value="#{cestaBean.cesta.status}"></f:selectItems>
 						</p:selectOneMenu>
+					</h:panelGrid>
+
+
+						<h:panelGrid columns="2" style="display:none">
+							<p:outputLabel value="Status:" for="status" />
+							<h:selectBooleanCheckbox id="status"
+								value="#cestaBean.cesta.status}">
+								<p:ajax event="change" update="@this" />
+							</h:selectBooleanCheckbox>
+						</h:panelGrid>
+
+
+
 						<h:outputLabel value="Qtd Itens " for="qtd" />
 						<p:inputNumber id="qtd" value="#{cestaBean.cesta.quantItens}"
 							size="12" decimalSeparator="" thousandSeparator=""
@@ -147,21 +157,22 @@
 						<p:pickList id="pickList" value="#{cestaBean.dualList}"
 							var="produto" itemLabel="#{produto}" itemValue="#{produto}"
 							responsive="true" />
-					</h:panelGrid>
+						</h:panelGrid>
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{cestaBean.salvar}"
 						update=":formCadastro:painel :formListagem:tabela"
-						style="padding:0.2em 1em;" />
+						style="padding:0.2em 1em;" oncomplete="alterarCheck()"/>
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
 				</h:panelGrid>
 
 
-			</h:form>
+			<script src="../../resources/js/alteraStatus.js"></script>
 			<script src="../../resources/js/uploadImg.js"></script>
+			</h:form>
 		</p:dialog>
 	</ui:define>
 </ui:composition>

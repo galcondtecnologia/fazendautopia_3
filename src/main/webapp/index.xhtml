@@ -46,28 +46,28 @@
 				<h1>Cestas da semana</h1>
 				<p>Selecione a cesta ideal para você e sua família</p>
 				<p:carousel value="#{cestaBean.cestas}" var="cestas" numVisible="4"
-					responsive="true" class="card">
-					<p:graphicImage value=""
-						class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+					responsive="true" class="card" autoPlayInterval="7000">
 
-					<div class="centralizar-imagem">
-						<!-- 						<img src="./resources/images/upload/CestaSemIcone1.png" -->
-						<!-- 							alt="icone cesta" -->
-						<!-- 							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" /> -->
 
-						<h:graphicImage value="#{cestas.imagemnome}" width="auto"
-							height="auto" alt="icone cesta"
-							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+					<div class="cesta-lista-item">
+						<div class="centralizar-imagem">
+							<h:graphicImage value="#{cestas.imagemnome}" alt="icone cesta"
+								class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+						</div>
+						<div>
+							<h:outputText value="#{cestas.categoriaCesta.descricao}"
+								class="titulo-cestas" />
+
+							<div class="carrocel-dados-cestas">
+								<div>
+									<h:outputText value="#{cestas.descricao}" />
+								</div>
+								<h:outputText value="R$ " />
+								<h:outputText value="#{cestas.precovenda}" />
+							</div>
+						</div>
 
 					</div>
-					<h:outputText value="Cesta Mini Personalizada"
-						class="titulo-cestas" />
-					<h:outputText value="Descrição:" />
-					<h:outputText value="#{cestas.descricao}" />
-					<br></br>
-					<h:outputText value="Preço de venda:" />
-					<h:outputText value="#{cestas.precovenda}" />
-
 				</p:carousel>
 			</div>
 			<!-- Sessao de cestas da semana_________________________________________________________________ -->
@@ -110,20 +110,19 @@
 			<div class="fundo-separador-desktop">
 				<div class="sessao-produtos-desktop" id="produtos-desktop">
 					<p:dataGrid value="#{produtoBean.produtos}" var="produto2"
-						columns="3" rows="12">
-						<p:column header="#{produto2.codigo}">
-							<div>
-								<p:panel header="Produtos disponíveis">
-									<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
-										<h:graphicImage value="#{produto2.imagemnome}" width="60"
-											height="60" alt="icone cesta"
-											class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
-										<h:outputLabel value="Descrição:" />
+						columns="4" rows="12">
+						<p:column header="#{produto2.codigo}" class="coluna-desktop-produto">
+							<p:panel header="DisponÃ­vel" class="quadrante-produto-desktop">
+							<h:outputText value="#{produto2.descricao}" style="font-weight:bold"/>
+							<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
+							
+										<h:graphicImage value="#{produto2.imagemnome}" alt="icone cesta" class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+										<h:outputLabel value="R$:" />
 										<h:outputText value="#{produto2.descricao}" />
-										
+
 									</h:panelGrid>
 								</p:panel>
-							</div>
+							
 
 						</p:column>
 					</p:dataGrid>
