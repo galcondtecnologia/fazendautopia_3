@@ -84,51 +84,69 @@ public class CestaBean implements Serializable {
 		try {
 
 			/* processando imagem */
-			byte[] imagemByte = getByte(img.getInputStream());
-			cesta.setImagemBase64(imagemByte); /* salva imagem original */
+			if (img.getInputStream() != null) {
+				byte[] imagemByte = getByte(img.getInputStream());
+				cesta.setImagemBase64(imagemByte); /* salva imagem original */
 
-			/* transformar em buffere */
-			BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+				/* transformar em buffere */
+				BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
 
-			/*
-			 * pegar o tipo da imagem = se for = ou diferente de 0 pega o ARGB
-			 * senao getuype
-			 */
-			int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
+				/*
+				 * pegar o tipo da imagem = se for = ou diferente de 0 pega o
+				 * ARGB senao getuype
+				 */
+				int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
 
-			int largura = 200;
-			int altura = 200;
+				int largura = 200;
+				int altura = 200;
 
-			/* criar miniatura */
-			BufferedImage imagemModificada = new BufferedImage(largura, altura, type);
-			Graphics2D gra = imagemModificada.createGraphics();
-			gra.drawImage(bufferedImage, 0, 0, largura, altura, null);
-			gra.dispose();
-			/* escrever novamente a imagem em tamanho menor */
-			ByteArrayOutputStream saida = new ByteArrayOutputStream();
-			String extensao = img.getContentType()
-					.split("\\/")[1];/* salva nesse formato image/png */
+				/* criar miniatura */
+				BufferedImage imagemModificada = new BufferedImage(largura, altura, type);
+				Graphics2D gra = imagemModificada.createGraphics();
+				gra.drawImage(bufferedImage, 0, 0, largura, altura, null);
+				gra.dispose();
+				/* escrever novamente a imagem em tamanho menor */
+				ByteArrayOutputStream saida = new ByteArrayOutputStream();
+				String extensao = img.getContentType()
+						.split("\\/")[1];/* salva nesse formato image/png */
 
-			ImageIO.write(imagemModificada, extensao, saida);
+				ImageIO.write(imagemModificada, extensao, saida);
 
-			String imagemMiniatura = "data:" + img.getContentType() + ";base64,"
-					+ DatatypeConverter.printBase64Binary(saida.toByteArray());
+				String imagemMiniatura = "data:" + img.getContentType() + ";base64,"
+						+ DatatypeConverter.printBase64Binary(saida.toByteArray());
 
-			cesta.setImagemnome(imagemMiniatura);
-			cesta.setImagemformato(extensao);
-			cesta.setDualListModelProdu(dualList);
-			CestaDAO dao = new CestaDAO();
-			dao.merge(cesta);
-			cesta = new Cesta();
-			cestas = dao.listar();
+				cesta.setImagemnome(imagemMiniatura);
+				cesta.setImagemformato(extensao);
+				cesta.setDualListModelProdu(dualList);
+				CestaDAO dao = new CestaDAO();
+				dao.merge(cesta);
+				cesta = new Cesta();
+				cestas = dao.listar();
 
-			ProdutoDAO dao1 = new ProdutoDAO();
-			produtos = dao1.listar();
+				ProdutoDAO dao1 = new ProdutoDAO();
+				produtos = dao1.listar();
 
-			CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
-			categoriacestas = dao2.listar();
+				CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
+				categoriacestas = dao2.listar();
 
-			Messages.addGlobalInfo("Cesta salva com sucesso!");
+				Messages.addGlobalInfo("Cesta salva com sucesso!");
+			} else {
+				
+				cesta.setDualListModelProdu(dualList);
+				CestaDAO dao = new CestaDAO();
+				dao.merge(cesta);
+				cesta = new Cesta();
+				cestas = dao.listar();
+
+				ProdutoDAO dao1 = new ProdutoDAO();
+				produtos = dao1.listar();
+
+				CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
+				categoriacestas = dao2.listar();
+
+				Messages.addGlobalInfo("Cesta salva com sucesso!");
+			}
+
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar as cestas!");
 			e.printStackTrace();

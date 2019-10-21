@@ -183,13 +183,14 @@
 							value="#{produtoBean.produto.fornecedor}" label="Selecione"
 							converter="omnifaces.SelectItemsConverter" style="width:368px; height:2.1em" filter="true" filterMatchMode="startsWith" panelStyle="width:368px">
 							<f:selectItems value="#{produtoBean.fornecedores}" var="fornecedor" />
+					
 						</p:selectCheckboxMenu>
 					</h:panelGrid>
 					<!--  Falta implementar na classe java____________________________________________ -->
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Fator Mult." />
 						<p:inputNumber id="fator-multiplicador"
-							value="" size="8" minValue="1"
+							 size="8" minValue="1"
 							maxValue="9" maxlength="1" decimalSeparator="" decimalPlaces="0" />
 					</h:panelGrid>
 					<!-- _____________________________________________________________________________ -->
