@@ -130,7 +130,7 @@ public class ProdutoBean implements Serializable {
 			/* escrever novamente a imagem em tamanho menor */
 			ByteArrayOutputStream saida = new ByteArrayOutputStream();
 			String extensao = img.getContentType()
-					.split("\\/")[1];/* salva nesse formato image/png */
+					.split("\\/")[0];/* salva nesse formato image/png */
 
 			ImageIO.write(imagemModificada, extensao, saida);
 
