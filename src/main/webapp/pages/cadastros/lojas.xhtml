@@ -21,7 +21,7 @@
 							<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 								style="align:right !important"
 								actionListener="#{minhaLojaBean.novo}"
-								update=":formCadastro:painel">
+								update=":formCadastro:painel1 :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4 :formCadastro:painel5">
 								<f:actionListener
 									type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 							</p:commandButton>
@@ -96,7 +96,7 @@
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true">
 			<h:form id="formCadastro" prependId="false">
-				<h:panelGrid id="painel" columns="2">
+				<h:panelGrid id="painel1" columns="2">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="CNPJ" for="cnpj" />
 						<p:inputMask id="cnpj" mask="99.999.999/9999-99"
@@ -114,7 +114,7 @@
 						</p:inputText>
 					</h:panelGrid>
 				</h:panelGrid>
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" id="painel2">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Nome Fantasia: " for="fantasia" />
 						<p:inputText maxlength="150" size="30" id="fantasia"
@@ -134,7 +134,7 @@
 						</p:inputMask>
 					</h:panelGrid>
 				</h:panelGrid>
-				<h:panelGrid columns="3">
+				<h:panelGrid columns="3" id="painel3">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Cidade" for="cidade" />
 						<p:inputText id="cidade" required="true"
@@ -156,7 +156,7 @@
 					</h:panelGrid>
 				</h:panelGrid>
 
-				<h:panelGrid columns="3">
+				<h:panelGrid columns="3" id="painel4">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Rua:" for="endereco" />
 						<p:inputText id="endereco" maxlength="50" size="25"
@@ -173,7 +173,7 @@
 							value="#{minhaLojaBean.minhaloja.telefone}" />
 					</h:panelGrid>
 				</h:panelGrid>
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" id="painel5">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Email:" for="email" />
 						<p:inputText id="email" maxlength="50" size="45"
@@ -206,10 +206,10 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{minhaLojaBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela"
+						update=":formCadastro:painel1 :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4 :formCadastro:painel5 :formListagem:tabela"
 						oncomplete="alterarCheck()" />
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
-						update=":formCadastro:painel" />
+						update=":formCadastro:painel1" />
 				</h:panelGrid>
 				<script src="../../resources/js/buscaCnpj.js"></script>
 				<script src="../../resources/js/alteraStatus.js"></script>

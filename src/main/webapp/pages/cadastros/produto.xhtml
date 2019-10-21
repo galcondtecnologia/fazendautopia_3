@@ -20,7 +20,7 @@
 								oncomplete="PF('dialogo').show(); alterarCheck()"
 								style="align:right !important"
 								actionListener="#{produtoBean.novo()}"
-								update=":formCadastro:painel">
+								update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4">
 								<f:actionListener
 									type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 							</p:commandButton>
@@ -136,7 +136,7 @@
 
 
 
-				<h:panelGrid columns="4">
+				<h:panelGrid columns="4" id="painel2">
 					<h:panelGrid columns="1">
 
 						<h:outputLabel value="Uni. Medida" />
@@ -176,7 +176,7 @@
 					</h:panelGrid>
 				</h:panelGrid>
 
-				<h:panelGrid columns="3">
+				<h:panelGrid columns="3" id="painel3">
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Forncedores: " for="fornecedor" />
 						<p:selectCheckboxMenu id="fornecedor" multiple="true"
@@ -194,7 +194,7 @@
 					</h:panelGrid>
 					<!-- _____________________________________________________________________________ -->
 				</h:panelGrid>
-				<h:panelGrid columns="1">
+				<h:panelGrid columns="1" id="painel4">
 					<h:outputLabel value="Informações Nutricionais: " for="info" />
 					<p:inputTextarea id="info"
 						value="#{produtoBean.produto.informacoes}" cols="58"
@@ -205,7 +205,7 @@
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{produtoBean.salvar1}"
-						update=":formCadastro:painel :formListagem:tabela"
+						update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4 :formListagem:tabela"
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
