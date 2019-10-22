@@ -127,4 +127,9 @@ public class Fornecedor extends GenericDomain {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return razaoSocial + " " + cnpj;
+	}
+
 }

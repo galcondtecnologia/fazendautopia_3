@@ -27,9 +27,26 @@ public class Produto extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UnidadeMedida unidadeMedida;
-	@JoinColumn(nullable = false)
-	private ArrayList<Fornecedor> fornecedor;
+	private ArrayList<String> fornecedor;
 	private boolean status;
+	private int tipoproduto;
+	private int multiplicador;
+
+	public int getTipoproduto() {
+		return tipoproduto;
+	}
+
+	public void setTipoproduto(int tipoproduto) {
+		this.tipoproduto = tipoproduto;
+	}
+
+	public int getMultiplicador() {
+		return multiplicador;
+	}
+
+	public void setMultiplicador(int multiplicador) {
+		this.multiplicador = multiplicador;
+	}
 
 	private String informacoes;
 
@@ -113,11 +130,11 @@ public class Produto extends GenericDomain {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public ArrayList<Fornecedor> getFornecedor() {
+	public ArrayList<String> getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(ArrayList<Fornecedor> fornecedor) {
+	public void setFornecedor(ArrayList<String> fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
