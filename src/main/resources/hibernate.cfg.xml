@@ -9,8 +9,8 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/bdutopia</property>
 		<property name="connection.username">root</property>
-<!--  		<property name="connection.password">admin</property>   -->
-		 <property name="connection.password">q1w2e3r4</property>
+	<property name="connection.password">admin</property>   
+<!--  			 <property name="connection.password">q1w2e3r4</property> -->
 
 		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 
@@ -29,15 +29,15 @@
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="br.com.fazendautopia.domain.CategoriaCesta" />
+ 		<mapping class="br.com.fazendautopia.domain.CategoriaCesta" />
 		<mapping class="br.com.fazendautopia.domain.CategoriaProduto" />
-		<mapping class="br.com.fazendautopia.domain.UnidadeMedida" />
+		<mapping class="br.com.fazendautopia.domain.UnidadeMedida" /> 
 		<mapping class="br.com.fazendautopia.domain.Fornecedor" />
-		<mapping class="br.com.fazendautopia.domain.Regiao" />
+ 		<mapping class="br.com.fazendautopia.domain.Regiao" /> 
 		<mapping class="br.com.fazendautopia.domain.Produto" />
-			<mapping class="br.com.fazendautopia.domain.Cesta" />
+ 			<mapping class="br.com.fazendautopia.domain.Cesta" />
 			<mapping class="br.com.fazendautopia.domain.MinhaLoja" />
-				<mapping class="br.com.fazendautopia.domain.Usuario" />
+				<mapping class="br.com.fazendautopia.domain.Usuario" /> 
 
 	</session-factory>
 </hibernate-configuration>

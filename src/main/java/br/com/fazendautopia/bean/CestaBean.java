@@ -202,6 +202,11 @@ public class CestaBean implements Serializable {
 		}
 		return buf;
 	}
+	
+	public void download() {
+
+	}
+
 
 	public DualListModel<Produto> getDualList() {
 		return dualList;
