@@ -185,6 +185,7 @@
 				<h:panelGrid columns="3" id="painel3">
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Forncedores: " for="fornecedor" />
+<<<<<<< HEAD
 						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
 							value="#{produtoBean.produto.fornecedor}" label="Selecione"
 							converter="omnifaces.SelectItemsConverter"
@@ -196,14 +197,24 @@
 								itemValue="#{fornecedor.razaoSocial}"/>
 
 						</p:selectCheckboxMenu>
+=======
+						<p:selectCheckboxMenu id="fornecedor" multiple="true"
+							converter="omnifaces.SelectItemsConverter"
+							style="width:368px; height:2.1em" filter="true"
+							filterMatchMode="startsWith" panelStyle="width:368px">
+							<f:selectItems value="#{produtoBean.fornecedores}"
+								var="fornecedor" itemValue="#{fornecedor}"
+								itemLabel="#{fornecedor.razaoSocial}" />
+						</p:selectCheckboxMenu>
+
+>>>>>>> b6a9afa0fbc64184ae41118d620e61accdd42e95
 					</h:panelGrid>
 					<!--  Falta implementar na classe java____________________________________________ -->
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Fator Mult." />
 						<p:inputNumber id="fator-multiplicador"
 							value="#{produtoBean.produto.multiplicador}" size="8"
-							minValue="1" maxValue="9" maxlength="1" 
-							decimalPlaces="0" />
+							minValue="1" maxValue="9" maxlength="1" decimalPlaces="0" />
 					</h:panelGrid>
 					<!-- _____________________________________________________________________________ -->
 				</h:panelGrid>

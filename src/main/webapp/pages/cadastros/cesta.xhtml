@@ -25,7 +25,7 @@
 						</p:panelGrid>
 					</f:facet>
 					<p:column headerText="Foto">
-						<h:commandLink>
+						<h:commandLink actionListener="#{cestaBean.download}">
 							<h:graphicImage width="60" height="60"
 								value="#{cesta.imagemnome}" />
 							<f:param name="fileDownloadId" value="#{cesta.codigo}"></f:param>
