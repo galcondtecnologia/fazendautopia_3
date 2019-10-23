@@ -105,8 +105,7 @@
 							<label for="foto"><img
 								src="../../resources/images/icons/SemImagem-300x300px.png"
 								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								id="foto-preview" /> <h:inputFile id="foto" value="#{produtoBean.img}"
-									style="display: none;" onchange="teste(this)" /></label>
+								id="foto-preview" /> <h:inputFile id="foto" value="#{produtoBean.img}" style="display: none;" onchange="teste(this)" /></label>
 						</div>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
@@ -183,8 +182,8 @@
 				<h:panelGrid columns="3" id="painel3">
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Forncedores: " for="fornecedor" />
-<<<<<<< HEAD
-						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
+
+<!-- 						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
 							value="#{produtoBean.produto.fornecedor}" label="Selecione"
 							converter="omnifaces.SelectItemsConverter"
 							 filter="true"
@@ -194,8 +193,8 @@
 								var="fornecedor"  itemLabel="#{fornecedor.razaoSocial}"
 								itemValue="#{fornecedor.razaoSocial}"/>
 
-						</p:selectCheckboxMenu>
-=======
+						</p:selectCheckboxMenu> -->
+
 						<p:selectCheckboxMenu id="fornecedor" multiple="true"
 							converter="omnifaces.SelectItemsConverter"
 							style="width:368px; height:2.1em" filter="true"
@@ -205,7 +204,7 @@
 								itemLabel="#{fornecedor.razaoSocial}" />
 						</p:selectCheckboxMenu>
 
->>>>>>> b6a9afa0fbc64184ae41118d620e61accdd42e95
+
 					</h:panelGrid>
 					<!--  Falta implementar na classe java____________________________________________ -->
 					<h:panelGrid columns="1">
@@ -234,7 +233,7 @@
 				</h:panelGrid>
 
 				<script src="../../resources/js/alteraStatus.js"></script>
-<!-- 				<script src="../../resources/js/uploadImg.js"></script> -->
+				<script src="../../resources/js/uploadImg.js"></script> 
 			</h:form>
 		</p:dialog>
 	</ui:define>
