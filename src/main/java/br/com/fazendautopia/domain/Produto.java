@@ -2,6 +2,7 @@ package br.com.fazendautopia.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class Produto extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UnidadeMedida unidadeMedida;
-	private ArrayList<String> fornecedor;
+	private String[] fornecedor;
 	private boolean status;
 	private int tipoproduto;
 	private int multiplicador;
@@ -130,11 +131,12 @@ public class Produto extends GenericDomain {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public ArrayList<String> getFornecedor() {
+
+	public String[] getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(ArrayList<String> fornecedor) {
+	public void setFornecedor(String[] fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
