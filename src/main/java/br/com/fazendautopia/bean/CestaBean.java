@@ -159,6 +159,7 @@ public class CestaBean implements Serializable {
 		try {
 
 			cesta = (Cesta) evento.getComponent().getAttributes().get("cestaSelecionada");
+			
 
 			CestaDAO dao = new CestaDAO();
 			dao.excluir(cesta);
@@ -174,8 +175,9 @@ public class CestaBean implements Serializable {
 
 	public void editar(ActionEvent evento) {
 		try {
-
+			
 			cesta = (Cesta) evento.getComponent().getAttributes().get("cestaSelecionada");
+			
 			Messages.addGlobalInfo("Cesta alterada com sucesso!");
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar alterar a cesta! " + e);

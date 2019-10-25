@@ -140,7 +140,6 @@ public class ProdutoBean implements Serializable {
 			produto.setImagemnome(imagemMiniatura);
 			produto.setImagemformato(extensao);
 			ProdutoDAO dao = new ProdutoDAO();
-			System.out.println("Imagem " + produto.getImagemBase64().toString());
 			produto.setDataCadastro(new Date());
 			dao.merge(produto);
 
