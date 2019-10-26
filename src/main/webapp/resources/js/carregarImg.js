@@ -7,6 +7,7 @@ var item;
 	itens[i].addEventListener('click', function(e) {
 	   item = e.path[i];
 	   var image = item.querySelector("td img");
+	   console.log("entrou");
 	   checkImg(image);
 	});
     }
