@@ -16,7 +16,6 @@ for (var i = 0; itens.length > i; i++) {
     }
 
 function loadImg() {
-	console.log('Atribuiu a imagem');
 	document.getElementById("foto-preview").src = imagemBase64;	
 	console.log(imagemBean);
 }

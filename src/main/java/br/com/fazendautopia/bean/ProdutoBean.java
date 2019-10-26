@@ -88,10 +88,8 @@ public class ProdutoBean implements Serializable {
 	public void salvar() {
 
 		try {
-			System.out.println("Imagem" + img);
 			ProdutoDAO dao = new ProdutoDAO();
 			dao.merge(produto);
-			System.out.println("Imagem " + produto);
 			Messages.addGlobalInfo("Produto salvo com sucesso!");
 			ProdutoDAO dao1 = new ProdutoDAO();
 			produtos = dao1.listar();
@@ -106,6 +104,7 @@ public class ProdutoBean implements Serializable {
 	public void salvar1() throws IOException {
 
 		try {
+			if(img.getInputStream() != null) {
 			/* processando imagem */
 			byte[] imagemByte = getByte(img.getInputStream());
 			produto.setImagemBase64(imagemByte); /* salva imagem original */
@@ -148,6 +147,18 @@ public class ProdutoBean implements Serializable {
 			ProdutoDAO dao1 = new ProdutoDAO();
 			produtos = dao1.listar();
 			Messages.addGlobalInfo("Produto salvo com sucesso!");
+		}else {
+				ProdutoDAO dao = new ProdutoDAO();
+				produto.setDataCadastro(new Date());
+				dao.merge(produto);
+
+				produto = new Produto();
+
+				ProdutoDAO dao1 = new ProdutoDAO();
+				produtos = dao1.listar();
+				Messages.addGlobalInfo("Produto salvo com sucesso!");
+			}
+			
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o produto!");
 			e.printStackTrace();
