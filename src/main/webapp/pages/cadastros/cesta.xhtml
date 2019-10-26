@@ -9,7 +9,7 @@
 		<h:form id="formListagem" prependId="false">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="6" paginatorPosition="bottom"
+					paginator="true" rows="100" paginatorPosition="top"
 					style="text-align: center;" value="#{cestaBean.cestas}" var="cesta"
 					rowKey="#{cesta.codigo}">
 					<f:facet name="header">
@@ -176,13 +176,15 @@
 		</p:dialog>
 		<script src="../../resources/js/carregarImg.js"></script>
 		<script>
-	    function checkSubmit(form) {
-		if (form) {
-		    return true;
-		} else {
-		    return false;
+	    window.addEventListener('submit', function(e){
+		var campoDescricao = document.querySelector("#descricao");
+		if(campoDescricao.textContent == ''){
+		    console.log('Evite o envio ...')
+		    e.preventDefault;
+		}else{
+		    console.log('Salve os dados ...')
 		}
-	    }
+	    });
 	</script>
 	</ui:define>
 </ui:composition>
