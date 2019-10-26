@@ -1,19 +1,23 @@
 var itens = document.querySelectorAll("#tabela_data tr");
-var icon = document.getElementById("foto-preview");
-var item;
+var listBtnEditar = document.querySelectorAll("button");
+var imagemBean = document.querySelector("#foto");
+var imagemBase64 = '';
 
 
-    for (var i = 0; itens.length > i; i++) {
-	itens[i].addEventListener('click', function(e) {
-	   item = e.path[i];
-	   var image = item.querySelector("td img");
-	   console.log("entrou");
-	   checkImg(image);
-	});
+
+for (var i = 0; itens.length > i; i++) {
+    itens[i].addEventListener('click', function(e) {
+	var itemSelecionado = e.currentTarget;
+	var image = itemSelecionado.querySelector("td img");
+	imagemBase64 = image.src;
+	}, false);
+    
     }
 
-function checkImg(image) {
-    setTimeout(() => {
-	icon.src = image.src;	
-    }, 200);
+function loadImg() {
+	console.log('Atribuiu a imagem');
+	document.getElementById("foto-preview").src = imagemBase64;	
+	console.log(imagemBean);
 }
+
+

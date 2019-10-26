@@ -57,20 +57,19 @@
 						<h:outputText value="#{cesta.precovenda}" />
 					</p:column>
 					<p:column headerText="Opções" width="120">
-						<p:commandButton icon="ui-icon-trash"
+						<p:commandButton icon="ui-icon-trash" id="excluir"
 							actionListener="#{cestaBean.excluir}"
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
 								message="Deseja excluir essa cesta?" icon="ui-icon-alert" />
 							<f:attribute name="cestaSelecionada" value="#{cesta}" var="cesta" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil"
-							actionListener="#{cestaBean.editar}"
-							oncomplete="PF('dialogo').show();" update="formCadastro">
+						<p:commandButton icon="ui-icon-pencil" id="editar"
+							actionListener="#{cestaBean.editar}" oncomplete="PF('dialogo').show();"
+							 update="formCadastro">
 							<f:attribute name="cestaSelecionada" value="#{cesta}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-
 						</p:commandButton>
 					</p:column>
 
@@ -87,7 +86,7 @@
 
 		<p:dialog header="Cesta - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
-			closeOnEscape="true">
+			closeOnEscape="true" onShow="loadImg()">
 			<h:form id="formCadastro" enctype="multipart/form-data"
 				prependId="false">
 				<h:panelGrid id="painel" columns="2">
@@ -173,8 +172,8 @@
 
 				<script src="../../resources/js/alteraStatus.js"></script>
 				<script src="../../resources/js/uploadImg.js"></script>
-				<script src="../../resources/js/carregarImg.js"></script>
 			</h:form>
 		</p:dialog>
+		<script src="../../resources/js/carregarImg.js"></script>
 	</ui:define>
 </ui:composition>
