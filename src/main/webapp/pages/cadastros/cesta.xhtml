@@ -65,8 +65,8 @@
 							<f:attribute name="cestaSelecionada" value="#{cesta}" var="cesta" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-pencil" id="editar"
-							actionListener="#{cestaBean.editar}" oncomplete="PF('dialogo').show();"
-							 update="formCadastro">
+							actionListener="#{cestaBean.editar}"
+							oncomplete="PF('dialogo').show();" update="formCadastro">
 							<f:attribute name="cestaSelecionada" value="#{cesta}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
@@ -88,7 +88,7 @@
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true" onShow="loadImg()">
 			<h:form id="formCadastro" enctype="multipart/form-data"
-				prependId="false">
+				prependId="false" onsubmit="checkSubmit(this)">
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
 						<div class="image-upload">
@@ -162,7 +162,7 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
-						actionListener="#{cestaBean.salvar}"
+						actionListener="#{cestaBean.salvar}" action="checkSubmit(form)"
 						update=":formCadastro:painel :formListagem:tabela"
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
@@ -175,5 +175,14 @@
 			</h:form>
 		</p:dialog>
 		<script src="../../resources/js/carregarImg.js"></script>
+		<script>
+	    function checkSubmit(form) {
+		if (form) {
+		    return true;
+		} else {
+		    return false;
+		}
+	    }
+	</script>
 	</ui:define>
 </ui:composition>

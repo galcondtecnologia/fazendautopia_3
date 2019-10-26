@@ -6,7 +6,8 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="titulo">Produto</ui:define>
 	<ui:define name="corpo">
-		<h:form id="formListagem" enctype="multipart/form-data" prependId="false">
+		<h:form id="formListagem" enctype="multipart/form-data"
+			prependId="false">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" rows="6" paginatorPosition="bottom"
@@ -52,7 +53,7 @@
 						sortable="true">
 						<h:outputText value="#{produto.status}" />
 					</p:column>
-					
+
 					<p:column headerText="Fornecedor" sortBy="#{produto.fornecedor}"
 						sortable="true">
 						<h:outputText value="#{produto.fornecedor}" />
@@ -71,12 +72,13 @@
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
 								message="Deseja excluir esse produto?" icon="ui-icon-alert" />
-							<f:attribute name="produtoSelecionado" value="#{produto}" var="produto" />
+							<f:attribute name="produtoSelecionado" value="#{produto}"
+								var="produto" />
 						</p:commandButton>
 						<p:commandButton icon="ui-icon-pencil" id="editar"
 							actionListener="#{produtoBean.editar}"
 							oncomplete="PF('dialogo').show();" update=":formCadastro">
-							<f:attribute name="produtoSelecionado" value="#{produto}"/>
+							<f:attribute name="produtoSelecionado" value="#{produto}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 
@@ -104,8 +106,9 @@
 						<div class="image-upload">
 							<label for="foto"><img id="foto-preview"
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								 /> <h:inputFile id="foto" value="#{produtoBean.img}" style="display: none;" onchange="teste(this)" /></label>
+								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px" />
+								<h:inputFile id="foto" value="#{produtoBean.img}"
+									style="display: none;" onchange="teste(this)" /></label>
 						</div>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
@@ -180,7 +183,7 @@
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Forncedores: " for="fornecedor" />
 
-<!-- 						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
+						<!-- 						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
 							value="#{produtoBean.produto.fornecedor}" label="Selecione"
 							converter="omnifaces.SelectItemsConverter"
 							 filter="true"
@@ -227,12 +230,22 @@
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
-				</h:panelGrid>	
+				</h:panelGrid>
 
 				<script src="../../resources/js/alteraStatus.js"></script>
 				<script src="../../resources/js/uploadImg.js"></script>
 			</h:form>
 		</p:dialog>
 		<script src="../../resources/js/carregarImg.js"></script>
+		<script>
+	    function tecla(page) {
+		if (event.keyCode == 116) {
+		    window.location.href = "produto.xhtml";
+		    event.keyCode = 0;
+		    event.returnValue = false;
+		}
+	    }
+	    document.onkeydown = tecla;
+	</script>
 	</ui:define>
 </ui:composition>
