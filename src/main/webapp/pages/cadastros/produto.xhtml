@@ -71,12 +71,12 @@
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
 								message="Deseja excluir esse produto?" icon="ui-icon-alert" />
-							<f:attribute name="produtoSelecionado" value="#{produto}" />
+							<f:attribute name="produtoSelecionado" value="#{produto}" var="produto" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
+						<p:commandButton icon="ui-icon-pencil" 
 							actionListener="#{produtoBean.editar}"
-							oncomplete="PF('dialogo').show();">
-							<f:attribute name="produtoSelecionado" value="#{produto}" />
+							oncomplete="PF('dialogo').show();" update=":formCadastro">
+							<f:attribute name="produtoSelecionado" value="#{produto}"/>
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 
@@ -230,7 +230,7 @@
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
-				</h:panelGrid>
+				</h:panelGrid>	
 
 				<script src="../../resources/js/alteraStatus.js"></script>
 				<script src="../../resources/js/uploadImg.js"></script>
