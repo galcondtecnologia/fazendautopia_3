@@ -102,10 +102,10 @@
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
 						<div class="image-upload">
-							<label for="foto"><img
+							<label for="foto"><img id="foto-preview"
 								src="../../resources/images/icons/SemImagem-300x300px.png"
 								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								id="foto-preview" /> <h:inputFile id="foto" value="#{produtoBean.img}" style="display: none;" onchange="teste(this)" /></label>
+								 /> <h:inputFile id="foto" value="#{produtoBean.img}" style="display: none;" onchange="teste(this)" /></label>
 						</div>
 					</h:panelGrid>
 					<h:panelGrid columns="1">
@@ -233,7 +233,8 @@
 				</h:panelGrid>
 
 				<script src="../../resources/js/alteraStatus.js"></script>
-				<script src="../../resources/js/uploadImg.js"></script> 
+				<script src="../../resources/js/uploadImg.js"></script>
+				<script src="../../resources/js/carregarImg.js"></script> 
 			</h:form>
 		</p:dialog>
 	</ui:define>

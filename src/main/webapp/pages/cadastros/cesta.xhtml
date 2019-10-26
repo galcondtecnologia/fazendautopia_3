@@ -6,11 +6,12 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="titulo">Cesta</ui:define>
 	<ui:define name="corpo">
-		<h:form id="formListagem">
+		<h:form id="formListagem" prependId="false">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" rows="6" paginatorPosition="bottom"
-					style="text-align: center;" value="#{cestaBean.cestas}" var="cesta">
+					style="text-align: center;" value="#{cestaBean.cestas}" var="cesta"
+					rowKey="#{cesta.codigo}">
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
@@ -61,11 +62,11 @@
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
 								message="Deseja excluir essa cesta?" icon="ui-icon-alert" />
-							<f:attribute name="cestaSelecionada" value="#{cesta}" />
+							<f:attribute name="cestaSelecionada" value="#{cesta}" var="cesta" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil" update=":formCadastro"
+						<p:commandButton icon="ui-icon-pencil"
 							actionListener="#{cestaBean.editar}"
-							oncomplete="PF('dialogo').show();">
+							oncomplete="PF('dialogo').show();" update="formCadastro">
 							<f:attribute name="cestaSelecionada" value="#{cesta}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
@@ -92,24 +93,24 @@
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
 						<div class="image-upload">
-							<label for="foto"><img
+							<label for="foto"><img id="foto-preview"
 								src="../../resources/images/icons/SemImagem-300x300px.png"
-								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px"
-								id="foto-preview" /> <h:inputFile accept=".png,.jpg,.jpeg"
-									required="required" id="foto" value="#{cestaBean.img}"
-									style="display: none;" onchange="teste(this)" /></label>
+								style="height: 120px; width: 120px; margin: 1em 0.9em 0 0; box-shadow: 1px 1px 5px lightgray; border-radius: 15px" />
+								<h:inputFile accept=".png,.jpg,.jpeg" required="required"
+									id="foto" value="#{cestaBean.img}" style="display: none;"
+									onchange="teste(this)" /></label>
 						</div>
 
 
-					
+
 						<h:panelGrid columns="1">
-						<h:outputLabel value="Status" />
-						<p:selectOneMenu style="width:140px" onchange="alterarCheck()"
-							id="listCheck">
-							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
-							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-						</p:selectOneMenu>
-					</h:panelGrid>
+							<h:outputLabel value="Status" />
+							<p:selectOneMenu style="width:140px" onchange="alterarCheck()"
+								id="listCheck">
+								<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
+								<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
+							</p:selectOneMenu>
+						</h:panelGrid>
 
 
 						<h:panelGrid columns="2" style="display:none">
@@ -157,23 +158,22 @@
 						<p:pickList id="pickList" value="#{cestaBean.dualList}"
 							var="produto" itemLabel="#{produto}" itemValue="#{produto}"
 							responsive="true" />
-						</h:panelGrid>
+					</h:panelGrid>
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{cestaBean.salvar}"
 						update=":formCadastro:painel :formListagem:tabela"
-						style="padding:0.2em 1em;" oncomplete="alterarCheck()"/>
+						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
 				</h:panelGrid>
 
-<script  >
-alert"#{cesta.imagemnome.toString()}"
-</script>
-			<script src="../../resources/js/alteraStatus.js"></script>
-			<script src="../../resources/js/uploadImg.js"></script>
+
+				<script src="../../resources/js/alteraStatus.js"></script>
+				<script src="../../resources/js/uploadImg.js"></script>
+				<script src="../../resources/js/carregarImg.js"></script>
 			</h:form>
 		</p:dialog>
 	</ui:define>
