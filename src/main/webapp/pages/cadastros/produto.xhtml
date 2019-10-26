@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="titulo">Produto</ui:define>
 	<ui:define name="corpo">
-		<h:form id="formListagem" enctype="multipart/form-data">
+		<h:form id="formListagem" enctype="multipart/form-data" prependId="false">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" rows="6" paginatorPosition="bottom"
@@ -66,14 +66,14 @@
 					</p:column>
 
 					<p:column headerText="Opções" width="120">
-						<p:commandButton icon="ui-icon-trash"
+						<p:commandButton icon="ui-icon-trash" id="excluir"
 							actionListener="#{produtoBean.excluir}"
 							update=":formListagem:tabela">
 							<p:confirm header="Confirmação"
 								message="Deseja excluir esse produto?" icon="ui-icon-alert" />
 							<f:attribute name="produtoSelecionado" value="#{produto}" var="produto" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil" 
+						<p:commandButton icon="ui-icon-pencil" id="editar"
 							actionListener="#{produtoBean.editar}"
 							oncomplete="PF('dialogo').show();" update=":formCadastro">
 							<f:attribute name="produtoSelecionado" value="#{produto}"/>
@@ -96,7 +96,7 @@
 
 		<p:dialog header="Produto - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
-			closeOnEscape="true">
+			closeOnEscape="true" onShow="loadImg()">
 			<h:form id="formCadastro" enctype="multipart/form-data"
 				prependId="false">
 				<h:panelGrid id="painel" columns="2">
@@ -231,8 +231,8 @@
 
 				<script src="../../resources/js/alteraStatus.js"></script>
 				<script src="../../resources/js/uploadImg.js"></script>
-				<script src="../../resources/js/carregarImg.js"></script> 
 			</h:form>
 		</p:dialog>
+		<script src="../../resources/js/carregarImg.js"></script>
 	</ui:define>
 </ui:composition>

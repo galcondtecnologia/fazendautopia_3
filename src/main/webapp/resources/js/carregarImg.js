@@ -1,3 +1,4 @@
+//debugger;
 var itens = document.querySelectorAll("#tabela_data tr");
 var listBtnEditar = document.querySelectorAll("button");
 var imagemBean = document.querySelector("#foto");
