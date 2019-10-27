@@ -10,7 +10,7 @@
 			prependId="false">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="100" paginatorPosition="top"
+					paginator="true" rows="100" paginatorPosition="top" selectionMode="multiple" reflow="true" editMode="row"
 					style="text-align: center;" value="#{produtoBean.produtos}"
 					var="produto" rowKey="#{produto.codigo}">
 					<f:facet name="header">

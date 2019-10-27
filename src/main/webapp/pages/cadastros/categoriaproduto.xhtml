@@ -11,13 +11,13 @@
 		<h:form id="formListagem">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="100" paginatorPosition="top"
+					paginator="true" rows="100" paginatorPosition="top" 
 					style="text-align: center;"
 					value="#{categoriaProdutoBean.categoriaProdutos}" var="categorias">
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
-							<p:outputLabel style="text-align:left">Categoria Produtos - Listagem                  </p:outputLabel>
+							<p:outputLabel style="text-align:left">Categoria Produtos - Listagem</p:outputLabel>
 							<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 								style="align:right !important"
 								actionListener="#{categoriaProdutoBean.novo()}"
