@@ -27,7 +27,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 
  		<mapping class="br.com.fazendautopia.domain.CategoriaCesta" />
 		<mapping class="br.com.fazendautopia.domain.CategoriaProduto" />

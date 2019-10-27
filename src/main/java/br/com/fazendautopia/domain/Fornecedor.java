@@ -10,7 +10,7 @@ public class Fornecedor extends GenericDomain {
 	@Column(length = 150)
 	private String razaoSocial;
 	
-	@Column(length = 150)
+	@Column(length = 150, nullable = false)
 	private String nomefantasia;
 	
 	@Column(length = 18)

@@ -144,7 +144,7 @@
 						<h:outputLabel value="Uni. Medida" />
 						<p:selectOneMenu value="#{produtoBean.produto.unidadeMedida}"
 							converter="omnifaces.SelectItemsConverter" style="width:150px">
-							<f:selectItem itemLabel="" noSelectionOption="true" />
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems value="#{produtoBean.unidadeMedidas}"
 								var="unidade" itemLabel="#{unidade.descricao}"
 								itemValue="#{unidade}" />
@@ -183,25 +183,28 @@
 					<h:panelGrid columns="1">
 						<h:outputLabel value="Forncedores: " for="fornecedor" />
 
-						<!-- 						<p:selectCheckboxMenu id="fornecedor" showCheckbox="true"
-							value="#{produtoBean.produto.fornecedor}" label="Selecione"
-							converter="omnifaces.SelectItemsConverter"
-							 filter="true"
-							filterMatchMode="startsWith" panelStyle="width:500px">
-							<f:selectItem noSelectionOption="false" itemLabel="Selecione um" />
-							<f:selectItems value="#{produtoBean.fornecedores}" 
-								var="fornecedor"  itemLabel="#{fornecedor.razaoSocial}"
-								itemValue="#{fornecedor.razaoSocial}"/>
-
-						</p:selectCheckboxMenu> -->
+						<!-- O CODIGO ABAIXO É O CORRETO, MAS ESTÁ DANDO ERRO NO CONVERTER DO FORNECEDOR
+						A UNICA MUDANÇA FOI O value="#{produtoBean.produto.fornecedor}" DEPOIS DO CONVERTER
+						 -->
+						<!-- 
+						<p:selectCheckboxMenu id="fornecedor" multiple="true"
+							converter="omnifaces.SelectItemsConverter" value="#{produtoBean.produto.fornecedor}"
+							style="width:368px; height:2.1em" filter="true"
+							filterMatchMode="startsWith" panelStyle="width:368px">
+							<f:selectItems value="#{produtoBean.fornecedores}"
+								var="fornecedor" itemValue="#{fornecedor.nomefantasia}"
+								itemLabel="#{fornecedor.nomefantasia}" />
+						</p:selectCheckboxMenu>
+						
+						 -->
 
 						<p:selectCheckboxMenu id="fornecedor" multiple="true"
 							converter="omnifaces.SelectItemsConverter"
 							style="width:368px; height:2.1em" filter="true"
 							filterMatchMode="startsWith" panelStyle="width:368px">
 							<f:selectItems value="#{produtoBean.fornecedores}"
-								var="fornecedor" itemValue="#{fornecedor}"
-								itemLabel="#{fornecedor.razaoSocial}" />
+								var="fornecedor" itemValue="#{fornecedor.nomefantasia}"
+								itemLabel="#{fornecedor.nomefantasia}" />
 						</p:selectCheckboxMenu>
 
 

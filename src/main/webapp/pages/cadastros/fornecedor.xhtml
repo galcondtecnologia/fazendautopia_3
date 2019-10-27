@@ -105,7 +105,7 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Razão Social: " for="razacaosocial" />
 						<p:inputText maxlength="150" size="30" id="razacaosocial"
-							required="true" rendered="true"
+							 rendered="true"
 							value="#{fornecedorBean.fornecedor.razaoSocial}"
 							converter="upperCaseConverter">
 							<p:ajax event="blur" update="@this" />
@@ -115,7 +115,7 @@
 				<h:panelGrid columns="2" id="painel2">
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Nome Fantasia: " for="fantasia" />
-						<p:inputText maxlength="150" size="30" id="fantasia"
+						<p:inputText maxlength="150" size="30" id="fantasia" required="true"
 							rendered="true" value="#{fornecedorBean.fornecedor.nomefantasia}"
 							converter="upperCaseConverter">
 							<p:ajax event="blur" update="@this" />
@@ -151,7 +151,7 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:outputLabel value="Bairro" for="bairro" />
-						<p:inputText id="bairro" required="true"
+						<p:inputText id="bairro"
 							value="#{fornecedorBean.fornecedor.bairro}" size="24"
 							converter="upperCaseConverter">
 							<p:ajax event="blur" update="@this" />
