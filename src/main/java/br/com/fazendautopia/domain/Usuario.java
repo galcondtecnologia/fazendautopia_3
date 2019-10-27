@@ -2,12 +2,14 @@ package br.com.fazendautopia.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
 public class Usuario extends GenericDomain {
 
+	@Column(length = 100, nullable = false)
 	private String email;
 	private String senha;
 	private Date dataCadastro;

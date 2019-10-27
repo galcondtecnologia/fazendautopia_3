@@ -7,28 +7,39 @@ import javax.persistence.Entity;
 @Entity
 public class MinhaLoja extends GenericDomain {
 
-	@Column(length = 50)
+	@Column(length = 150)
 	private String razaoSocial;
-	@Column(length = 50)
+	
+	@Column(length = 150)
 	private String nomefantasia;
-	@Column(length = 20, unique = true)
+	
+	@Column(length = 18)
 	private String cnpj;
-	@Column(length = 20)
+	
+	@Column(length = 10)
 	private String cep;
-	@Column(length = 100)
+	
+	@Column(length = 80)
 	private String cidade;
-	@Column(length = 20)
+	
+	@Column(length = 2)
 	private String estado;
-	@Column(length = 100)
+	
+	@Column(length = 50)
 	private String logradouro;
-	@Column(length = 100)
+	
+	@Column(length = 80)
 	private String bairro;
-	@Column()
+	
+	@Column(length = 9)
 	private int numero;
+	
 	@Column(length = 13)
 	private String telefone;
-	@Column(length = 100)
+	
+	@Column(length = 50)
 	private String email;
+	
 	private boolean status;
 
 	public String getBairro() {

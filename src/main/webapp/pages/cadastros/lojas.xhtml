@@ -126,7 +126,7 @@
 					<h:panelGrid columns="1">
 						<p:outputLabel value="CEP:" for="cep" />
 						<p:inputMask id="cep" mask="99999-999" size="30"
-							value="#{minhaLojaBean.minhaloja.cep}">
+							value="#{minhaLojaBean.minhaloja.cep}" maxlength="10">
 							<p:ajax event="change" update="@this"></p:ajax>
 							<p:ajax event="blur" listener="#{minhaLojaBean.encontraCEP()}"
 								update="cidade estado endereco bairro">

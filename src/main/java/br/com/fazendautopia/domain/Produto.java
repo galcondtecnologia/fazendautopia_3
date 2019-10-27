@@ -17,11 +17,16 @@ public class Produto extends GenericDomain {
 	private String imagemformato;
 	@Lob
 	private byte[] imagemBase64;
+	
+	@Column(length = 33, nullable = false)
 	private String descricao;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private CategoriaProduto categoriaProduto;
+	
+	@Column(length = 5)
 	private Double precoVenda;
+	
 	private Date dataCadastro;
 	@ManyToOne
 	@JoinColumn(nullable = false)
@@ -29,6 +34,8 @@ public class Produto extends GenericDomain {
 	private String[] fornecedor;
 	private boolean status;
 	private int tipoproduto;
+	
+	@Column(length = 2)
 	private int multiplicador;
 
 	public int getTipoproduto() {

@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 @SuppressWarnings("serial")
 @Entity
 public class CategoriaCesta extends GenericDomain {
-	@Column(length = 100, nullable = false)
+	@Column(length = 33, nullable = false)
 	private String descricao;
 
 	private boolean status;
+	
+	@Column(length = 2, nullable = false)
 	private int quantidadeitens;
 
 	public String getDescricao() {

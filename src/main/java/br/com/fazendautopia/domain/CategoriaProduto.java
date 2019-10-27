@@ -1,11 +1,13 @@
 package br.com.fazendautopia.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
 public class CategoriaProduto extends GenericDomain {
-
+	
+	@Column(length = 33, nullable = false)
 	private String descricao;
 	private boolean status;
 

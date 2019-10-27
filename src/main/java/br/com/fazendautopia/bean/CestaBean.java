@@ -41,7 +41,7 @@ public class CestaBean implements Serializable {
 	private List<Produto> produtoCaturado = new ArrayList<Produto>();
 	private DualListModel<Produto> dualList;
 
-	private Part img;
+	private Part img = null;
 
 	@PostConstruct
 	public void listar() {
@@ -80,11 +80,12 @@ public class CestaBean implements Serializable {
 	}
 
 	public void salvar() throws IOException {
-
+		
+		if (img != null) {
 		try {
 
 			/* processando imagem */
-			if (img.getInputStream() != null) {
+			
 				byte[] imagemByte = getByte(img.getInputStream());
 				cesta.setImagemBase64(imagemByte); /* salva imagem original */
 
@@ -130,27 +131,33 @@ public class CestaBean implements Serializable {
 				categoriacestas = dao2.listar();
 
 				Messages.addGlobalInfo("Cesta salva com sucesso!");
-			} else {
-				
-				cesta.setDualListModelProdu(dualList);
-				CestaDAO dao = new CestaDAO();
-				dao.merge(cesta);
-				cesta = new Cesta();
-				cestas = dao.listar();
-
-				ProdutoDAO dao1 = new ProdutoDAO();
-				produtos = dao1.listar();
-
-				CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
-				categoriacestas = dao2.listar();
-
-				Messages.addGlobalInfo("Cesta salva com sucesso!");
-			}
 
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar as cestas!");
 			e.printStackTrace();
 
+		}
+		} else {
+			try {
+			cesta.setDualListModelProdu(dualList);
+			CestaDAO dao = new CestaDAO();
+			dao.merge(cesta);
+			cesta = new Cesta();
+			cestas = dao.listar();
+
+			ProdutoDAO dao1 = new ProdutoDAO();
+			produtos = dao1.listar();
+
+			CategoriaCestasDAO dao2 = new CategoriaCestasDAO();
+			categoriacestas = dao2.listar();
+
+			Messages.addGlobalInfo("Cesta salva com sucesso!");
+			
+			} catch (RuntimeException e) {
+				Messages.addGlobalError("Ocorreu um erro ao tentar salvar as cestas!");
+				e.printStackTrace();
+
+			}
 		}
 
 	}

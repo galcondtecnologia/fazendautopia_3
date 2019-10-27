@@ -17,13 +17,20 @@ public class Cesta extends GenericDomain {
 	private String imagemformato;
 	@Lob
 	private byte[] imagemBase64;
+	
+	@Column(length = 33, nullable = false)
 	private String descricao;
+	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private CategoriaCesta categoriaCesta;
 	private DualListModel<Produto> dualListModelProdu;
 	private boolean status;
+	
+	@Column(length = 2, nullable = false)
 	private int quantItens;
+	
+	@Column(length = 6, nullable = false)
 	private Double precovenda;
 
 	public String getDescricao() {
