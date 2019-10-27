@@ -88,7 +88,7 @@
 			draggable="false" resizable="false" modal="true" closable="false"
 			closeOnEscape="true" onShow="loadImg()">
 			<h:form id="formCadastro" enctype="multipart/form-data"
-				prependId="false" onsubmit="checkSubmit(this)">
+				prependId="false">
 				<h:panelGrid id="painel" columns="2">
 					<h:panelGrid columns="1">
 						<div class="image-upload">
@@ -162,7 +162,7 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
-						actionListener="#{cestaBean.salvar}" action="checkSubmit(form)"
+						actionListener="#{cestaBean.salvar}"
 						update=":formCadastro:painel :formListagem:tabela"
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
@@ -176,15 +176,6 @@
 		</p:dialog>
 		<script src="../../resources/js/carregarImg.js"></script>
 		<script>
-	    window.addEventListener('submit', function(e){
-		var campoDescricao = document.querySelector("#descricao");
-		if(campoDescricao.textContent == ''){
-		    console.log('Evite o envio ...')
-		    e.preventDefault;
-		}else{
-		    console.log('Salve os dados ...')
-		}
-	    });
 	</script>
 	</ui:define>
 </ui:composition>
