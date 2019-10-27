@@ -185,6 +185,12 @@ public class ProdutoBean implements Serializable {
 
 	public void editar(ActionEvent evento) {
 		try {
+			
+			CategoriaProdutoDAO dao3 = new CategoriaProdutoDAO();
+			categoriaProdutos = dao3.listar();
+
+			FornecedorDAO dao2 = new FornecedorDAO();
+			fornecedores = dao2.listar();
 
 			produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 

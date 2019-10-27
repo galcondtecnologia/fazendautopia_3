@@ -21,7 +21,7 @@
 								oncomplete="PF('dialogo').show(); alterarCheck()"
 								style="align:right !important"
 								actionListener="#{produtoBean.novo()}"
-								update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4">
+								update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel5 :formCadastro:painel6 :formCadastro:painel7 :formCadastro:painel4">
 								<f:actionListener
 									type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 							</p:commandButton>
@@ -111,13 +111,13 @@
 									style="display: none;" onchange="teste(this)" /></label>
 						</div>
 					</h:panelGrid>
-					<h:panelGrid columns="1">
+					<h:panelGrid columns="1" id="painel5">
 						<h:outputLabel value="Descrição: " for="descricao" />
 						<p:inputText maxlength="33" size="38" id="descricao"
 							required="true" rendered="true"
 							value="#{produtoBean.produto.descricao}" />
-						<h:panelGrid columns="2">
-							<h:panelGrid columns="1">
+						<h:panelGrid columns="2" id="painel6">
+							<h:panelGrid columns="1" id="painel7">
 								<h:outputLabel value="Categoria Produto" />
 								<p:selectOneMenu value="#{produtoBean.produto.categoriaProduto}"
 									converter="omnifaces.SelectItemsConverter" style="width:198px">
@@ -226,7 +226,7 @@
 				<h:panelGrid columns="2">
 					<h:commandButton value="Salvar"
 						actionListener="#{produtoBean.salvar1}"
-						update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4 :formListagem:tabela"
+						update=":formCadastro:painel :formCadastro:painel2 :formCadastro:painel3 :formCadastro:painel4 :formCadastro:painel5 :formCadastro:painel6 :formCadastro:painel7 :formListagem:tabela"
 						style="padding:0.2em 1em;" oncomplete="alterarCheck()" />
 					<h:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" style="padding:0.2em 1em;" />
