@@ -61,6 +61,10 @@
 							<div class="carrocel-dados-cestas">
 								<div>
 									<h:outputText value="#{cestas.descricao}" />
+									<div>
+										<h:outputText value="#{cestas.quantItens}" />
+										<h:outputText value=" Produtos"></h:outputText>
+									</div>
 								</div>
 								<h:outputText value="R$ " />
 								<h:outputText value="#{cestas.precovenda}" />
@@ -94,10 +98,10 @@
 							<p:outputPanel>
 								<h:panelGrid columns="4" cellpadding="5"
 									onclick="PF('dlgProduto').show()">
-									<h:outputText value="Alface und. Produto orgânico"
+									<h:outputText value="#{produto1.descricao}"
 										class="descricao-produto" />
-									<h:outputText value="R$ 12,90" style="font-weight: bold"
-										class="preco-produto" />
+									<h:outputText value="R$ #{produto1.precoVenda}"
+										style="font-weight: bold" class="preco-produto" />
 									<span class="ui-inputgroup-addon"><i
 										class="fa fa-shopping-cart"></i></span>
 								</h:panelGrid>
@@ -111,18 +115,22 @@
 				<div class="sessao-produtos-desktop" id="produtos-desktop">
 					<p:dataGrid value="#{produtoBean.produtos}" var="produto2"
 						columns="4" rows="12">
-						<p:column header="#{produto2.codigo}" class="coluna-desktop-produto">
+						<p:column header="#{produto2.codigo}"
+							class="coluna-desktop-produto">
 							<p:panel header="Disponível" class="quadrante-produto-desktop">
-							<h:outputText value="#{produto2.descricao}" style="font-weight:bold"/>
-							<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
-							
-										<h:graphicImage value="#{produto2.imagemnome}" alt="icone cesta" class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
-										<h:outputLabel value="R$:" />
-										<h:outputText value="#{produto2.descricao}" />
+								<h:outputText value="#{produto2.descricao}"
+									style="font-weight:bold" />
+								<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
 
-									</h:panelGrid>
-								</p:panel>
-							
+									<h:graphicImage value="#{produto2.imagemnome}"
+										alt="icone cesta"
+										class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+									<h:outputLabel value="R$:" />
+									<h:outputText value="#{produto2.precoVenda}" />
+
+								</h:panelGrid>
+							</p:panel>
+
 
 						</p:column>
 					</p:dataGrid>
