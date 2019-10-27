@@ -67,7 +67,7 @@
 		</h:form>
 		<p:dialog header="Região - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false"
-			closeOnEscape="true">
+			closeOnEscape="true" onShow="alterarStatusList();">
 			<h:form id="formCadastro" prependId="false">
 				<h:panelGrid id="painel" columns="1">
 					<p:outputLabel value="Descrição: " for="descricao" />
