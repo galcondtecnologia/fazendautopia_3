@@ -512,8 +512,8 @@ ab{
   height: 40px;
   border-radius: 30px;
   background-color: var(--cor-um);
-  right: 10px;
-  bottom: 40px;
+  right: 25px;
+  bottom: 90px;
   z-index: 20;
   border:2px solid white;
   box-shadow: 0 5px 4px 0 rgba(0,0,0,0.4);

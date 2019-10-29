@@ -41,15 +41,14 @@
 	<!-- Sessao de cestas da semana -->
 	<h:form>
 		<div class="main">
-			<div class="sessao_cestas" onclick="PF('dlgCesta').show();"
-				id="cestas">
+			<div class="sessao_cestas" id="cestas">
 				<h1>Cestas da semana</h1>
 				<p>Selecione a cesta ideal para você e sua família</p>
 				<p:carousel value="#{cestaBean.cestas}" var="cestas" numVisible="4"
 					responsive="true" class="card" autoPlayInterval="7000">
 
 
-					<div class="cesta-lista-item">
+					<div class="cesta-lista-item" onclick="PF('dlgCesta').show(cestas)">
 						<div class="centralizar-imagem">
 							<h:graphicImage value="#{cestas.imagemnome}" alt="icone cesta"
 								class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
@@ -121,7 +120,6 @@
 								<h:outputText value="#{produto2.descricao}"
 									style="font-weight:bold" />
 								<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
-
 									<h:graphicImage value="#{produto2.imagemnome}"
 										alt="icone cesta"
 										class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
@@ -259,10 +257,10 @@
 		minHeight="540" minWidth="480" modal="true" maximizable="true"
 		id="dialog" closeOnEscape="true" responsive="true" resizable="true"
 		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
-		position="top" fitViewport="true">
+		position="top" fitViewport="true" onShow="capturarProdutosDaLista();">
 
 		<!-- Formulario da cesta selecionada -->
-		<h:form prependId="false">
+		<h:form prependId="false" id="formCesta">
 			<div class="centralizar-imagem">
 				<!-- Imagem da cesta selecionada -->
 				<img src="./resources/images/upload/CestaSemIcone1.png"
@@ -283,21 +281,24 @@
 
 			</div>
 			<div style="margin-bottom: 1em">
-				<p:dataScroller value="" var="Produtos" chunkSize="10"
-					class="main__produtos">
-					<p:panelGrid columns="3" style="">
+				<p:dataScroller value="#{cestaBean.produtos}" var="Produtos"
+					chunkSize="10" class="main__produtos" id="produtosList">
+					<p:panelGrid columns="3">
 						<i class="fa fa-product-hunt"></i>
 						<p:outputPanel>
-							<h:panelGrid columns="3" cellpadding="10">
+							<h:panelGrid columns="4" cellpadding="10">
 
 								<!-- Informações dos produtos da cesta (Descrição) -->
-								<h:outputText value="1 und Alface Americana"
+								<h:outputText value="#{Produtos.descricao}"
 									class="descricao-produto" id="descricao-cesta" />
 
+									<h:outputText class="multiplicador" style="display: none" value="1" />
 
 								<!-- Icone para alterar o produto da cesta -->
-								<i class="fa fa-refresh" style="padding-left: 3em"></i>
+								<i class="fa fa-times remove-icon"
+									style="padding-left: 3em; color: red"></i>
 
+		
 							</h:panelGrid>
 						</p:outputPanel>
 					</p:panelGrid>
@@ -346,7 +347,13 @@
 			<div
 				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 3em;">
 				<p:commandButton value="Colocar no carrinho"
-					class="botao-colocar-no-carrinho" style=""></p:commandButton>
+					class="botao-colocar-no-carrinho"></p:commandButton>
+			</div>
+
+			<div class="fab" id="botaoAddProduto" style="display: none">
+				<button class="main-btn">
+					<i class="fa fa-plus" style="margin: 0; padding: 0;"></i>
+				</button>
 			</div>
 		</h:form>
 	</p:dialog>
@@ -367,7 +374,7 @@
 		position="top" fitViewport="true">
 
 		<!-- Formulario do produto selecionada -->
-		<h:form prependId="false">
+		<h:form prependId="false" id="formProduto">
 			<div class="centralizar-imagem">
 
 				<!-- Imagem do produto selecionado -->
@@ -473,6 +480,7 @@
 
 	<!-- Recurso java script adicionado comentario -->
 	<script src="./resources/js/app.js"></script>
+	<script src="./resources/js/dialogIndex.js"></script>
 
 
 </h:body>
