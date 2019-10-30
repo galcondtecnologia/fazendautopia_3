@@ -280,6 +280,12 @@
 				<h:outputLabel style="padding:0.9em" id="preco-cesta">R$ 50,90</h:outputLabel>
 
 			</div>
+			<div class="alert alert-warning alert-dismissible fade" style="display:none" id="dialogCestaAlerta" onclick="fecharAlerta()">
+				Você atingiu o <strong>limite</strong> de alterações
+				<button type="button" class="close">
+					<span>&times;</span>
+				</button>
+			</div>
 			<div style="margin-bottom: 1em">
 				<p:dataScroller value="#{cestaBean.produtos}" var="Produtos"
 					chunkSize="10" class="main__produtos" id="produtosList">
@@ -292,13 +298,14 @@
 								<h:outputText value="#{Produtos.descricao}"
 									class="descricao-produto" id="descricao-cesta" />
 
-									<h:outputText class="multiplicador" style="display: none" value="1" />
+								<h:outputText class="multiplicador" style="display: none"
+									value="1" />
 
 								<!-- Icone para alterar o produto da cesta -->
 								<i class="fa fa-times remove-icon"
 									style="padding-left: 3em; color: red"></i>
 
-		
+
 							</h:panelGrid>
 						</p:outputPanel>
 					</p:panelGrid>
@@ -454,20 +461,6 @@
 	</p:dialog>
 	<!-- fim dialog produto selecionado________________________________________________________________ -->
 
-
-
-
-
-
-
-
-
-	<!-- Botão flutuante -->
-	<div class="fab">
-		<button class="main-btn">
-			<i class="fa fa-question-circle" style="margin: 0; padding: 0"></i>
-		</button>
-	</div>
 
 
 
