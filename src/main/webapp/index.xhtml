@@ -358,9 +358,7 @@
 			</div>
 
 			<div class="fab" id="botaoAddProduto" style="display: none">
-				<button class="main-btn">
-					<i class="fa fa-plus" style="margin: 0; padding: 0;"></i>
-				</button>
+				<p:commandButton class="main-btn" onclick="PF('dlgProdutosParaSelecao').show()" value="add"/>
 			</div>
 		</h:form>
 	</p:dialog>
@@ -460,6 +458,61 @@
 		</h:form>
 	</p:dialog>
 	<!-- fim dialog produto selecionado________________________________________________________________ -->
+
+
+
+
+
+
+
+<!-- dialog lista de produtos para seleção________________________________________________________________ -->
+<p:dialog header="Selecionado" widgetVar="dlgProdutosParaSelecao" minimizable="true"
+		minHeight="540" minWidth="480" modal="true" maximizable="true"
+		id="dialogListaProdutosParaSelecao" closeOnEscape="true" responsive="true" resizable="true"
+		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+		position="top" fitViewport="true">
+
+		<!-- Formulario da cesta selecionada -->
+		<h:form prependId="false" id="formProdutosSelecao">
+			<div class="div-titulo-dialog">
+
+				<!-- Informações da cesta selecionada (Descrição + qtd itens) -->
+				<h:outputLabel style="padding:0.9em" id="label-produto-selecao-descricao">Produto que você deseja adicionar</h:outputLabel>
+
+
+			</div>
+			<div style="margin-bottom: 1em">
+				<p:dataScroller value="#{cestaBean.produtos}" var="Produtos"
+					chunkSize="10" class="main__produtos" id="data-produtos-selecao">
+					<p:panelGrid columns="3">
+						<i class="fa fa-product-hunt"></i>
+						<p:outputPanel>
+							<h:panelGrid columns="4" cellpadding="10">
+
+								<!-- Informações dos produtos da cesta (Descrição) -->
+								<h:outputText value="#{Produtos.descricao}"
+									class="descricao-produto" id="lista-produtos-para-selecao" />
+
+								<h:outputText class="multiplicador" style="display: none"
+									value="1" />
+
+								<!-- Icone para alterar o produto da cesta -->
+								<i class="fa fa-plus"
+									style="padding-left: 3em;"></i>
+
+
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:panelGrid>
+				</p:dataScroller>
+			</div>
+		</h:form>
+	</p:dialog>
+	<!-- fim dialog lista de produtos para seleção________________________________________________________________ -->
+
+
+
+
 
 
 

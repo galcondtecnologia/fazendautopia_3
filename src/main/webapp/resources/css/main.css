@@ -563,13 +563,13 @@ ab{
 
 .fab button{
   cursor: pointer;
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   border-radius: 30px;
   background-color: #cb60b3;
   border: none;
   box-shadow: 0 1px 5px rgba(0,0,0,.4);
-  font-size: 24px;
+  font-size: 30px;
   color: white;
   -webkit-transition: .2s ease-out;
   -moz-transition: .2s ease-out;
@@ -578,12 +578,12 @@ ab{
 
 .fab button.main-btn{
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 30px;
   background-color: var(--cor-um);
   right: 25px;
-  bottom: 90px;
+  bottom: 65px;
   z-index: 20;
   border:2px solid white;
   box-shadow: 0 5px 4px 0 rgba(0,0,0,0.4);
