@@ -41,7 +41,7 @@
 			$inputqtdCesta.value = qtd;
 			var precoItem = tratarPreco($precoCesta.textContent)
 			var resultado = calcularTotal(qtd, precoItem);
-			$totalCesta.innerHTML = "Total R$ " + resultado.toFixed(2);
+			$totalCesta.innerHTML = resultado.toFixed(2);
 		});
 		
 		//Função diminuir um item cesta
@@ -55,7 +55,7 @@
 			var precoItem = 0;
 			precoItem = tratarPreco($precoCesta.textContent)
 			var resultado = calcularTotal(qtd, precoItem);
-			$totalCesta.innerHTML = "Total R$ " + resultado.toFixed(2);
+			$totalCesta.innerHTML = resultado.toFixed(2);
 			
 		});
 		
@@ -67,14 +67,15 @@
 			qtd = (parseInt($inputqtdProduto.value)) + 1;
 			$inputqtdProduto.value = qtd;
 			var precoItem = 0;
-			precoItem = tratarPreco($precoProduto.textContent)
+			precoItem = tratarPreco($precoProduto.textContent);
 			var resultado = calcularTotal(qtd, precoItem);
-			$totalProduto.innerHTML = "Total R$ " + resultado.toFixed(2);
+			$totalProduto.innerHTML = resultado.toFixed(2);
 			
 		});
 		
 		//Função diminuir um item de produto
 		$btmenosProduto.addEventListener("click", function() {
+		    //debugger;
 			if (parseInt($inputqtdProduto.value) == 1) {
 				return
 			}
@@ -85,7 +86,7 @@
 			precoItem = tratarPreco($precoProduto.textContent)
 			var resultado = 0;
 			resultado = calcularTotal(qtd, precoItem);
-			$totalProduto.innerHTML = "Total R$ " + resultado.toFixed(2);
+			$totalProduto.innerHTML = resultado.toFixed(2);
 			
 		});
 		
@@ -105,9 +106,10 @@
 		//Função tratar o preço transformar string em numero
 		function tratarPreco(str) {
 			var numero = 0;
-			numero = str.replace(",",".");
-			numero = numero.slice(3,8);
-			numero = parseFloat(numero);
+			//numero = str.replace(",",".");
+			//numero = numero.slice(3,8);
+			//numero = parseFloat(numero);
+			numero = parseFloat(str);
 			return numero;
 		}
 		
@@ -135,6 +137,8 @@
 		$btnCalcularFreteProduto.addEventListener("click", function(){
 			$divCalcularFreteProduto.classList.toggle("displaynone");
 		})
+		
+		
 		
 		
 		

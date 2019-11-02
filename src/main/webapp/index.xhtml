@@ -91,15 +91,16 @@
 						<f:facet name="header" class="titulo-produtos">
           			 			Produtos disponíveis
         				</f:facet>
-						<p:panelGrid columns="4">
+						<p:panelGrid columns="6">
 							<h:graphicImage value="#{produto1.imagemnome}" width="60"
-								height="60" />
+								height="60"/>
 							<p:outputPanel>
-								<h:panelGrid columns="4" cellpadding="5"
-									onclick="PF('dlgProduto').show()">
+								<h:panelGrid columns="5" cellpadding="5"
+									onclick="PF('dlgProduto').show(); capturarProdutoClicado(this)">
 									<h:outputText value="#{produto1.descricao}"
 										class="descricao-produto" />
-									<h:outputText value="R$ #{produto1.precoVenda}"
+										<h:outputLabel>R$</h:outputLabel>
+									<h:outputText value="#{produto1.precoVenda}"
 										style="font-weight: bold" class="preco-produto" />
 									<span class="ui-inputgroup-addon"><i
 										class="fa fa-shopping-cart"></i></span>
@@ -118,13 +119,13 @@
 							class="coluna-desktop-produto">
 							<p:panel header="Disponível" class="quadrante-produto-desktop">
 								<h:outputText value="#{produto2.descricao}"
-									style="font-weight:bold" />
-								<h:panelGrid columns="1" onclick="PF('dlgProduto').show()">
+									style="font-weight:bold" class="descricao-produto"/>
+								<h:panelGrid columns="1" onclick="capturarProdutoClicadoDesktop(this); PF('dlgProduto').show();">
 									<h:graphicImage value="#{produto2.imagemnome}"
 										alt="icone cesta"
 										class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
 									<h:outputLabel value="R$:" />
-									<h:outputText value="#{produto2.precoVenda}" />
+									<h:outputText value="#{produto2.precoVenda}" class="preco-produto"/>
 
 								</h:panelGrid>
 							</p:panel>
@@ -251,7 +252,6 @@
 
 
 	</h:form>
-
 	<!-- Sessao dialog da cesta selecionada -->
 	<p:dialog header="Selecionado" widgetVar="dlgCesta" minimizable="true"
 		minHeight="540" minWidth="480" modal="true" maximizable="true"
@@ -274,10 +274,11 @@
 			<div class="div-titulo-dialog">
 
 				<!-- Informações da cesta selecionada (Descrição + qtd itens) -->
-				<h:outputLabel style="padding:0.9em" id="label-cesta-descricao">Cesta Mini 06 itens</h:outputLabel>
+				<h:outputLabel style="padding:0.9em" id="label-cesta-descricao" value="Cesta Mini 06 itens"></h:outputLabel>
 
-				<!-- Informações da cesta selecionada (Preço com cifrão o padrão deve ser R$ 99,99) -->
-				<h:outputLabel style="padding:0.9em" id="preco-cesta">R$ 50,90</h:outputLabel>
+				<!-- Informações da cesta selecionada () -->
+				<h:outputLabel style="padding:0.9em">R$</h:outputLabel>
+				<h:outputLabel style="padding:0.9em" id="preco-cesta" value="50.90"></h:outputLabel>
 
 			</div>
 			<div class="alert alert-warning alert-dismissible fade" style="display:none" id="dialogCestaAlerta" onclick="fecharAlerta()">
@@ -336,8 +337,9 @@
 				style="display: inline-block; margin: auto; width: 100%; text-align: center">
 
 				<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
-				<h:outputText value="Total R$ 50,90"
-					style="font-weight: bold; padding:0.2em" class="preco-produto"
+				<h:outputText value=" Total R$"> </h:outputText>
+				<h:outputText value="50,90"
+					style="font-weight: bold; padding:0.2em; font-size: 1.3em" class="preco-produto"
 					id="total-cesta" />
 
 				<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
@@ -351,14 +353,14 @@
 				<p:commandButton value="+" id="bt-dialog-mais-cesta"
 					style="background-color:white"></p:commandButton>
 			</div>
-			<div
-				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 3em;">
+			<div class="btn-inserir-no-carrinho"
+				style="display: inline-block; width: 100%; text-align: center;">
 				<p:commandButton value="Colocar no carrinho"
-					class="botao-colocar-no-carrinho"></p:commandButton>
+					class="botao-colocar-no-carrinho" oncomplete="PF('dlgCesta').hide()"></p:commandButton>
 			</div>
 
 			<div class="fab" id="botaoAddProduto" style="display: none">
-				<p:commandButton class="main-btn" onclick="PF('dlgProdutosParaSelecao').show()" value="add"/>
+				<p:commandButton class="main-btn" onclick="PF('dlgProdutosParaSelecao').show()" value=""/>
 			</div>
 		</h:form>
 	</p:dialog>
@@ -384,19 +386,17 @@
 
 				<!-- Imagem do produto selecionado -->
 				<img src="./resources/images/upload/azeite.png"
-					alt="imagem do produto" class="centralizar-imagem imagem-tamanho-m" />
-				<p:graphicImage value=""
-					class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p"
-					alt="" />
+					alt="imagem do produto" class="centralizar-imagem imagem-tamanho-m" id="imagem-produto-dialog"/>
 			</div>
 			<div class="div-titulo-dialog" style="margin-bottom: 0.5em">
 
 				<!-- Informações do produto selecionado (Descrição + qtd itens) -->
 				<h:outputLabel style="padding:0.9em" class="descricao-produto"
-					id="descricao-produto">Azeite 200ml Und</h:outputLabel>
+					id="descricao-produto" value="Azeite 200ml Und"></h:outputLabel>
 
 				<!-- Informações do produto selecionado (Preço com cifrão o padrão deve ser R$ 99,99) -->
-				<h:outputLabel style="padding:0.9em" id="preco-produto">R$ 12,90</h:outputLabel>
+				<h:outputLabel style="padding:0.9em;">R$</h:outputLabel>
+				<h:outputLabel style="padding:0.9em;" id="preco-produto" value="12.90"></h:outputLabel>
 
 			</div>
 			<div style="margin-bottom: 1em">
@@ -435,8 +435,9 @@
 				style="display: inline-block; margin: auto; width: 100%; text-align: center">
 
 				<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
-				<h:outputText value="Total R$ 12,90"
-					style="font-weight: bold; padding:0.2em" class="preco-produto"
+				<h:outputLabel style="padding:0.9em" value="Total R$"></h:outputLabel>
+				<h:outputText value="12.90"
+					style="font-weight: bold; padding:0.2em; font-size:1.3em" class="preco-produto"
 					id="total-produto" />
 
 				<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
@@ -451,9 +452,9 @@
 					style="background-color:white"></p:commandButton>
 			</div>
 			<div
-				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 3em;">
+				style="display: inline-block; width: 100%; text-align: center; margin-bottom: 0.2em;">
 				<p:commandButton value="Colocar no carrinho"
-					class="botao-colocar-no-carrinho"></p:commandButton>
+					class="botao-colocar-no-carrinho" id="botao-colocar-produto-extra-no-carrinho" oncomplete="PF('dlgProduto').hide()"></p:commandButton>
 			</div>
 		</h:form>
 	</p:dialog>
@@ -465,7 +466,7 @@
 
 
 
-<!-- dialog lista de produtos para seleção________________________________________________________________ -->
+<!-- dialog lista de produtos adicionais para seleção________________________________________________________________ -->
 <p:dialog header="Selecionado" widgetVar="dlgProdutosParaSelecao" minimizable="true"
 		minHeight="540" minWidth="480" modal="true" maximizable="true"
 		id="dialogListaProdutosParaSelecao" closeOnEscape="true" responsive="true" resizable="true"
@@ -527,6 +528,7 @@
 	<!-- Recurso java script adicionado comentario -->
 	<script src="./resources/js/app.js"></script>
 	<script src="./resources/js/dialogIndex.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 </h:body>

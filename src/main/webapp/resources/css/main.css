@@ -496,7 +496,7 @@ color: white;
 .ui-dialog{position:fixed;padding:0;overflow:hidden;display:none}
 .ui-dialog.ui-dialog-absolute{position:absolute}
 .ui-dialog.ui-overlay-hidden{display:block}
-.ui-dialog .ui-dialog-titlebar{padding:0.5em;position:relative;border:0; background-color: white; color:  var(--cor-um);border-bottom: 1px solid var(--cor-um)}
+.ui-dialog .ui-dialog-titlebar{padding:0.5em 2em;position:relative;border:0; background-color: white; color:  var(--cor-um);border-bottom: 1px solid var(--cor-um)}
 .ui-dialog .ui-dialog-title{float:left;margin:0;}
 .ui-dialog .ui-dialog-content{position:relative;border:0;padding:0; background:0;overflow:auto;zoom:1}
 .ui-dialog .ui-dialog-content.ui-df-content{overflow:hidden;padding:0}
@@ -578,20 +578,22 @@ ab{
 
 .fab button.main-btn{
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 30px;
   background-color: var(--cor-um);
-  right: 25px;
-  bottom: 65px;
+  right: 40px;
+  bottom: 90px;
   z-index: 20;
   border:2px solid white;
   box-shadow: 0 5px 4px 0 rgba(0,0,0,0.4);
+  color:white;
+  font-weight: normal;
 }
 
 .fab button.main-btn:before{
-  content: '';
-  font-size: 1em;
+  content: '+';
+  font-size: 2.2em;
 }
 
 #imagem-produto, #imagem-cesta{
@@ -648,8 +650,8 @@ background-color:white !important;
 }
 
 .imagem-tamanho-m{
-	height: 10em;
-	width: 10em;
+	height: 8em;
+	width: 8em;
 }
 
 .imagem-tamanho-p{
@@ -679,6 +681,15 @@ a:hover{
 	overflow: auto;
 	height: auto;
 }
+.btn-inserir-no-carrinho{
+	margin-bottom: 3em;
+}
+
+
+
+
+
+
 
 
 
@@ -884,9 +895,46 @@ width: 100%;
 	font-size: 1.5em;
 }
 
+/* Botao flutuante */
+ab{
+  position: fixed;
+  bottom:40px;
+  right:20px;
+}
+
+.fab button{
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  background-color: #cb60b3;
+  border: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,.4);
+  font-size: 70px;
+  color: white;
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
 .fab button.main-btn{
-  right: 10px;
-  bottom: 10px;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: var(--cor-um);
+  right: 420px;
+  bottom: 120px;
+  z-index: 20;
+  border:2px solid white;
+  box-shadow: 0 5px 4px 0 rgba(0,0,0,0.4);
+  color:white;
+  font-weight: normal;
+}
+
+.fab button.main-btn:before{
+  content: '+';
+  font-size: 3em;
 }
 
 .ui-dialog{
@@ -970,7 +1018,9 @@ li:hover a:first-child {
 	border-radius: 5px;
 	box-shadow: 1px 5px 10px lightgray;
 }
-
+.btn-inserir-no-carrinho{
+	margin-bottom: 5em;
+}
 
 
 
