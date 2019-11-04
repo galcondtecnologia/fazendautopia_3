@@ -91,11 +91,11 @@
 						<f:facet name="header" class="titulo-produtos">
           			 			Produtos disponíveis
         				</f:facet>
-						<p:panelGrid columns="6">
+						<p:panelGrid columns="4">
 							<h:graphicImage value="#{produto1.imagemnome}" width="60"
 								height="60"/>
 							<p:outputPanel>
-								<h:panelGrid columns="5" cellpadding="5"
+								<h:panelGrid columns="4" cellpadding="1"
 									onclick="PF('dlgProduto').show(); capturarProdutoClicado(this)">
 									<h:outputText value="#{produto1.descricao}"
 										class="descricao-produto" />
@@ -467,7 +467,7 @@
 
 
 <!-- dialog lista de produtos adicionais para seleção________________________________________________________________ -->
-<p:dialog header="Selecionado" widgetVar="dlgProdutosParaSelecao" minimizable="true"
+<p:dialog header="Selecione" widgetVar="dlgProdutosParaSelecao" minimizable="true"
 		minHeight="540" minWidth="480" modal="true" maximizable="true"
 		id="dialogListaProdutosParaSelecao" closeOnEscape="true" responsive="true" resizable="true"
 		style="width: 100vw !important; z-index: 9000; margin:0; padding:0"

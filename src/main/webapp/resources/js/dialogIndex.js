@@ -61,7 +61,6 @@ var multiplicador = 0;
 function somarMultiplicador(_item) {
     var pesoMultiplicador = _item.querySelector('.multiplicador').textContent;
     multiplicador = multiplicador + parseInt(pesoMultiplicador);
-    console.log('multiplicador = ', multiplicador);
     qtdProdutosRetirados = qtdProdutosRetirados + 1;
 }
 
@@ -78,7 +77,6 @@ function fecharAlerta() {
 // Capturar produto da lista de adicionais e adicionar na cesta que está
 // personalizando
 function capturarProdudoAdicional(e) {
-    console.log(lista);
     if (qtdProdutosInseridos < qtdAlteracoesPermitidas
 	    && qtdProdutosInseridos < qtdProdutosRetirados) {
 	// remover o evento click dos produtos adicionais, o qual é responsável
@@ -143,8 +141,8 @@ botaoColocarNoCarrinho
 var listaDePedidos = [];
 function adicionarProdutoNaCesta(_cesta) {
     listaDePedidos.push(_cesta);
+    salvarEmLocalStored(listaDePedidos);
     notificar('Cesta adicionada');
-    console.log(listaDePedidos);
 }
 
 function cesta(titulo, produtos, preco, qtd) {
@@ -176,14 +174,15 @@ function addProdutoExtraNoCarrinho() {
     let criarProduto = new produto($descricaoDoProduto.textContent,
 	    $precoTotal.textContent, $quantidadeDeProdutoExtra.value);
     listaDePedidos.push(criarProduto);
+    salvarEmLocalStored(listaDePedidos);
     notificar('Produto adicionado');
-    console.log(listaDePedidos);
 }
 
 function produto(descricao, precoTotal, qtd) {
     this._titulo = descricao;
     this._preco = precoTotal;
-    this._qtd = qtd
+    this._qtd = qtd;
+    this._produtos = new Array(descricao);
 }
 
 function capturarProdutoClicado(a) {
@@ -202,7 +201,6 @@ function capturarProdutoClicado(a) {
 
 function capturarProdutoClicadoDesktop(a) {
     let produtoClicado = a.parentNode;
-    console.log(produtoClicado);
 
     let imagemProdutoClicado = produtoClicado.querySelector('img');
     let descricaoProdutoClicado = produtoClicado.querySelector('.descricao-produto');
@@ -219,4 +217,10 @@ function capturarProdutoClicadoDesktop(a) {
 
 function notificar(mensagem) {
     swal("Obrigado!", mensagem, "success");
+}
+
+
+function salvarEmLocalStored(item) {
+    let _item = JSON.stringify(item);
+    localStorage.setItem('Pedidos', _item);
 }

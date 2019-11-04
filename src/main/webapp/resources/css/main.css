@@ -680,6 +680,7 @@ a:hover{
 	display: inline-block;
 	overflow: auto;
 	height: auto;
+	width: 99%;
 }
 .btn-inserir-no-carrinho{
 	margin-bottom: 3em;

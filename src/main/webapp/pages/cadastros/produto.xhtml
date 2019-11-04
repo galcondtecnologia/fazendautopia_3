@@ -12,7 +12,7 @@
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 					paginator="true" rows="100" paginatorPosition="top" selectionMode="multiple" reflow="true" editMode="row"
 					style="text-align: center;" value="#{produtoBean.produtos}"
-					var="produto" rowKey="#{produto.codigo}">
+					var="produto" rowKey="#{produto.codigo}" stickyHeader="true">
 					<f:facet name="header">
 						<p:panelGrid columns="2"
 							style="background-color: #FFFFFF !important">
