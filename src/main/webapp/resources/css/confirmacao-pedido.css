@@ -51,7 +51,13 @@ html{
 	margin: 1em 0;
 }
 
-
+.displayNone{
+	width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: block;
+}
 
 
 

@@ -30,8 +30,8 @@
 </h:head>
 <h:body>
 
-
-	<h:form>
+	<div id="carrinho-vazio"></div>
+	<h:form prependId="false" id="form">
 		<div class="div-header">
 			<div class="container">
 				<h1 style="color: white">Pedido 45006570</h1>
@@ -71,14 +71,13 @@
 				Em caso de dúvida entre em contato: <strong>contato</strong>@fazendautopia.com
 			</p>
 		</div>
-	</h:form>
-
-	<div style="padding-top: 2em" class="container">
+		<div style="padding-top: 2em" class="container">
 		<p:linkButton value="Home" href=".xhtml"
 			class="btn btn-primary botao-secundario"></p:linkButton>
 		<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
 			class="tamanhoBtn btn btn-success botao-primario"></p:linkButton>
 	</div>
+	</h:form>
 	<script src="../resources/js/listarPedidos.js"></script>
 </h:body>
 </html>

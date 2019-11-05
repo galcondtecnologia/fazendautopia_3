@@ -1,4 +1,4 @@
-var qtdAlteracoesPermitidas = 2;
+var qtdAlteracoesPermitidas = 8;
 var qtdProdutosRetirados = 0;
 var qtdProdutosInseridos = 0;
 var alerta = document.querySelector("#dialogCestaAlerta");
@@ -14,12 +14,19 @@ var botaoColocarNoCarrinho = document
  * cesta selecionada Para identificar qual produto o usuário deseja retirar da
  * cesta e efetuar a troca
  */
+//Funcao executada ao abrir o dialog de cesta clicada
 function capturarProdutosDaLista() {
     var arr = lista.querySelectorAll("li");
     var i = 0;
+    //Se a cesta tiver itens ocultar o botao adicionar itens, para que o usuario exclua um item para poder adicionar outro
+    if(arr.length >0){
     while (arr[i]) {
 	arr[i].addEventListener('click', remover);
 	i++;
+    }
+    }else{
+	//Se a lista for vazia, exibir o botao para adicionar produtos a cesta
+	botao.style.display = 'block';
     }
 }
 
