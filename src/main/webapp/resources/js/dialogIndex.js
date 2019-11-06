@@ -14,18 +14,19 @@ var botaoColocarNoCarrinho = document
  * cesta selecionada Para identificar qual produto o usuário deseja retirar da
  * cesta e efetuar a troca
  */
-//Funcao executada ao abrir o dialog de cesta clicada
+// Funcao executada ao abrir o dialog de cesta clicada
 function capturarProdutosDaLista() {
     var arr = lista.querySelectorAll("li");
     var i = 0;
-    //Se a cesta tiver itens ocultar o botao adicionar itens, para que o usuario exclua um item para poder adicionar outro
-    if(arr.length >0){
-    while (arr[i]) {
-	arr[i].addEventListener('click', remover);
-	i++;
-    }
-    }else{
-	//Se a lista for vazia, exibir o botao para adicionar produtos a cesta
+    // Se a cesta tiver itens ocultar o botao adicionar itens, para que o
+    // usuario exclua um item para poder adicionar outro
+    if (arr.length > 0) {
+	while (arr[i]) {
+	    arr[i].addEventListener('click', remover);
+	    i++;
+	}
+    } else {
+	// Se a lista for vazia, exibir o botao para adicionar produtos a cesta
 	botao.style.display = 'block';
     }
 }
@@ -148,8 +149,7 @@ botaoColocarNoCarrinho
 var listaDePedidos = [];
 function adicionarProdutoNaCesta(_cesta) {
     listaDePedidos.push(_cesta);
-    salvarEmLocalStored(listaDePedidos);
-    notificar('Cesta adicionada');
+    salvarEmLocalStored(listaDePedidos, 'Cesta adicionada');
 }
 
 function cesta(titulo, produtos, preco, qtd) {
@@ -181,8 +181,7 @@ function addProdutoExtraNoCarrinho() {
     let criarProduto = new produto($descricaoDoProduto.textContent,
 	    $precoTotal.textContent, $quantidadeDeProdutoExtra.value);
     listaDePedidos.push(criarProduto);
-    salvarEmLocalStored(listaDePedidos);
-    notificar('Produto adicionado');
+    salvarEmLocalStored(listaDePedidos, 'Produto adicionado');
 }
 
 function produto(descricao, precoTotal, qtd) {
@@ -195,7 +194,8 @@ function produto(descricao, precoTotal, qtd) {
 function capturarProdutoClicado(a) {
     let produtoClicado = a.parentNode.parentNode.parentNode;
     let imagemProdutoClicado = produtoClicado.querySelector('img');
-    let descricaoProdutoClicado = produtoClicado.querySelector('.descricao-produto');
+    let descricaoProdutoClicado = produtoClicado
+	    .querySelector('.descricao-produto');
     let precoProdutoClicado = produtoClicado.querySelector('.preco-produto');
 
     // popular o dialog com os dados do produto clicado
@@ -210,7 +210,8 @@ function capturarProdutoClicadoDesktop(a) {
     let produtoClicado = a.parentNode;
 
     let imagemProdutoClicado = produtoClicado.querySelector('img');
-    let descricaoProdutoClicado = produtoClicado.querySelector('.descricao-produto');
+    let descricaoProdutoClicado = produtoClicado
+	    .querySelector('.descricao-produto');
     let precoProdutoClicado = produtoClicado.querySelector('.preco-produto');
 
     // popular o dialog com os dados do produto clicado
@@ -219,15 +220,36 @@ function capturarProdutoClicadoDesktop(a) {
     $imagemDoProdutoNoDialog.src = imagemProdutoClicado.src;
     $totalProdutoDialog.textContent = precoProdutoClicado.textContent;
     $quantidadeDeProdutoExtra.value = 1;
-  
+
 }
 
 function notificar(mensagem) {
     swal("Obrigado!", mensagem, "success");
 }
 
+function salvarEmLocalStored(item, mensagem) {
+    let emPedidos = lerPedidosEmLocalStarage();
+    if (emPedidos == null) {
+	let _item2 = JSON.stringify(item);
+	localStorage.setItem('Pedidos', _item2);
+    } else {
+	let listaCompleta = item.concat(emPedidos);
+	let _item = JSON.stringify(listaCompleta);
+	localStorage.setItem('Pedidos', _item);
+    }
+    arrayDeProdutosDaCesta = [];
+    notificar(mensagem);
+    atualizarPagina();
+}
 
-function salvarEmLocalStored(item) {
-    let _item = JSON.stringify(item);
-    localStorage.setItem('Pedidos', _item);
+function lerPedidosEmLocalStarage() {
+    let localStoragePedidos = localStorage.getItem('Pedidos');
+    localStoragePedidos = JSON.parse(localStoragePedidos);
+    return localStoragePedidos;
+}
+
+function atualizarPagina() {
+    setInterval(() => {
+	    location.reload();
+    }, 2000);
 }

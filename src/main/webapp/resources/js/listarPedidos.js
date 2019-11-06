@@ -35,7 +35,7 @@ var listaNaPagina = document.querySelector('#div-pedido');
 function criarCard(listaDePedidos) {
     if(listaDePedidos == ''){
 	formularioPedido.classList.toggle("displayNone");
-	divCarrinhoVazio.innerHTML = `<div class="container" style="text-align: center"><img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto"><h3>Carrinho vazio</h3><input type="button" value="Voltar às compras" style="margin:1em;border-radius:15px; border:none; padding:0.9em; background-color:Darkgreen; color:white"></div>`
+	divCarrinhoVazio.innerHTML = `<div class="container" style="text-align: center"><img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto"><h3>Carrinho vazio</h3><input type="button" value="Voltar às compras" style="margin:1em;border-radius:15px; border:none; padding:0.9em; background-color:#4f5e38; color:white"></div>`
     }else{
     for(var indice = 0; indice<listaDePedidos[0].length; indice++){
 	let _titulo = criarTitulo(listaDePedidos.map(e => e[indice]._titulo), listaDePedidos.map(e =>e[indice]._preco));
@@ -44,6 +44,7 @@ function criarCard(listaDePedidos) {
 	listaNaPagina.innerHTML = listaNaPagina.innerHTML + _titulo + _produtosList.innerHTML + _rodapeHtml;
     }
 }
+    addListenerNaLista();
 }
 
 
@@ -84,9 +85,76 @@ function criarLi() {
 
 
 function criarRodape(_qtd) {
-   var rodape = `<div class="card-body"><input type="button" value="Excluir" class="btn-excluir"><input type="button" value="-"style="width:40px"/><input type="number" value="${_qtd}" class="btn-menos" style="width:40px; text-align: center"/><input type="button" value="+" class="btn-mais" style="width:40px"/></div></div>`
+   var rodape = `<div class="card-body"><input type="button" value="Excluir" class="btn-excluir"><input type="button" value="-"style="width:40px" class="btn-menos"/><input type="number" value="${_qtd}" class="input-qtd" style="width:40px; text-align: center"/><input type="button" value="+" class="btn-mais" style="width:40px"/></div></div>`
        return rodape;
 }
+
+
+function addListenerNaLista(){
+   let cards = document.querySelectorAll('.card');
+   let indice = 0;
+   while(cards[indice]){
+       
+       let btnMais = cards[indice].querySelector('.btn-mais');
+       let btnMenos = cards[indice].querySelector('.btn-menos');
+       let btnExcluir = cards[indice].querySelector('.btn-excluir');
+       
+       btnExcluir.addEventListener('click', excluirItem);
+       btnMais.addEventListener('click', somarMaisUm);
+       btnMenos.addEventListener('click', diminuirUm);
+       
+       indice++;
+   }
+}
+
+
+function somarMaisUm(e) {
+    let btn = e.target;
+    let card = btn.offsetParent;
+    let inputQtd = card.querySelector('.input-qtd');
+    inputQtd.value = parseInt(inputQtd.value)+1
+}
+
+function diminuirUm(e) {
+    let btn = e.target;
+    let card = btn.offsetParent;
+    let inputQtd = card.querySelector('.input-qtd');
+    if(inputQtd.value ==1){
+	inputQtd.value = 1;
+    }else{
+	inputQtd.value = parseInt(inputQtd.value)-1
+    }
+}
+
+function excluirItem(e) {
+    let cards = document.querySelectorAll('.card');
+    let btn = e.target;
+    let card = btn.offsetParent;
+    card.remove(card);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 lerPedidosEmLocalStarage();
+
+
+
 
 
