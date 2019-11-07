@@ -14,7 +14,9 @@ html{
 	scroll-behavior: smooth;
 }
 
-
+.carrinho-com-produto{
+	background: red; border-radius:5px; padding:0.2em;
+}
 
 
 

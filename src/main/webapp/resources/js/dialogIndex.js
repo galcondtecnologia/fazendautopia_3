@@ -253,3 +253,23 @@ function atualizarPagina() {
 	    location.reload();
     }, 2000);
 }
+
+
+function atribuirQtdProdutoNoIconeCarrinho() {
+    let pedidos = lerPedidosEmLocalStarage();
+    let qtd = pedidos.length;
+    let iconeQtdDesktop = document.querySelector('#carrinho-desktop');
+    let iconeQtdMobile = document.querySelector('#carrinho-mobile');
+    
+    if(qtd != 0 && qtd != !isNaN){
+    iconeQtdDesktop.textContent = ' ' + qtd;
+    iconeQtdMobile.textContent = ' ' + qtd;
+    iconeQtdDesktop.classList.add('carrinho-com-produto');
+    iconeQtdDesktop.classList.add('carrinho-com-produto');
+    }else{
+    iconeQtdDesktop.classList.remove('carrinho-com-produto');
+    iconeQtdDesktop.classList.remove('carrinho-com-produto');
+    }
+}
+
+atribuirQtdProdutoNoIconeCarrinho();
