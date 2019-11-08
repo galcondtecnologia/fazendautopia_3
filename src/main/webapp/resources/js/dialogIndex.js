@@ -257,6 +257,7 @@ function atualizarPagina() {
 
 function atribuirQtdProdutoNoIconeCarrinho() {
     let pedidos = lerPedidosEmLocalStarage();
+    if(pedidos != null){
     let qtd = pedidos.length;
     let iconeQtdDesktop = document.querySelector('#carrinho-desktop');
     let iconeQtdMobile = document.querySelector('#carrinho-mobile');
@@ -265,10 +266,8 @@ function atribuirQtdProdutoNoIconeCarrinho() {
     iconeQtdDesktop.textContent = ' ' + qtd;
     iconeQtdMobile.textContent = ' ' + qtd;
     iconeQtdDesktop.classList.add('carrinho-com-produto');
-    iconeQtdDesktop.classList.add('carrinho-com-produto');
-    }else{
-    iconeQtdDesktop.classList.remove('carrinho-com-produto');
-    iconeQtdDesktop.classList.remove('carrinho-com-produto');
+    iconeQtdMobile.classList.add('carrinho-com-produto');
+    }
     }
 }
 

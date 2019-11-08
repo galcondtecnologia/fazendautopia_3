@@ -18,6 +18,7 @@
  </div>
 
  */
+var $ecobag = document.querySelector("#check-ecobag_input");
 var divCards = document.querySelector("#div-pedido");
 var divCarrinhoVazio = document.querySelector("#carrinho-vazio");
 var formularioPedido = document.querySelector("#form");
@@ -28,6 +29,15 @@ function lerPedidosEmLocalStarage() {
     localStoragePedidos = JSON.parse(localStoragePedidos);
     listaDePedidos.push(localStoragePedidos);
     criarCard(listaDePedidos);
+    calcularValorTotal(listaDePedidos);
+}
+
+
+function atualizarPrecoTotal() {
+    let localStoragePedidos = localStorage.getItem('Pedidos');
+    localStoragePedidos = JSON.parse(localStoragePedidos);
+    listaDePedidos.push(localStoragePedidos);
+    calcularValorTotal(listaDePedidos);
 }
 
 var listaDePedidos = [];
@@ -130,6 +140,7 @@ function somarMaisUm(e) {
     //Alterar a lista a quantidade do item no localStored 
     listaDePedidos[0][indice]._qtd = inputQtd.value
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
+    atualizarPrecoTotal();
 }
 
 function diminuirUm(e) {
@@ -150,6 +161,7 @@ function diminuirUm(e) {
     //-------------------
     listaDePedidos[0][indice]._qtd = inputQtd.value
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
+    atualizarPrecoTotal();
 }
 
 function excluirItem(e) {
@@ -167,6 +179,7 @@ function excluirItem(e) {
     if(listaDePedidos[0] == ''){
 	carrinhoVazio();
     }
+    atualizarPrecoTotal();
 }
 
 
@@ -183,9 +196,38 @@ function carrinhoVazio() {
 }
 
 
+function calcularValorTotal(listaDePedidos) {
+    let ecobag = document.querySelector("#check-ecobag_input");
+    let frete = document.querySelector('#valor-frete');
+    let total = document.querySelector('#valor-total-pedido');
+    let soma = 0;
+    let subtotal = 0;
+    let lista = [...listaDePedidos[0]]
+    for(let produto of lista){
+    let preco = parseFloat(produto._preco);
+    let qtd = parseFloat(produto._qtd);
+    subtotal = preco * qtd;
+    soma = subtotal + soma;
+    }
+    //-----------------------
+    frete = parseFloat(frete.textContent);
+    soma = soma + frete;
+    
+    //---Verificar o calculo ao retirar a cesta 
+    if(ecobag.value == 'on'){
+	soma = soma + 6;
+    }
+    //---------------------------------------------------------
+    
+    console.log('--------');
+    console.log(soma.toFixed(2));
+    total.textContent = soma.toFixed(2);
+    //location.reload();
+}
+
+$ecobag.addEventListener('click', function() {
+    atualizarPrecoTotal();
+})
+
+
 lerPedidosEmLocalStarage();
-
-
-
-
-

@@ -49,16 +49,16 @@
 			<div>
 				<div class="ui-inputgroup check-ecobag">
 					<span class="ui-inputgroup-addon-checkbox"><p:selectBooleanCheckbox
-							label="Ecobag retornável" title="Ecobag"
-							itemLabel="Ecobag Retornável R$ 6,00" /></span>
+							label="Ecobag retornável" title="Ecobag" value="1"
+							itemLabel="Ecobag Retornável R$ 6,00" id="check-ecobag"/></span>
 				</div>
-				<h5>Frete</h5>
-				<p>R$ 9,90</p>
+				<h5>Frete R$</h5>
+				<p:outputLabel value="9.90" id="valor-frete"></p:outputLabel>
 			</div>
 
 			<div style="margin-top: 1em">
-				<h3>Total</h3>
-				<p>R$ 62,80</p>
+				<h3>Total R$</h3>
+				<p:outputLabel value="" id="valor-total-pedido"></p:outputLabel>
 			</div>
 
 			<div class="div-endereco-entrega">
