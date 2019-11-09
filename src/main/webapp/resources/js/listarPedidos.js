@@ -18,7 +18,7 @@
  </div>
 
  */
-var $ecobag = document.querySelector("#check-ecobag_input");
+var $ecobag = document.querySelector("#check-ecobag");
 var divCards = document.querySelector("#div-pedido");
 var divCarrinhoVazio = document.querySelector("#carrinho-vazio");
 var formularioPedido = document.querySelector("#form");
@@ -197,7 +197,7 @@ function carrinhoVazio() {
 
 
 function calcularValorTotal(listaDePedidos) {
-    let ecobag = document.querySelector("#check-ecobag_input");
+    ecobag = document.querySelector("#check-ecobag");
     let frete = document.querySelector('#valor-frete');
     let total = document.querySelector('#valor-total-pedido');
     let soma = 0;
@@ -214,13 +214,10 @@ function calcularValorTotal(listaDePedidos) {
     soma = soma + frete;
     
     //---Verificar o calculo ao retirar a cesta 
-    if(ecobag.value == 'on'){
+    if(ecobag.checked){
 	soma = soma + 6;
     }
     //---------------------------------------------------------
-    
-    console.log('--------');
-    console.log(soma.toFixed(2));
     total.textContent = soma.toFixed(2);
     //location.reload();
 }
