@@ -170,10 +170,8 @@ function excluirItem(e) {
     let card = btn.offsetParent;
     let cardList = [...cards];
     let indice = cardList.indexOf(card);
-    
-    console.log(listaDePedidos[0]);
-    listaDePedidos[0].splice(indice,1)
-    console.log(listaDePedidos[0]);
+   
+    listaDePedidos[0].splice(indice,1);
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
     card.remove(card);
     if(listaDePedidos[0] == ''){

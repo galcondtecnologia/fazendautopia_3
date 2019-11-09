@@ -79,13 +79,6 @@
 
 			<div class="fundo-separador">
 				<div class="sessao-produtos" id="produtos-mobile">
-					<div class="sessao-categorias">
-						<p:selectOneMenu value="" filterMatchMode="custom"
-							filterFunction="customFilter" label="Categorias"
-							labelTemplate="Categorias" title="Categorias">
-							<f:selectItems value="categoria" />
-						</p:selectOneMenu>
-					</div>
 					<p:dataScroller value="#{produtoBean.produtos}" var="produto1"
 						chunkSize="10" class="main__produtos">
 						<f:facet name="header" class="titulo-produtos">
