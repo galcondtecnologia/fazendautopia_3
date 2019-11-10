@@ -48,12 +48,12 @@
 		<div class="container">
 			<div>
 				<div class="ui-inputgroup check-ecobag">
-					<label for="check-ecobag"> <input type="checkbox"
-						id="check-ecobag" style="width: 2em" />Adicionar Ecobag
+					<label for="check-ecobag" style="font-size: 1.2em; border:1px solid #cccccc; width: 100%"> <input type="checkbox"
+						id="check-ecobag" style="width: 2em" />01 - Ecobag
 						retornável - R$ 6.00
 					</label>
 				</div>
-				<div style="display: inline-block">
+				<div style="display: inline-block; border:1px solid #cccccc; width: 100%; padding:0.5em">
 					<h5>Frete R$</h5>
 					<a href="carrinho.xhtml"><p:outputLabel value="9.90"
 							id="valor-frete" style="color:black"></p:outputLabel> <i
@@ -63,24 +63,26 @@
 				</div>
 			</div>
 
-			<div style="margin-top: 1em">
+			<div style="margin: 1em 0; border:1px solid #cccccc; width: 100%; padding:0.5em">
+				<label for="customRadio" style="font-size: 1.5em">Forma de pagamento</label>
+				<!-- O item deve ter a propriedade de valor conforme exemplo: itemValue="Dinheiro, 0" -->
+				<p:selectOneRadio id="customRadio" label="Forma de Pagamento" onchange="verificarTaxa(this.value)">
+					<f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro, 0" />
+					<f:selectItem itemLabel="Visa" itemValue="Visa, 3"/>
+					<f:selectItem itemLabel="Master" itemValue="Master, 3"/>
+				</p:selectOneRadio>
+				<label style="margin:0 0 2em 0" id="taxa-cartao"></label>
+				
+			</div>
+
+			<div style="margin-top: 1em;border:1px solid #cccccc; width: 100%; padding:0.5em">
 				<h3>Total R$</h3>
 				<p:outputLabel value="" id="valor-total-pedido"
 					style="font-size:2em"></p:outputLabel>
 			</div>
-			
-			<div style="margin: 1em 0">
-				<label for="customRadio">Forma de pagamento</label>
-				<p:selectOneRadio id="customRadio" label="Forma de Pagamento">
-					<f:selectItem itemLabel="Dinheiro" itemValue="1" />
-					<f:selectItem itemLabel="Visa" itemValue="2" />
-					<f:selectItem itemLabel="Master Card" itemValue="3" />
-				</p:selectOneRadio>
-			</div>
 
 
-
-			<div class="div-endereco-entrega" style="display: block">
+			<div class="div-endereco-entrega" style="display: block; border:1px solid #cccccc; width: 100%; padding:0.5em">
 				<p:outputLabel id="nome" value="" style="font-size:2em"></p:outputLabel>
 				<a href="carrinho.xhtml" style="display: block"><p:outputLabel
 						value="" style="font-size:0.9em; color:black"
@@ -91,8 +93,8 @@
 				<label class="labels"
 					style="display: hidden; height: 0; width: 0; color: transparent; margin: 0; padding: 0">Mensagem</label>
 				<p:inputTextarea name="mensagem" placeholder="Alguma observação"
-					autocomplete="off" cols="35" class="input-forms" autoResize="true"
-					maxlength="200" style="margin:0; padding:0.2em" />
+					autocomplete="off" class="input-forms" autoResize="true"
+					maxlength="200" style="margin:0; padding:0.2em; width:100%" />
 			</div>
 
 			<p style="margin: 1em 0">
