@@ -4,7 +4,6 @@ var qtdProdutosInseridos = 0;
 var alerta = document.querySelector("#dialogCestaAlerta");
 var lista = document.querySelector("#produtosList ul");
 var $precoCesta = document.getElementById("preco-cesta");
-var $precoCesta = document.getElementById("preco-cesta");
 
 var botaoColocarNoCarrinho = document
 	.querySelector(".botao-colocar-no-carrinho");
@@ -126,7 +125,7 @@ botaoColocarNoCarrinho
 		'click',
 		function colocaNoCarrinho() {
 		    arrayDeProdutosDaCesta = [];
-		    var totalCesta = document.querySelector("#total-cesta").textContent;
+		    var totalCesta = document.querySelector("#preco-cesta").textContent;
 		    let listaDeProdutosParaCarrinho = lista
 			    .querySelectorAll('li .descricao-produto');
 		    let descricaoDaCestaSelecionada = document
@@ -179,7 +178,7 @@ btnColocarProdutoExtraNoCarrinho.addEventListener('click',
 
 function addProdutoExtraNoCarrinho() {
     let criarProduto = new produto($descricaoDoProduto.textContent,
-	    $precoTotal.textContent, $quantidadeDeProdutoExtra.value);
+	    $precoProduto.textContent, $quantidadeDeProdutoExtra.value);
     listaDePedidos.push(criarProduto);
     salvarEmLocalStored(listaDePedidos, 'Produto adicionado');
 }
