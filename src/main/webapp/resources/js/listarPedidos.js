@@ -198,7 +198,7 @@ function alterarPedidoEmLocalStarage(novaLista) {
 
 function carrinhoVazio() {
     formularioPedido.classList.toggle("displayNone");
-    divCarrinhoVazio.innerHTML = `<div class="container" style="text-align: center"><img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto"><h3>Carrinho vazio</h3><input type="button" value="Voltar às compras" style="margin:1em;border-radius:15px; border:none; padding:0.9em; background-color:#4f5e38; color:white"></div>`
+    divCarrinhoVazio.innerHTML = `<div class="container" style="text-align: center"><img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto"><h3>Carrinho vazio</h3><a href="../index.xhtml"><input type="button" value="Voltar às compras" style="margin:1em;border-radius:15px; border:none; padding:0.9em; background-color:#4f5e38; color:white"></a></div>`
 }
 
 
