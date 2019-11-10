@@ -37,9 +37,9 @@
 							seus produtos?</p>
 						<div id="botoes">
 							<p:commandButton class="btn btn-success" value="Retirar"
-								id="btnRetirar"></p:commandButton>
+								id="btnRetirar" onclick="definirTipo('Retirar')"></p:commandButton>
 							<p:commandButton class="btn btn-success" value="Entregar"
-								id="btnEntregar"></p:commandButton>
+								id="btnEntregar" onclick="definirTipo('Entregar')"></p:commandButton>
 						</div>
 					</div>
 					<div class="card-footer text-muted">...</div>
@@ -85,7 +85,7 @@
 											</div>
 											<p:inputText type="text" alt="Nome" label="Nome"
 												required="true" placeholder="Nome" class="inputSize"
-												autocomplete="off"></p:inputText>
+												autocomplete="off" id="nome"></p:inputText>
 										</div>
 										<div class="input-group flex-nowrap ajustebtnB">
 											<div class="input-group-prepend">
@@ -95,7 +95,7 @@
 											<p:inputNumber label="Telefone" placeholder="Telefone"
 												required="true" maxlength="11" maxValue="99999999999"
 												decimalSeparator="" thousandSeparator="" decimalPlaces="0"
-												class="inputSize telefone" autocomplete="off"></p:inputNumber>
+												class="inputSize telefone" autocomplete="off" id="telefone"></p:inputNumber>
 										</div>
 
 										<div class="input-group flex-nowrap ajustebtnB">
@@ -137,11 +137,11 @@
 												<span class="input-group-text" id="addon-wrapping"><i
 													class="fa fa-address-card-o" style="width: 1em"></i></span>
 											</div>
-											<p:inputNumber alt="Cep" label="Cep" required="true"
-												placeholder="Cep" id="cep" decimalPlaces="0"
-												decimalSeparator="" maxValue="99999999"
-												onkeyup="atribuirCep()" thousandSeparator=""
-												class="inputSize telefone" maxlength="8" disabled="true"></p:inputNumber>
+												
+												<p:inputNumber label="Cep" placeholder="Cep"
+												required="true" maxlength="11" maxValue="99999999"
+												decimalSeparator="" thousandSeparator="" decimalPlaces="0"
+												class="inputSize telefone" autocomplete="off" id="cep" onkeyup="atribuirCep()" ></p:inputNumber>
 										</div>
 
 										<div class="input-group flex-nowrap ajustebtnB">
@@ -151,7 +151,7 @@
 											</div>
 											<p:inputText type="text" label="Rua" placeholder="Rua"
 												required="true" id="rua" class="inputSize"
-												autocomplete="off" disabled="true"></p:inputText>
+												autocomplete="off"></p:inputText>
 										</div>
 
 										<div class="input-group flex-nowrap ajustebtnB">
@@ -161,7 +161,7 @@
 											</div>
 											<p:inputText type="text" label="Cidade" placeholder="Cidade"
 												required="true" id="cidade" class="inputSize"
-												autocomplete="off" disabled="true"></p:inputText>
+												autocomplete="off"></p:inputText>
 										</div>
 
 										<div class="input-group flex-nowrap ajustebtnB">
@@ -171,7 +171,7 @@
 											</div>
 											<p:inputText type="text" label="Bairro" placeholder="Bairro"
 												required="true" id="bairro" class="inputSize"
-												autocomplete="off" disabled="true"></p:inputText>
+												autocomplete="off"></p:inputText>
 										</div>
 
 										<div class="input-group flex-nowrap ajustebtnB">
@@ -180,8 +180,7 @@
 													class="fa fa-globe" style="width: 1em"></i></span>
 											</div>
 
-											<p:selectOneMenu filter="true" style="width:6.2em" id="uf"
-												disabled="true">
+											<p:selectOneMenu filter="true" style="width:6.2em" id="uf">
 												<f:selectItem itemLabel="Uf" itemValue=""
 													noSelectionOption="true" />
 												<f:selectItem itemLabel="AC" itemDescription="Acre"
@@ -242,38 +241,40 @@
 
 											<p:inputText type="text" label="Número" placeholder="Número"
 												required="true" id="numero" autocomplete="off"
-												disabled="true"></p:inputText>
+												></p:inputText>
 
 										</div>
 									</div>
 									<div class="sessaoB Retirar" id="sessao2">
 
-										<p:selectOneMenu value="" class="ajustebtnB" onchange="exibirEnderecoRetirada()">
+										<p:selectOneMenu value="#{minhaLojaBean.minhalojas}" class="ajustebtnB" onchange="exibirEnderecoRetirada(this)" id="ponto-retirada" style="width:100%; max-width:80vw" autoWidth="false">
 											<f:selectItem itemLabel="Selecione ponto de retirada"
 												itemValue="" noSelectionOption="true" />
-											<f:selectItem itemLabel="Loja 1 - Centro - RJ"
-												itemDescription="Loja 1" itemValue="1" />
-											<f:selectItem itemLabel="Loja 2 - Sul - RJ"
-												itemDescription="Loja 2" itemValue="2" />
+												<f:selectItems value="#{minhaLojaBean.minhalojas}" var="loja" itemLabel="#{loja.nomefantasia} - #{loja.logradouro}" itemValue="#{loja.nomefantasia}, #{loja.cep} - #{loja.logradouro}, #{loja.numero}, #{loja.cidade}-#{loja.estado}" style="width:100%; max-width:80vw" autoWidth="false"></f:selectItems>
 										</p:selectOneMenu>
+
 
 										<div>
 
 											<div class="alert alert-success displaynone" style="margin: 1em 0" id="div-endereco-retirada">
 												<h4 class="alert-heading">Endereço:</h4>
-												<p>Avenida Te90, Bairro Centro, Rio de Janeiro - RJ</p>
+												<p:outputLabel id="endereco-loja-retirada" value=""></p:outputLabel>
 												<p class="mb-0">Horário 08:00 às 17:00h</p>
+												<div id="mapa" style="margin: 1em">
+												<a href="" id="mapa" target="_blank"><i class="fa fa-map-marker" style="font-size:4em"></i>Navegar</a>
+												</div>
+												
 											</div>
 
 										</div>
+										
 
 
 									</div>
-
-									<p:commandLink value="Outro endereço"
-										class="btn btn-light tamanhoBtn" onclick="ativarCamposEndereco()"></p:commandLink>
-									<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
-										class="tamanhoBtn btn btn-success"></p:linkButton>
+									<p:commandButton value="Limpar"
+										class="tamanhoBtn btn btn-success" onclick="limparDados()"></p:commandButton>
+									<p:commandButton value="Confirmar"
+										class="tamanhoBtn btn btn-success" onclick="salvarDadosEntrega()"></p:commandButton>
 
 								</div>
 							</h:form>

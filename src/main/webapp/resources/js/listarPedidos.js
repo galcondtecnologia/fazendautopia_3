@@ -18,6 +18,7 @@
  </div>
 
  */
+var $enderecoDoUsuario = document.querySelector("#endereco-do-usuario");
 var $ecobag = document.querySelector("#check-ecobag");
 var divCards = document.querySelector("#div-pedido");
 var divCarrinhoVazio = document.querySelector("#carrinho-vazio");
@@ -29,7 +30,14 @@ function lerPedidosEmLocalStarage() {
     localStoragePedidos = JSON.parse(localStoragePedidos);
     listaDePedidos.push(localStoragePedidos);
     criarCard(listaDePedidos);
+    lerEnderecoLocalStarage();
     calcularValorTotal(listaDePedidos);
+}
+
+function lerEnderecoLocalStarage() {
+    let enderecoStoragePedidos = localStorage.getItem('Endereco');
+    enderecoStoragePedidos = JSON.parse(enderecoStoragePedidos);
+    atribuirEnderecoEfrete(enderecoStoragePedidos.frete, enderecoStoragePedidos.nome, enderecoStoragePedidos.enderecoEntrega);
 }
 
 
@@ -224,5 +232,24 @@ $ecobag.addEventListener('click', function() {
     atualizarPrecoTotal();
 })
 
+function atribuirEnderecoEfrete(frete = 0, nome, endereco) {
+    let _frete = document.querySelector('#valor-frete');
+    let _nome = document.querySelector('#nome');
+    $enderecoDoUsuario.textContent = endereco;
+    _frete.textContent = frete; 
+    _nome.textContent = nome;
+}
 
 lerPedidosEmLocalStarage();
+
+
+
+
+
+
+
+
+
+
+
+

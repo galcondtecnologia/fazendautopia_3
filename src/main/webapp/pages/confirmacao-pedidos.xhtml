@@ -51,28 +51,31 @@
 				<label for="check-ecobag">
 					<input type="checkbox" id="check-ecobag" style="width: 2em" />Adicionar Ecobag retornável - R$ 6.00</label>
 				</div>
-				
+				<div style="display: inline-block">
 				<h5>Frete R$</h5>
-				<p:outputLabel value="9.90" id="valor-frete"></p:outputLabel>
+				<a href="carrinho.xhtml"><p:outputLabel value="9.90" id="valor-frete" style="color:black"></p:outputLabel>
+				<i class="fa fa-pencil-square-o" style="font-size: 1em; margin:0.3em; color:black" id="editar-frete"></i></a>
+				</div>
 			</div>
 
 			<div style="margin-top: 1em">
 				<h3>Total R$</h3>
-				<p:outputLabel value="" id="valor-total-pedido"></p:outputLabel>
+				<p:outputLabel value="" id="valor-total-pedido" style="font-size:2em"></p:outputLabel>
 			</div>
 
-			<div class="div-endereco-entrega">
-				<h3>Jamile F. santos</h3>
-				<p>Avenida Afonso Pena, 50, Apartamento 102 Centro Itumbiara -
-					GO CEP 75503-380</p>
+			<div class="div-endereco-entrega" style="display: block">
+				<p:outputLabel id="nome" value="" style="font-size:2em"></p:outputLabel>
+				<a href="carrinho.xhtml" style="display:block"><p:outputLabel value="" style="font-size:0.9em; color:black" id="endereco-do-usuario"></p:outputLabel>
+				<i class="fa fa-pencil-square-o" style="font-size: 1em; color:black;"></i></a>
 			</div>
 
-			<p>
+			<p style="margin: 1em 0">
 				Em caso de dúvida entre em contato: <strong>contato</strong>@fazendautopia.com
 			</p>
+			<p>Ou pelo fone: (21) 99901-8668</p>
 		</div>
 		<div style="padding-top: 2em" class="container">
-		<p:linkButton value="Home" href=".xhtml"
+		<p:linkButton value="Home" onclick="goToHome()" href="../index.xhtml"
 			class="btn btn-primary botao-secundario"></p:linkButton>
 		<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
 			class="tamanhoBtn btn btn-success botao-primario"></p:linkButton>

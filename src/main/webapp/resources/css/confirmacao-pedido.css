@@ -108,4 +108,11 @@ html{
 	background-color:#8aa958; color: black;border:none;
 	margin-bottom: 5em;
 }
+
+#valor-frete:hover{
+	cursor: pointer;
+}
+#endereco-do-usuario{
+	cursor: pointer;
+}
 }
