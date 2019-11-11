@@ -4,6 +4,7 @@ var qtdProdutosInseridos = 0;
 var alerta = document.querySelector("#dialogCestaAlerta");
 var lista = document.querySelector("#produtosList ul");
 var $precoCesta = document.getElementById("preco-cesta");
+var $infoNutricionais = document.querySelector("#informacoes-nutricionais-dialog-produto");
 
 var botaoColocarNoCarrinho = document
 	.querySelector(".botao-colocar-no-carrinho");
@@ -212,6 +213,7 @@ function capturarProdutoClicadoDesktop(a) {
     let descricaoProdutoClicado = produtoClicado
 	    .querySelector('.descricao-produto');
     let precoProdutoClicado = produtoClicado.querySelector('.preco-produto');
+    let infoNutricionalProdutoClicado = produtoClicado.querySelector('.informacoes-nutricionais');
 
     // popular o dialog com os dados do produto clicado
     $descricaoDoProduto.textContent = descricaoProdutoClicado.textContent;
@@ -219,6 +221,7 @@ function capturarProdutoClicadoDesktop(a) {
     $imagemDoProdutoNoDialog.src = imagemProdutoClicado.src;
     $totalProdutoDialog.textContent = precoProdutoClicado.textContent;
     $quantidadeDeProdutoExtra.value = 1;
+    $infoNutricionais.textContent = infoNutricionalProdutoClicado.textContent;
 
 }
 
@@ -271,3 +274,36 @@ function atribuirQtdProdutoNoIconeCarrinho() {
 }
 
 atribuirQtdProdutoNoIconeCarrinho();
+
+function imprimir(prod) {
+    console.log(prod);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
