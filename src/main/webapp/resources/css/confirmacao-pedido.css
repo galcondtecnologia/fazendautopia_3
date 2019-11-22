@@ -59,9 +59,45 @@ html{
     display: block;
 }
 
+input[type=radio], input[type=checkbox]{
+transform: scale(1.5);
+margin: 0.5em;
+}
 
+.inputLabel{
+	border: none;
+	width: 5em; 
+}
 
+.inputLabelEndereco{
+	display: inline-block;
+	width: 100%;
+	border: none;
+}
+.descricao-titulo{
+	width: 100%;
+	font-size: 1.5em;
+	font-weight: bold;
+	border: none;
+}
+.preco-do-item{
+	width: 100%;
+	font-size: 1.1em;
+	font-weight: bold;
+	border: none;
+}
+.itensDaLista{
+	width: 100%;
+	font-size: 1em;
+	border: none;
+}
 
+.nome-usuario{
+	width: 100%;
+	font-size: 1.1em;
+	font-weight: bold;
+	border: none;
+}
 
 
 

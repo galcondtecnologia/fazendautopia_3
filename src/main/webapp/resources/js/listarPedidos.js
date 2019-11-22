@@ -59,9 +59,9 @@ function criarCard(listaDePedidos) {
 	carrinhoVazio();
     }else{
     for(var indice = 0; indice<listaDePedidos[0].length; indice++){
-	let _titulo = criarTitulo(listaDePedidos.map(e => e[indice]._titulo), listaDePedidos.map(e =>e[indice]._preco));
-	let _produtosList = criarListaDeItens(listaDePedidos.map(e =>e[indice]._produtos));
-	let _rodapeHtml = criarRodape(listaDePedidos.map(e =>e[indice]._qtd));
+	let _titulo = criarTitulo(listaDePedidos.map(e => e[indice]._titulo), listaDePedidos.map(e =>e[indice]._preco),indice);
+	let _produtosList = criarListaDeItens(listaDePedidos.map(e =>e[indice]._produtos),indice);
+	let _rodapeHtml = criarRodape(listaDePedidos.map(e =>e[indice]._qtd),indice);
 	listaNaPagina.innerHTML = listaNaPagina.innerHTML + _titulo + _produtosList.innerHTML + _rodapeHtml;
     }
 }
@@ -69,23 +69,28 @@ function criarCard(listaDePedidos) {
 }
 
 
-function criarTitulo(descricao, preco) {
+function criarTitulo(descricao, preco, indice) {
     var titulo =  `<div class="card" style="width: 100%;">
     <div class="card-body">
-    <h4 class="card-title descricao-titulo">${descricao}</h4>
-    <h5 class="card-text preco-do-item">R$ ${preco}</h5>
+    <input type="text" class="card-title descricao-titulo" readonly="readonly" value="${descricao}" name="produtodescricao${indice}"></input>
+    <input class="card-text preco-do-item" readonly="readonly" value="R$ ${preco}" name="produtopreco${indice}"></input>
     </div>`
     return titulo;
 }
 
 
 // adicionar li para cada item da cesta
-function criarListaDeItens(listaDeProdutos) {
+function criarListaDeItens(listaDeProdutos, indice) {
     let lista = listaDeProdutos[0];
     let ul = criarUl();
     for (var qtdItem = 0; qtdItem < lista.length; qtdItem++) {
 	let li = criarLi();
-	li.textContent = lista[qtdItem];
+	//li.textContent = lista[qtdItem];
+	//-----------
+	
+	li.innerHTML = `<input type="text" class="itensDaLista" readonly="readonly" value="${lista[qtdItem]}" name="produto${indice}item${qtdItem}"></input>`
+	
+	//-----------
 	ul.appendChild(li);
     }
     return ul;
@@ -105,8 +110,11 @@ function criarLi() {
 }
 
 
-function criarRodape(_qtd) {
-   var rodape = `<div class="card-body"><input type="button" value="Excluir" class="btn-excluir"><input type="button" value="-"style="width:40px" class="btn-menos"/><input type="number" value="${_qtd}" class="input-qtd" style="width:40px; text-align: center" readonly max="36"/><input type="button" value="+" class="btn-mais" style="width:40px"/></div></div>`
+function criarRodape(_qtd, indice) {
+   var rodape = `<div class="card-body"><input type="button" value="Excluir" class="btn-excluir">
+   <input type="button" value="-"style="width:40px" class="btn-menos"/><input type="number" 
+   value="${_qtd}" readonly="readonly" class="input-qtd" style="width:40px; text-align: center" max="36" name="qtdItem${indice}"/>
+   <input type="button" value="+" class="btn-mais" style="width:40px"/></div></div>`
        return rodape;
 }
 
@@ -201,7 +209,12 @@ function alterarPedidoEmLocalStarage(novaLista) {
 
 function carrinhoVazio() {
     formularioPedido.classList.toggle("displayNone");
-    divCarrinhoVazio.innerHTML = `<div class="container" style="text-align: center"><img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto"><h3>Carrinho vazio</h3><a href="../index.xhtml"><input type="button" value="Voltar às compras" style="margin:1em;border-radius:15px; border:none; padding:0.9em; background-color:#4f5e38; color:white"></a></div>`
+    divCarrinhoVazio.innerHTML = `
+    <div class="container" style="text-align: center">
+    <img src=${scrCarrinhoVazio} alt="carrinho vazio" style="padding:2em; margin:auto">
+    <h3>Carrinho vazio</h3><a href="../index.xhtml"><input type="button" value="Voltar às compras"
+     style="margin:1em;border-radius:15px; border:none; padding:0.9em;
+      background-color:#4f5e38; color:white"></a></div>`
 }
 
 
@@ -227,8 +240,8 @@ function calcularValorTotal(listaDePedidos) {
 	soma = soma + 6;
     }
     //---------------------------------------------------------
-    total.textContent = soma.toFixed(2);
-    precoTotalEmPedido = total.textContent;
+    total.value = soma.toFixed(2);
+    precoTotalEmPedido = total.value;
     
     //Calcular a taxa de cartão de credito
     if(taxaCartao != 0){
@@ -244,9 +257,9 @@ $ecobag.addEventListener('click', function() {
 function atribuirEnderecoEfrete(frete = 0, nome, endereco) {
     let _frete = document.querySelector('#valor-frete');
     let _nome = document.querySelector('#nome');
-    $enderecoDoUsuario.textContent = endereco;
+    $enderecoDoUsuario.value = endereco;
     _frete.textContent = frete; 
-    _nome.textContent = nome;
+    _nome.value = nome;
 }
 
 
@@ -260,7 +273,7 @@ function verificarTaxa(taxa) {
     let taxaEmReais = (parseFloat(precoTotalEmPedido) * parseFloat(_taxa[1])) / 100;
     let totalCtaxa = (parseFloat(precoTotalEmPedido) + parseFloat(taxaEmReais));
     label.textContent = `Taxa: ${_taxa[1]}% R$ ${taxaEmReais.toFixed(2)}`;
-    total.textContent = totalCtaxa.toFixed(2);
+    total.value = totalCtaxa.toFixed(2);
 }
 
 
