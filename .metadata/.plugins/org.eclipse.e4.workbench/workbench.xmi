@@ -478,7 +478,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_B11J8OlfEemDnIFOFkLGgw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_KSo20OliEem_zLIHZ461aA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="__NxireleEemDnIFOFkLGgw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6qnWBwx0EeqMy7D14RdXYA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="__NxireleEemDnIFOFkLGgw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_B11J8elfEemDnIFOFkLGgw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -512,7 +512,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_B11xAulfEemDnIFOFkLGgw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_KS0dAOliEem_zLIHZ461aA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="__NwUfOleEemDnIFOFkLGgw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6qxHAAx0EeqMy7D14RdXYA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="__NwUfOleEemDnIFOFkLGgw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_B12YEOlfEemDnIFOFkLGgw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -2001,7 +2001,7 @@
   <commands xmi:id="__NaWQOleEemDnIFOFkLGgw" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.create.getter.setter" commandName="Generate Getters and Setters" description="Generate Getter and Setter functions for type's vars" category="__M2VheleEemDnIFOFkLGgw"/>
   <commands xmi:id="__NaWQeleEemDnIFOFkLGgw" elementId="org.eclipse.ui.edit.findReplace" commandName="Find and Replace" description="Find and replace text" category="__M2VgOleEemDnIFOFkLGgw"/>
   <commands xmi:id="__NaWQuleEemDnIFOFkLGgw" elementId="org.eclipse.egit.ui.team.MergeTool" commandName="Merge Tool" category="__M5Y1uleEemDnIFOFkLGgw"/>
-  <commands xmi:id="__NaWQ-leEemDnIFOFkLGgw" elementId="org.eclipse.pde.ui.addAllPluginsToJavaSearch" commandName="Add All Plug-ins to Java Search" description="Adds all plug-ins in the target platform to java search" category="__M3jpeleEemDnIFOFkLGgw"/>
+  <commands xmi:id="__NaWQ-leEemDnIFOFkLGgw" elementId="org.eclipse.pde.ui.addAllPluginsToJavaSearch" commandName="Add All Plug-ins to Java Workspace Scope" description="Adds all plug-ins in the target platform to Java workspace scope" category="__M3jpeleEemDnIFOFkLGgw"/>
   <commands xmi:id="__NaWROleEemDnIFOFkLGgw" elementId="org.eclipse.egit.ui.command.shareProject" commandName="Share with Git" description="Share the project using Git" category="__M3jpeleEemDnIFOFkLGgw">
     <parameters xmi:id="__NaWReleEemDnIFOFkLGgw" elementId="org.eclipse.egit.ui.command.projectNameParameter" name="Project" optional="false"/>
   </commands>
@@ -3133,6 +3133,7 @@
   <commands xmi:id="__whqUeleEemDnIFOFkLGgw" elementId="AUTOGEN:::variableViewActions/org.eclipse.wst.jsdt.debug.ui.variableview.show.this" commandName="Show 'this' variable" description="Show or hide the this variable" category="__M3jpeleEemDnIFOFkLGgw"/>
   <commands xmi:id="__whqUuleEemDnIFOFkLGgw" elementId="AUTOGEN:::variableViewActions/org.eclipse.wst.jsdt.debug.ui.variableview.show.prototypes" commandName="Show proto variables" description="Show or hide proto variables" category="__M3jpeleEemDnIFOFkLGgw"/>
   <commands xmi:id="__wiRYOleEemDnIFOFkLGgw" elementId="AUTOGEN:::org.eclipse.ui.articles.action.contribution.view/org.eclipse.wst.wsi.ui.internal.actions.actionDelegates.ValidateWSIProfileActionDelegate" commandName="WS-I Profile Validator" description="Validate WS-I Message Log File" category="__M3jpeleEemDnIFOFkLGgw"/>
+  <commands xmi:id="_5uBK4Qx0EeqMy7D14RdXYA" elementId="org.eclipse.egit.ui.RepositoriesViewShowInSystemExplorer" commandName="Show In System Explorer" category="__M5Y1uleEemDnIFOFkLGgw"/>
   <addons xmi:id="__L8WlOleEemDnIFOFkLGgw" elementId="org.eclipse.e4.core.commands.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="__L8WleleEemDnIFOFkLGgw" elementId="org.eclipse.e4.ui.contexts.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="__L8WluleEemDnIFOFkLGgw" elementId="org.eclipse.e4.ui.bindings.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -3144,7 +3145,7 @@
   <addons xmi:id="__L8WnOleEemDnIFOFkLGgw" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="__L8WneleEemDnIFOFkLGgw" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="__MGuoOleEemDnIFOFkLGgw" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_JwgaIeliEem_zLIHZ461aA" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="__M2VgOleEemDnIFOFkLGgw" elementId="org.eclipse.ui.category.edit" name="Edit"/>
   <categories xmi:id="__M2VgeleEemDnIFOFkLGgw" elementId="org.eclipse.mylyn.wikitext.ui.editor.category" name="WikiText Markup Editing Commands" description="commands for editing lightweight markup"/>

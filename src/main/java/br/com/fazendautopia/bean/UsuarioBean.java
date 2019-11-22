@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 import org.omnifaces.util.Messages;
 
@@ -17,7 +19,8 @@ import br.com.fazendautopia.domain.Usuario;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class UsuarioBean implements Serializable {
+@WebServlet("/adicionaUsuario")
+public class UsuarioBean extends HttpServlet implements Serializable{
 
 	private Usuario usuario;
 	private List<Usuario> usuarios;
@@ -42,6 +45,8 @@ public class UsuarioBean implements Serializable {
 		usuario = new Usuario();
 
 	}
+	
+
 
 	public void salvar() {
 
