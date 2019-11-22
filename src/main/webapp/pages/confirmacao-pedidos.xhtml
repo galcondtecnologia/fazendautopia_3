@@ -31,7 +31,7 @@
 <h:body>
 
 	<div id="carrinho-vazio"></div>
-	<h:form prependId="false" id="form">
+	<form id="form" method="post" action="">
 		<div class="div-header">
 			<div class="container">
 				<h1 style="color: white">Pedido 45006570</h1>
@@ -48,67 +48,83 @@
 		<div class="container">
 			<div>
 				<div class="ui-inputgroup check-ecobag">
-					<label for="check-ecobag" style="font-size: 1.2em; border:1px solid #cccccc; width: 100%"> <input type="checkbox"
-						id="check-ecobag" style="width: 2em" />01 - Ecobag
-						retornável - R$ 6.00
+					<label for="check-ecobag"
+						style="font-size: 1.2em; border: 1px solid #cccccc; width: 100%">
+						<input type="checkbox" id="check-ecobag" style="width: 2em"
+						name="ecobag" />01 - Ecobag retornável - R$ 6.00
 					</label>
 				</div>
-				<div style="display: inline-block; border:1px solid #cccccc; width: 100%; padding:0.5em">
+				<div
+					style="display: inline-block; border: 1px solid #cccccc; width: 100%; padding: 0.5em">
 					<h5>Frete R$</h5>
-					<a href="carrinho.xhtml"><p:outputLabel value="9.90"
-							id="valor-frete" style="color:black"></p:outputLabel> <i
+					<a href="carrinho.xhtml"><input type="text" value="9.90"
+						readonly="readonly" id="valor-frete" style="color: black;"
+						class="inputLabel" name="valorFrete"></input> <i
 						class="fa fa-pencil-square-o"
 						style="font-size: 1em; margin: 0.3em; color: black"
 						id="editar-frete"></i></a>
 				</div>
 			</div>
 
-			<div style="margin: 1em 0; border:1px solid #cccccc; width: 100%; padding:0.5em">
-				<label for="customRadio" style="font-size: 1.5em">Forma de pagamento</label>
-				<!-- O item deve ter a propriedade de valor conforme exemplo: itemValue="Dinheiro, 0" -->
-				<p:selectOneRadio id="customRadio" label="Forma de Pagamento" onchange="verificarTaxa(this.value)">
-					<f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro, 0" />
-					<f:selectItem itemLabel="Visa" itemValue="Visa, 3"/>
-					<f:selectItem itemLabel="Master" itemValue="Master, 3"/>
-				</p:selectOneRadio>
-				<label style="margin:0 0 2em 0" id="taxa-cartao"></label>
-				
+			<div
+				style="margin: 1em 0; border: 1px solid #cccccc; width: 100%; padding: 0.5em; display: grid">
+				<label style="font-size: 1.5em">Forma de pagamento</label> <input
+					class="radioGrande" type="radio" id="dinheiro"
+					name="tipo-pagamento" value="Dinheiro, 0"
+					onchange="verificarTaxa(this.value)"></input> <label for="dinheiro">Dinheiro</label>
+
+				<input class="radioGrande" type="radio" id="contactChoice2"
+					name="tipo-pagamento" value="Visa, 3"
+					onchange="verificarTaxa(this.value)"></input> <label
+					for="contactChoice2">Master</label> <input class="radioGrande"
+					type="radio" id="contactChoice3" name="tipo-pagamento"
+					value="Master, 3" onchange="verificarTaxa(this.value)"></input> <label
+					for="contactChoice3">Visa</label> <label style="margin: 0 0 2em 0"
+					id="taxa-cartao"></label>
 			</div>
 
-			<div style="margin-top: 1em;border:1px solid #cccccc; width: 100%; padding:0.5em">
+
+
+
+			<div
+				style="margin-top: 1em; border: 1px solid #cccccc; width: 100%; padding: 0.5em">
 				<h3>Total R$</h3>
-				<p:outputLabel value="" id="valor-total-pedido"
-					style="font-size:2em"></p:outputLabel>
+				<input type="text" id="valor-total-pedido" readonly="readonly"
+					style="font-size: 2em" class="inputLabel" name="totalPedido"></input>
 			</div>
 
 
-			<div class="div-endereco-entrega" style="display: block; border:1px solid #cccccc; width: 100%; padding:0.5em">
-				<p:outputLabel id="nome" value="" style="font-size:2em"></p:outputLabel>
-				<a href="carrinho.xhtml" style="display: block"><p:outputLabel
-						value="" style="font-size:0.9em; color:black"
-						id="endereco-do-usuario"></p:outputLabel> <i
+			<div class="div-endereco-entrega"
+				style="display: block; border: 1px solid #cccccc; width: 100%; padding: 0.5em">
+				<input type="text" id="nome" class="nome-usuario"
+					style="font-size: 2em" name="nomeUsuario"></input> <a
+					href="carrinho.xhtml" style="display: block"><input type="text"
+					style="font-size: 0.9em; color: black" id="endereco-do-usuario"
+					class="inputLabelEndereco" name="enderecoEntrega"  readonly="readonly"></input> <i
 					class="fa fa-pencil-square-o" style="font-size: 1em; color: black;"></i></a>
 			</div>
 			<div style="margin: 1em 0">
 				<label class="labels"
 					style="display: hidden; height: 0; width: 0; color: transparent; margin: 0; padding: 0">Mensagem</label>
-				<p:inputTextarea name="mensagem" placeholder="Alguma observação"
-					autocomplete="off" class="input-forms" autoResize="true"
-					maxlength="200" style="margin:0; padding:0.2em; width:100%" />
+				<textarea name="mensagem" class="input-forms"
+					style="margin: 0; padding: 0.2em; width: 100%"
+					placeholder="Suas observações"></textarea>
 			</div>
 
 			<p style="margin: 1em 0">
 				Em caso de dúvida entre em contato: <strong>contato</strong>@fazendautopia.com
 			</p>
 			<p>Ou pelo fone: (21) 99901-8668</p>
+
+			<div style="padding-top: 2em" class="container">
+				<input type="button" value="Home"
+					onClick="location.href='../index.xhtml'"
+					class="btn btn-primary botao-secundario"></input> <input
+					type="submit" value="Confirmar"
+					class="tamanhoBtn btn btn-success botao-primario"></input>
+			</div>
 		</div>
-		<div style="padding-top: 2em" class="container">
-			<p:linkButton value="Home" href="../index.xhtml"
-				class="btn btn-primary botao-secundario"></p:linkButton>
-			<p:linkButton value="Confirmar" href="confirmacao-pedidos.xhtml"
-				class="tamanhoBtn btn btn-success botao-primario"></p:linkButton>
-		</div>
-	</h:form>
+	</form>
 	<script src="../resources/js/listarPedidos.js"></script>
 </h:body>
 </html>
