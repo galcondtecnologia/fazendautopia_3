@@ -9,6 +9,9 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<web:welcome-file-list>
+		<web:welcome-file>UsuarioServlet</web:welcome-file>
+	</web:welcome-file-list>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
@@ -17,9 +20,9 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-<!-- 	<listener> -->
-<!-- 		<listener-class>br.com.fazendautopia.util.HibernateContexto</listener-class> -->
-<!-- 	</listener> -->
+	<!-- <listener> -->
+	<!-- <listener-class>br.com.fazendautopia.util.HibernateContexto</listener-class> -->
+	<!-- </listener> -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/erro.xhtml</location>
