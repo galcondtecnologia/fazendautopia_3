@@ -1,5 +1,6 @@
 const form = document.querySelector('#formulario');
 let pedido = new Object(null);
+let obs = document.querySelector('textarea');
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -61,6 +62,7 @@ function criarPedido(form) {
     }
     let produtos = localStorage.getItem('Pedidos');
     pedido.produtos = JSON.parse(produtos);
+    pedido.observacao = obs.value;
     console.log(pedido);
   }
 criarPedido(form);
