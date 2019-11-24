@@ -11,7 +11,7 @@ form.addEventListener('submit', function (e) {
 function enviarParaServidor() {
     fetch('https://reqres.in/api/users', {
 	    method: 'POST',
-	    body: JSON.stringify(pedido)
+	    body: pedido
 	  })
 	    .then(function (response) {
 	      return response.json();
@@ -25,7 +25,8 @@ function enviarParaServidor() {
 
 
 function criarPedido(form) {
-   
+    let enderecoStoragePedidos = localStorage.getItem('Endereco');
+    enderecoStoragePedidos = JSON.parse(enderecoStoragePedidos);
     let inputs = form.querySelectorAll('input');
     for (let input of inputs) {
 	switch (input.type) {
@@ -45,6 +46,7 @@ function criarPedido(form) {
         case "number":
             switch (input.name) {
 	    case 'enderecoEntrega':
+		pedido.regiao = enderecoStoragePedidos.regiao;
 	    case 'nomeUsuario':
 	    case 'totalPedido':
 	    case 'valorFrete':
@@ -57,9 +59,9 @@ function criarPedido(form) {
         default:
       }
     }
-    pedido.produtos = localStorage.getItem('Pedidos');
+    let produtos = localStorage.getItem('Pedidos');
+    pedido.produtos = JSON.parse(produtos);
     console.log(pedido);
-    console.log(JSON.stringify(pedido));
   }
 criarPedido(form);
 
