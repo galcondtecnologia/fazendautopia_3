@@ -11,7 +11,7 @@ form.addEventListener('submit', function (e) {
 
 
 function enviarParaServidor() {
-    fetch('UsuarioServlet', {
+    fetch('http://localhost:8080/fazendautopia/UsuarioServlet', {
 	    method: 'POST',
 	    body: pedido
 	  })
