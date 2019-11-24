@@ -5,12 +5,13 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
+  pedido = JSON.stringify(pedido);
   enviarParaServidor();
 });
 
 
 function enviarParaServidor() {
-    fetch('https://reqres.in/api/users', {
+    fetch('UsuarioServlet', {
 	    method: 'POST',
 	    body: pedido
 	  })

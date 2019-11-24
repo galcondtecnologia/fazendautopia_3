@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UsuarioServlet
  */
-@WebServlet("/UsuarioServlet")
+@WebServlet(value="/UsuarioServlet")
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,8 @@ public class UsuarioServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getParameter("email"));
-		System.out.println(request.getParameter("che"));
+		System.out.println(request.getParameter("nomeUsuario"));
+		System.out.println(request.getParameter("totalPedido"));
 		int i = 1;
 
 		String str = "" + i;
