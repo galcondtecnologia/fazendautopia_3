@@ -11,7 +11,7 @@
 		<h:form id="formListagem">
 			<p:panel>
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" rows="100" paginatorPosition="top" 
+					paginator="true" rows="100" paginatorPosition="top"
 					style="text-align: center;"
 					value="#{categoriaProdutoBean.categoriaProdutos}" var="categorias">
 					<f:facet name="header">
@@ -76,13 +76,14 @@
 						converter="upperCaseConverter">
 						<p:ajax event="blur" update="@this" />
 					</p:inputText>
-					
+
 					<h:panelGrid columns="2">
-					<p:outputLabel value="Status: " for="listCheck" />
-					<p:selectOneMenu style="width:230px" onchange="alterarCheck()" id="listCheck">
+						<p:outputLabel value="Status: " for="listCheck" />
+						<p:selectOneMenu style="width:230px" onchange="alterarCheck()"
+							id="listCheck">
 							<f:selectItem itemLabel="Status: ativo" itemValue="1"></f:selectItem>
 							<f:selectItem itemLabel="Status: inativo" itemValue="0"></f:selectItem>
-					</p:selectOneMenu>
+						</p:selectOneMenu>
 					</h:panelGrid>
 
 					<h:panelGrid columns="3" style="display:none">
@@ -97,7 +98,8 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{categoriaProdutoBean.salvar}"
-						update=":formCadastro:painel :formListagem:tabela" oncomplete="alterarCheck()"/>
+						update=":formCadastro:painel :formListagem:tabela"
+						oncomplete="alterarCheck()" />
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"
 						update=":formCadastro:painel" />
 				</h:panelGrid>
