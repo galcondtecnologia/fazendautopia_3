@@ -42,14 +42,22 @@ function criarPedido(form) {
           }
           break
         case "text":
-          pedido[input.name] = input.value;
-          break;
         case "number":
-          pedido[input.name] = input.value;
+            switch (input.name) {
+	    case 'enderecoEntrega':
+	    case 'nomeUsuario':
+	    case 'totalPedido':
+	    case 'valorFrete':
+	          pedido[input.name] = input.value;
+		break;
+	    default:
+		break;
+	    }
           break;
         default:
       }
     }
+    pedido.produtos = localStorage.getItem('Pedidos');
     console.log(pedido);
     console.log(JSON.stringify(pedido));
   }
