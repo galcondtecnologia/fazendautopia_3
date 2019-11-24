@@ -56,11 +56,13 @@ public class UsuarioServlet extends HttpServlet {
 			System.out.println(Json);
 		}
 		JSONObject JSON = new JSONObject(Json);
+
+		String userName = JSON.getString("nomeUsuario");
+		System.out.println(userName);
 		
-//		String eco = JSON.getString("produtos");
-		
-		JSON.getJSONArray("produtos");
-		System.out.println("ECO >" + JSON.getJSONArray("produtos"));
+
+//		JSON.getJSONArray("nomeUsuario");
+//		System.out.println("Usuário >" + JSON.getJSONArray("nomeUsuario"));
 
 //		UsuarioDAO dao = new UsuarioDAO();
 //		Usuario usuario = new Usuario();
@@ -70,21 +72,47 @@ public class UsuarioServlet extends HttpServlet {
 //		dao.salvar(usuario);
 //		System.out.println("Salvo com suses: " + usuario.getEmail());
 
-//		int i = 0;
-//
-//		String str = "" + i;
-//
-//		while (i < eco.length()) {
-//			System.out.println(eco + i);
-//			i++;
-//		}
+		int indiceProdutoNumero = 0;
+		String indiceProdutoString = "" + indiceProdutoNumero;
+		int indiceItemNumero = 0;
+		String indiceItemString = "" + indiceItemNumero;
+		
+		//Listando os produtos do pedido 
+		try {
+		while (JSON.getString("produto" + indiceProdutoString + "item" + indiceItemString) != null) {
+			
+			//Obter a descrição do produto / preco do produto / qtd de item por produto
+			System.out.println(JSON.getString("produtodescricao" + indiceProdutoString));
+			System.out.println(JSON.getString("produtopreco" + indiceProdutoString));
+			System.out.println(JSON.getString("qtdItem" + indiceProdutoString));
+			
+			try {
+				String item = JSON.getString("produto" + indiceProdutoString + "item" + indiceItemString);
+				while (item != null || item != "") {
+					
+					//Imprime cada item do produto ------------------
+					System.out.println(item);
+					//CODIGO PARA INCREMENTAR CADA PRODUTO EM UM ARRAY AQUI ------------
 
-//		while (request.getParameter("email" + str) != null) {
-//			System.out.println(request.getParameter("email" + str));
-//			i++;
-//			str = "" + i;
-//		}
-
+					item = JSON.getString("produto" + indiceProdutoString + "item" + indiceItemString);
+					indiceItemNumero++;
+					indiceItemString = "" + indiceItemNumero;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("-------------------------------------------------------");
+				System.out.println("Não encontrado o produto: " + "produto" + indiceProdutoString + "item" + indiceItemString);
+				//Reiniciar o indice de itens 
+				indiceItemNumero = 0;
+				indiceItemString = "" + indiceItemNumero;
+			}
+			indiceProdutoNumero++;
+			indiceProdutoString = "" + indiceProdutoNumero;
+		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Não encontrado o produto: " + "produto" + indiceProdutoString + "item" + indiceItemString);
+		}
 	}
 
 }
