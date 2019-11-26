@@ -47,7 +47,6 @@
 #formulario-contato{
 	display:block;
 	width: 100%;
-	border: 1px solid red;
 }
 #limite-formulario{
 	display:inline-block;
@@ -99,7 +98,7 @@ border: none;
 .background-formulario-contato{
 	display:block;
 	background-color: var(--cor-quatro);
-	padding: 2em 0;
+	padding: 5em 0 1em 3em;
 }
 .container-formulario-contato{
 	margin: auto;
@@ -113,7 +112,6 @@ border: none;
 #formulario-contato{
 	display:block;
 	width: 50em;
-	border: 1px solid red;
 }
 #limite-formulario{
 	display:inline-block;
