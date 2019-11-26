@@ -47,7 +47,7 @@ public class UsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
 
 		String Json = "";
 
