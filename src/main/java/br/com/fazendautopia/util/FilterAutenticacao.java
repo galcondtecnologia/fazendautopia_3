@@ -16,9 +16,10 @@ import javax.servlet.http.HttpSession;
 import br.com.fazendautopia.domain.Usuario;
 
 /**
- * Servlet Filter implementation class FilterAutenticacao
+ * todos que estiverem dentro da pagina pages precisa de autenticacao
  */
-@WebFilter(urlPatterns = { "/pages/confirmacao-pedidos.xhtml" })
+
+@WebFilter(urlPatterns = { "/pages/*" })
 public class FilterAutenticacao implements Filter {
 
 	/**
@@ -32,21 +33,23 @@ public class FilterAutenticacao implements Filter {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		// intercepta a sessao
 		HttpSession session = req.getSession();
-		// inteceptar o usuario da Sessao
+		// retorna o caminhao da
+		System.out.println(req.getServletPath());
+
+		// capturar o nome da pagina que esta sendo processada
+		String urlParaAutenticar = req.getServletPath();
+
 		// retorna nulo caso nao esteja logado
 		Usuario userlogado = (Usuario) session.getAttribute("usuario");
 
-		if (userlogado == null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginTeste.xhtml");
+		if (userlogado == null && !urlParaAutenticar.equalsIgnoreCase("/pages/ServletAutenticacao")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp?url=" + urlParaAutenticar);
 			dispatcher.forward(request, response);
 			return;
 		}

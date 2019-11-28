@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import br.com.fazendautopia.dao.UsuarioDAO;
 import br.com.fazendautopia.domain.Usuario;
 
-/**
- * Servlet implementation class ServletAutenticacao
- */
 @WebServlet("/pages/ServletAutenticacao")
 public class ServletAutenticacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +34,7 @@ public class ServletAutenticacao extends HttpServlet {
 		UsuarioDAO dao = new UsuarioDAO();
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
+		String url = request.getParameter("url");
 		if (email.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
 
 			Usuario userLogado = new Usuario();
@@ -50,11 +48,11 @@ public class ServletAutenticacao extends HttpServlet {
 			session.setAttribute("usuario", userLogado);
 
 			// redireciona para o sistema e altoriaza o uusario
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.xhtml");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		} else {
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginTeste.xhtml");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 		}
 

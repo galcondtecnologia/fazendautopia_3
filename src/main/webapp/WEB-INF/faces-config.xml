@@ -7,4 +7,4 @@
 <!-- 		<phase-listener>br.com.fazendautopia.util.AutenticacaoListener</phase-listener> -->
 <!-- 	</lifecycle> -->
 
-</faces-config>
+</faces-config>	
