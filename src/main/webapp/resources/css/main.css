@@ -713,15 +713,18 @@ a:hover{
 	margin:0.5em; padding:0.5em; border-radius:5px; border:none; background-color:#4f5e38; color:white
 }
 
+.ui-paginator{
+	background: white;
+	border: none;
+	width: 90vw;
+	color:var(--cor-um)
+}
+
 .ui-dataview-header{
 	background: white;
 	border: none;
-	color:var(--cor-um);
-	width: 88vw;
-}
-
-.viewCard:hover{
-	cursor: pointer;
+	width: 90vw;
+	color:var(--cor-um)
 }
 
 
@@ -747,6 +750,13 @@ a:hover{
 	width: 97vw;
 	margin: 0;
 	padding: 0;
+	background: white;
+}
+.ui-paginator{
+	background: white;
+	border: none;
+	width: 90vw;
+	color:var(--cor-um)
 }
 
 .ui-dataview-header{
