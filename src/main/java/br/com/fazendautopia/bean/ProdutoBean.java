@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
+import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
 
@@ -38,6 +39,7 @@ public class ProdutoBean implements Serializable {
 	private List<CategoriaProduto> categoriaProdutos;
 	private List<Fornecedor> fornecedores;
 	private List<UnidadeMedida> unidadeMedidas;
+	private Produto produtoSelecionado;
 
 	private Part img = null;
 
@@ -188,6 +190,28 @@ public class ProdutoBean implements Serializable {
 
 		}
 	}
+	
+	@Named
+	public void selecionar(ActionEvent event) {
+		try {
+			CategoriaProdutoDAO dao3 = new CategoriaProdutoDAO();
+			categoriaProdutos = dao3.listar();
+
+			FornecedorDAO dao2 = new FornecedorDAO();
+			fornecedores = dao2.listar();
+
+			produtoSelecionado = (Produto) event.getComponent().getAttributes().get("produtoSelecionado");
+
+			ProdutoDAO dao = new ProdutoDAO();
+			produtos = dao.listar();
+			System.out.println("Produto capturado: " + produto.getDescricao());
+			
+		}catch(RuntimeException e) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar alterar o produto! " + e);
+			e.printStackTrace();
+		}
+	}
+	
 
 	public void editar(ActionEvent evento) {
 		try {
@@ -202,6 +226,7 @@ public class ProdutoBean implements Serializable {
 
 			ProdutoDAO dao = new ProdutoDAO();
 			produtos = dao.listar();
+			System.out.println("Produto capturado: " + produto.getDescricao());
 			Messages.addGlobalInfo("Produto alterado com sucesso!");
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar alterar o produto! " + e);
@@ -279,6 +304,14 @@ public class ProdutoBean implements Serializable {
 
 	public void setUnidadeMedidas(List<UnidadeMedida> unidadeMedidas) {
 		this.unidadeMedidas = unidadeMedidas;
+	}
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 
 }
