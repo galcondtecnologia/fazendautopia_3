@@ -54,7 +54,7 @@ public class ServletAutenticacao extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else {
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginTeste.xhtml");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.xhtml");
 			dispatcher.forward(request, response);
 		}
 

@@ -7,8 +7,8 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro Usuário</title>
-	<link rel="shortcut icon" href="../resources/images/icons/logo.png" />
+	<title>Login</title>
+	<link rel="shortcut icon" href="./resources/images/icons/logo.png" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet"
@@ -17,8 +17,8 @@
 		crossorigin="anonymous" />
 
 	<link rel="stylesheet" type="text/css"
-		href="../resources/css/cadastroLogin.css" />
-	<h:outputStylesheet library="../resources/css"
+		href="./resources/css/cadastroLogin.css" />
+	<h:outputStylesheet library="./resources/css"
 		name="/cadastroLogin.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -30,7 +30,7 @@
 
 
 		<div>
-			<img src="../resources/images/icons/logo.png" alt=""
+			<img src="./resources/images/icons/logo.png" alt=""
 				style="width: 7em; margin-top: 2em" />
 		</div>
 
@@ -38,9 +38,7 @@
 
 		<div>
 
-			<h:form title="Cadastro de usuário" class="margin margem-topo"
-				prependId="false">
-
+			<form title="Login" class="margin margem-topo" action="ServletAutenticacao" method="post">
 
 
 				<div
@@ -53,39 +51,32 @@
 				</div>
 
 
-
 				<div class="input-group flex-nowrap ajustebtnA">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="addon-wrapping"><i
 							class="fa fa-envelope" style="width: 1em"></i></span>
 					</div>
-					<p:inputText type="email" alt="Email" label="Email" required="true"
-						placeholder="Email" class="inputSize" onkeyup="atualizarEmail()"
-						value="#{usuarioBean.usuario.email}" onchange="validMail()"
-						id="email"></p:inputText>
+					<input type="text" alt="Email" onkeyup="atualizarEmail()" onchange="validMail()" id="email" placeholder="Email"
+						class="inputSize" name="email" style="padding:0.3em; border-radius:0.2em;width: 100%"></input>
 				</div>
 				<div class="input-group flex-nowrap ajustebtnB">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="addon-wrapping"><i
 							class="fa fa-lock" style="width: 1em"></i></span>
 					</div>
-					<p:inputText type="password" label="Senha" placeholder="Senha"
-						required="true" class="inputSize"
-						value="#{usuarioBean.usuario.senha}"></p:inputText>
+					<input type="password" placeholder="Senha"
+						class="inputSize" name="senha" style="padding:0.3em; border-radius:0.2em; width: 100%"></input>
 				</div>
-				<h:outputLink value="login.xhtml" class="btn btn-light tamanhoBtn">Login</h:outputLink>
-				<p:commandButton value="Cadastrar"
-					class="btn btn-success tamanhoBtn"
-					actionListener="#{usuarioBean.salvar()}" style="width:8em" />
+				<h:outputLink value="cadastro-usuario.xhtml"
+					class="btn btn-light tamanhoBtn" onclick="#{usuarioBean.novo()}">Cadastrar</h:outputLink>
+				<input type="submit" value="Entrar" class="btn btn-success tamanhoBtn" />
 				<div style="margin: 2em;">
-					<p:commandLink value="Esqueci a senha" class="botao-link"></p:commandLink>
+					<p:commandLink value="Esqueci a senha"
+						class="botao-link tamanhoBtn"></p:commandLink>
 				</div>
-			</h:form>
+			</form>
 		</div>
 	</div>
-	<script>
- Window.load "#{usuarioBean.novo()}"
-</script>
-	<script src="../resources/js/validemail.js"></script>
+	<script src="./resources/js/validemail.js"></script>
 </h:body>
 </html>
