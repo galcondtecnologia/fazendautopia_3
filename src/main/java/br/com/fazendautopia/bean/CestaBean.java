@@ -182,7 +182,7 @@ public class CestaBean implements Serializable {
 		}
 	}
 	@Named
-	public void selecionar(ActionEvent evento) {
+	public void selecionarCesta(ActionEvent evento) {
 		try {
 			
 			cestaSelecionada = (Cesta) evento.getComponent().getAttributes().get("cestaSelecionada");
@@ -200,7 +200,7 @@ public class CestaBean implements Serializable {
 		try {
 			
 			cesta = (Cesta) evento.getComponent().getAttributes().get("cestaSelecionada");
-			
+			System.out.println("Cesta capturada: " + cesta.getDescricao());
 			Messages.addGlobalInfo("Cesta alterada com sucesso!");
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar alterar a cesta! " + e);

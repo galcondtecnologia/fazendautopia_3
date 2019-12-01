@@ -116,7 +116,7 @@
 									</div>
 									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
 										title="Ver Detalhes" styleClass="btn-lista-de-itens"
-										actionListener="#{cestaBean.selecionar}">
+										actionListener="#{cestaBean.selecionarCesta}">
 										<f:attribute name="cestaSelecionada" value="#{cesta}" />
 										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
@@ -135,7 +135,7 @@
 										class="imagem-tamanho-p" />
 									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
 										title="Detalhes" styleClass="btn-lista-de-itens"
-										actionListener="#{cestaBean.selecionar}">
+										actionListener="#{cestaBean.selecionarCesta}">
 										<f:attribute name="cestaSelecionada" value="#{cesta}" />
 										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
