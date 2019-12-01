@@ -194,20 +194,11 @@ public class ProdutoBean implements Serializable {
 	@Named
 	public void selecionar(ActionEvent event) {
 		try {
-			CategoriaProdutoDAO dao3 = new CategoriaProdutoDAO();
-			categoriaProdutos = dao3.listar();
-
-			FornecedorDAO dao2 = new FornecedorDAO();
-			fornecedores = dao2.listar();
-
 			produtoSelecionado = (Produto) event.getComponent().getAttributes().get("produtoSelecionado");
-
-			ProdutoDAO dao = new ProdutoDAO();
-			produtos = dao.listar();
-			System.out.println("Produto capturado: " + produto.getDescricao());
+			System.out.println("Produto capturado: " + produtoSelecionado.getDescricao());
 			
 		}catch(RuntimeException e) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar alterar o produto! " + e);
+			Messages.addGlobalError("Ocorreu um erro ao tentar selecionar o produto! " + e);
 			e.printStackTrace();
 		}
 	}

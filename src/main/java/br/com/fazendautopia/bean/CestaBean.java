@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
+import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
 
@@ -34,6 +35,7 @@ import br.com.fazendautopia.domain.Produto;
 public class CestaBean implements Serializable {
 
 	private Cesta cesta;
+	private Cesta cestaSelecionada;
 	private List<Cesta> cestas;
 	private List<CategoriaCesta> categoriacestas;
 	private List<Produto> produtos;
@@ -179,6 +181,20 @@ public class CestaBean implements Serializable {
 
 		}
 	}
+	@Named
+	public void selecionar(ActionEvent evento) {
+		try {
+			
+			cestaSelecionada = (Cesta) evento.getComponent().getAttributes().get("cestaSelecionada");
+			
+			System.out.println("Cesta capturada: " + cestaSelecionada.getDescricao());
+		} catch (RuntimeException e) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar alterar a cesta! " + e);
+			e.printStackTrace();
+
+		}
+	}
+
 
 	public void editar(ActionEvent evento) {
 		try {
@@ -280,5 +296,14 @@ public class CestaBean implements Serializable {
 	public void setProdutoCaturado(List<Produto> produtoCaturado) {
 		this.produtoCaturado = produtoCaturado;
 	}
+
+	public Cesta getCestaSelecionada() {
+		return cestaSelecionada;
+	}
+
+	public void setCestaSelecionada(Cesta cestaSelecionada) {
+		this.cestaSelecionada = cestaSelecionada;
+	}
+	
 
 }

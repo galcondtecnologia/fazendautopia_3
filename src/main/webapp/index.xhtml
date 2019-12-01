@@ -114,10 +114,14 @@
 										<h:outputText value="R$ #{cesta.precovenda}0"
 											style="font-size:1.5em; font-weight:bold" />
 									</div>
-									<p:commandButton oncomplete="PF('dlgCesta').show(cestas)"
-										title="Ver Detalhes" styleClass="btn-lista-de-itens">
-										<f:setPropertyActionListener value="" target="" />
+									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
+										title="Ver Detalhes" styleClass="btn-lista-de-itens"
+										actionListener="#{cestaBean.selecionar}">
+										<f:attribute name="cestaSelecionada" value="#{cesta}" />
+										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
+									
+									
 								</h:panelGrid>
 							</p:panel>
 						</p:dataViewGridItem>
@@ -129,9 +133,11 @@
 								<h:panelGrid style="width:10%;">
 									<h:graphicImage value="#{cesta.imagemnome}"
 										class="imagem-tamanho-p" />
-									<p:commandButton oncomplete="PF('dlgCesta').show(cestas)"
-										title="Detalhes" styleClass="btn-lista-de-itens">
-										<f:setPropertyActionListener value="" target="" />
+									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
+										title="Detalhes" styleClass="btn-lista-de-itens"
+										actionListener="#{cestaBean.selecionar}">
+										<f:attribute name="cestaSelecionada" value="#{cesta}" />
+										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
 								</h:panelGrid>
 								<h:panelGrid style="width:98%">
@@ -178,7 +184,7 @@
 
 									<!-- Informações da cesta selecionada (Descrição + qtd itens) -->
 									<h:outputLabel style="padding:0.9em" id="label-cesta-descricao"
-										value="Cesta Mini 06 itens"></h:outputLabel>
+										value="#{cestaBean.cesta.descricao} Cesta..."></h:outputLabel>
 
 									<!-- Informações da cesta selecionada () -->
 									<h:outputLabel style="padding:0.9em">R$</h:outputLabel>
@@ -398,7 +404,7 @@
 											style="font-size:1.5em; font-weight:bold" />
 									</div>
 									<p:commandButton update=":formCadastro"
-										oncomplete="PF('dialogo').show()" title="Ver Detalhes"
+										oncomplete="PF('dlgProduto').show()" title="Ver Detalhes"
 										styleClass="btn-lista-de-itens"
 										actionListener="#{produtoBean.selecionar}">
 										<f:attribute name="produtoSelecionado" value="#{produto}" />
@@ -422,9 +428,12 @@
 
 									<h:outputText value="R$ #{produto.precoVenda}"
 										style="font-size:1.2em; font-weight:bold;" />
-									<p:commandButton oncomplete="PF('dlgProduto').show()"
-										title="Detalhes" styleClass="btn-lista-de-itens">
-										<f:setPropertyActionListener value="" target="" />
+									<p:commandButton update=":formCadastro"
+										oncomplete="PF('dlgProduto').show()" title="Detalhes"
+										styleClass="btn-lista-de-itens"
+										actionListener="#{produtoBean.selecionar}">
+										<f:attribute name="produtoSelecionado" value="#{produto}" />
+										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
 
 								</h:panelGrid>
@@ -482,7 +491,7 @@
 								<!-- Informações do produto selecionado (Preço com cifrão o padrão deve ser R$ 99,99) -->
 								<h:outputLabel style="padding:0.9em;">R$</h:outputLabel>
 								<h:outputLabel style="padding:0.9em;" id="preco-produto"
-									value="#{produtoBean.produto.precoVenda} 0.00"></h:outputLabel>
+									value="#{produtoBean.produto.precoVenda} 1.00"></h:outputLabel>
 
 							</div>
 							<div style="margin-bottom: 1em">
