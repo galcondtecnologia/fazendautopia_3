@@ -16,7 +16,7 @@
 	<h:outputStylesheet library="css" name="/main.css" />
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/cssformulariocontato.css" />
-	<h:outputScript library="js" name="/" />
+	
 </h:head>
 <h:body class="container">
 
@@ -85,6 +85,7 @@
 				<p>Selecione a cesta ideal para você e sua família</p>
 			</div>
 			<div class="container-cesta-semana">
+				<h:outputText value="#{autentiacacaoBean.usuarioLogado.email}" />
 				<h:form id="form" prependId="false">
 					<p:dataView var="cesta" value="#{cestaBean.cestas}" rows="3"
 						paginator="true" rowsPerPageTemplate="3,6,9"
@@ -114,14 +115,16 @@
 										<h:outputText value="R$ #{cesta.precovenda}0"
 											style="font-size:1.5em; font-weight:bold" />
 									</div>
-									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
-										title="Ver Detalhes" styleClass="btn-lista-de-itens"
+									<p:commandButton update=":formCesta"
+										oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
+										styleClass="btn-lista-de-itens"
 										actionListener="#{cestaBean.selecionarCesta}">
 										<f:attribute name="cestaSelecionada" value="#{cesta}" />
-										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+										<f:actionListener
+											type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
-									
-									
+
+
 								</h:panelGrid>
 							</p:panel>
 						</p:dataViewGridItem>
@@ -133,11 +136,13 @@
 								<h:panelGrid style="width:10%;">
 									<h:graphicImage value="#{cesta.imagemnome}"
 										class="imagem-tamanho-p" />
-									<p:commandButton update=":formCesta" oncomplete="PF('dlgCesta').show()"
-										title="Detalhes" styleClass="btn-lista-de-itens"
+									<p:commandButton update=":formCesta"
+										oncomplete="PF('dlgCesta').show()" title="Detalhes"
+										styleClass="btn-lista-de-itens"
 										actionListener="#{cestaBean.selecionarCesta}">
 										<f:attribute name="cestaSelecionada" value="#{cesta}" />
-										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+										<f:actionListener
+											type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
 								</h:panelGrid>
 								<h:panelGrid style="width:98%">
@@ -408,7 +413,8 @@
 										styleClass="btn-lista-de-itens"
 										actionListener="#{produtoBean.selecionar}">
 										<f:attribute name="produtoSelecionado" value="#{produto}" />
-										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+										<f:actionListener
+											type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
 								</h:panelGrid>
 							</p:panel>
@@ -433,7 +439,8 @@
 										styleClass="btn-lista-de-itens"
 										actionListener="#{produtoBean.selecionar}">
 										<f:attribute name="produtoSelecionado" value="#{produto}" />
-										<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+										<f:actionListener
+											type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 									</p:commandButton>
 
 								</h:panelGrid>
@@ -451,10 +458,11 @@
 						<h:form id="formCadastro" enctype="multipart/form-data"
 							prependId="false">
 							<h:panelGrid columns="2">
-							<h:outputLabel value="Descrição: " for="descricao" />
-							<p:inputText maxlength="33" size="38" id="descricao"
-								required="true" rendered="true" value="#{produtoBean.produto.descricao}" />
-								</h:panelGrid>
+								<h:outputLabel value="Descrição: " for="descricao" />
+								<p:inputText maxlength="33" size="38" id="descricao"
+									required="true" rendered="true"
+									value="#{produtoBean.produto.descricao}" />
+							</h:panelGrid>
 						</h:form>
 					</p:dialog>
 
@@ -561,25 +569,6 @@
 					<!-- fim dialog cesta selecionada________________________________________________________________ -->
 				</h:form>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

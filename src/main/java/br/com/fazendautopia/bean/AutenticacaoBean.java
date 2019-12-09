@@ -5,7 +5,9 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.hibernate.Session;
 import org.omnifaces.util.Faces;
@@ -17,7 +19,7 @@ import br.com.fazendautopia.util.HibernateUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AutenticacaoBean implements Serializable {
 
 	private Usuario usuario = new Usuario();
@@ -41,6 +43,7 @@ public class AutenticacaoBean implements Serializable {
 				Messages.addGlobalError("Erro na autenticação ");
 			}
 			Messages.addGlobalInfo("Usuario Logado" + usuarioLogado);
+			System.out.println("Usuario Logado" + usuarioLogado.getEmail());
 			Faces.redirect("./index.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,13 +51,17 @@ public class AutenticacaoBean implements Serializable {
 		}
 	}
 
-	public void sair() {
-		System.out.println("Chama sessão");
-		Session session = HibernateUtil.getFabricaDeSessoes().openSession();
-		if (usuarioLogado.equals(true)) {
-			session.disconnect();
-			System.out.println("Fechou sessão: " + session + usuarioLogado.getEmail());
-		}
+	public void sair() throws Exception {
+//		Session session = HibernateUtil.getFabricaDeSessoes().openSession();
+
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		System.out.println("Sesão fechada: ");
+//		if (usuarioLogado.equals(true)) {
+//			session.disconnect();
+
+//			Faces.redirect("./login.xhtml");
+//
+//		}
 	}
 
 	public Usuario getUsuario() {

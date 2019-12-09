@@ -18,8 +18,7 @@
 
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/cadastroLogin.css" />
-	<h:outputStylesheet library="./resources/css"
-		name="/cadastroLogin.css" />
+	<h:outputStylesheet library="./resources/css" name="/cadastroLogin.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
@@ -38,17 +37,8 @@
 
 		<div>
 
-			<form title="Login" class="margin margem-topo" action="ServletAutenticacao" method="post">
+			<h:form title="Login" class="margin margem-topo">
 
-
-				<div
-					class="alert alert-warning alert-dismissible fade show displaynone"
-					id="alert-email">
-					<strong>E-mail</strong> inválido, verifique!
-					<button type="button" class="close" onclick="exibirOuOcultarMsg()">
-						<span>&times;</span>
-					</button>
-				</div>
 
 
 				<div class="input-group flex-nowrap ajustebtnA">
@@ -56,27 +46,33 @@
 						<span class="input-group-text" id="addon-wrapping"><i
 							class="fa fa-envelope" style="width: 1em"></i></span>
 					</div>
-					<input type="text" alt="Email" onkeyup="atualizarEmail()" onchange="validMail()" id="email" placeholder="Email"
-						class="inputSize" name="email" style="padding:0.3em; border-radius:0.2em;width: 100%"></input>
+					<p:inputText alt="Email" onkeyup="atualizarEmail()"
+						onchange="validMail()" id="email" placeholder="Email"
+						class="inputSize" name="email"
+						value="#{autenticacaoBean.usuario.email}"
+						style="padding:0.3em; border-radius:0.2em;width: 100%" />
 				</div>
 				<div class="input-group flex-nowrap ajustebtnB">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="addon-wrapping"><i
 							class="fa fa-lock" style="width: 1em"></i></span>
 					</div>
-					<input type="password" placeholder="Senha"
-						class="inputSize" name="senha" style="padding:0.3em; border-radius:0.2em; width: 100%"></input>
+					<p:password placeholder="Senha" class="inputSize" name="senha"
+						style="padding:0.3em; border-radius:0.2em; width: 100%"
+						value="#{autenticacaoBean.usuario.senha}" />
+
 				</div>
 				<h:outputLink value="cadastro-usuario.xhtml"
 					class="btn btn-light tamanhoBtn" onclick="#{usuarioBean.novo()}">Cadastrar</h:outputLink>
-				<input type="submit" value="Entrar" class="btn btn-success tamanhoBtn" />
+				<p:commandButton value="Entrar" class="btn btn-success tamanhoBtn"
+					actionListener="#{autenticacaoBean.autenticar()}" />
 				<div style="margin: 2em;">
 					<p:commandLink value="Esqueci a senha"
 						class="botao-link tamanhoBtn"></p:commandLink>
 				</div>
-			</form>
+			</h:form>
 		</div>
 	</div>
-	<script src="./resources/js/validemail.js"></script>
+<!-- 		<script src="./resources/js/validemail.js"></script> -->
 </h:body>
 </html>

@@ -19,7 +19,7 @@ import br.com.fazendautopia.domain.Usuario;
  * todos que estiverem dentro da pagina pages precisa de autenticacao
  */
 
-@WebFilter(urlPatterns = { "/pages/*" })
+//@WebFilter(urlPatterns = { "/pages/*" })
 public class FilterAutenticacao implements Filter {
 
 	/**

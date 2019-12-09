@@ -19,7 +19,7 @@ import br.com.fazendautopia.domain.Usuario;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class UsuarioBean implements Serializable{
+public class UsuarioBean2 implements Serializable{
 
 	private Usuario usuario;
 	private List<Usuario> usuarios;
