@@ -16,8 +16,10 @@ public class AutenticacaoListener implements PhaseListener {
 	public void afterPhase(PhaseEvent event) {
 		// pega a pagina atual
 		String paginaAtual = Faces.getViewId();
-		//paginas que nao precisao de autenticacao
-		boolean ehPaginaDeAutenticacao = paginaAtual.contains("/login.xhtml") || paginaAtual.contains("/index.xhtml") || paginaAtual.contains("/cadastro-usuario.xhtml");
+		// paginas que nao precisao de autenticacao
+		boolean ehPaginaDeAutenticacao = paginaAtual.contains("/login.xhtml") || paginaAtual.contains("/index.xhtml")
+				|| paginaAtual.contains("/cadastro-usuario.xhtml")
+						|| paginaAtual.contains("http://localhost:8080/fazendautopia_3/rest/fazendautopia");
 		// se nao for a pagina de autenticacao , entao e privada
 
 		if (!ehPaginaDeAutenticacao) {
