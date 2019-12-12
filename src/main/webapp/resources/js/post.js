@@ -5,7 +5,7 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
-  pedido = JSON.stringify(pedido);
+  pedido = JSON.parse(pedido);
   enviarParaServidor();
 });
 
@@ -46,7 +46,7 @@ function criarPedido(form) {
           break
         case "text":
         case "number":
-/*            switch (input.name) {
+            switch (input.name) {
 	    case 'enderecoEntrega':
 		pedido.regiao = enderecoStoragePedidos.regiao;
 	    case 'nomeUsuario':
@@ -56,14 +56,14 @@ function criarPedido(form) {
 		break;
 	    default:
 		break;
-	    }*/
-            pedido[input.name] = input.value;
+	    }
+            // pedido[input.name] = input.value;
           break;
         default:
       }
     }
-    //let produtos = localStorage.getItem('Pedidos');
-   // pedido.produtos = JSON.parse(produtos);
+    let produtos = localStorage.getItem('Pedidos');
+   pedido.produtos = JSON.parse(produtos);
     pedido.observacao = obs.value;
     pedido.regiao = enderecoStoragePedidos.regiao;
     console.log(pedido);
