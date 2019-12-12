@@ -34,9 +34,9 @@ function criarPedido(form) {
 	switch (input.type) {
         case "checkbox":
           if (input.checked) {
-            pedido[input.name] = 'Sim';
+            pedido[input.name] = true;
           } else {
-            pedido[input.name] = 'Nao';
+            pedido[input.name] = false;
           }
           break
         case "radio":
@@ -50,9 +50,11 @@ function criarPedido(form) {
 	    case 'enderecoEntrega':
 		pedido.regiao = enderecoStoragePedidos.regiao;
 	    case 'nomeUsuario':
+		pedido[input.name] = input.value;
+		break;
 	    case 'totalPedido':
 	    case 'valorFrete':
-	          pedido[input.name] = input.value;
+	          pedido[input.name] = parseFloat(input.value);
 		break;
 	    default:
 		break;
