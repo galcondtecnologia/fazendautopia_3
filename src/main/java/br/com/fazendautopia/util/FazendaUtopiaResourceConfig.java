@@ -8,6 +8,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 @ApplicationPath("rest")
 public class FazendaUtopiaResourceConfig extends ResourceConfig {
 	public FazendaUtopiaResourceConfig() {
-		packages("br.com.fazendautopia.service");
+		packages("br.com.fazendautopia.util.service");
 	}
 }
