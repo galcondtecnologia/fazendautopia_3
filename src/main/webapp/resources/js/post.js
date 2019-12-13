@@ -5,7 +5,7 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
-  pedido = JSON.parse(pedido);
+  pedido = pedido;
   enviarParaServidor();
 });
 

@@ -106,7 +106,10 @@
 
 											<p:selectOneMenu filter="true" value=""
 												onchange="mostrarCheckBox()" class="inputSize"
-												 widgetVar="lista-regioes" disabled="" id="regioes">
+												 widgetVar="lista-regioes" disabled="" converter="omnifaces.SelectItemsConverter" id="regioes">
+												<f:selectItems value="#{regiaoBean.regioes}" var="regiao" itemLabel="#{regiao.descricao}"></f:selectItems>
+												<!-- 
+												
 												<f:selectItem itemLabel="Região" itemValue=""
 													noSelectionOption="true" />
 												<f:selectItem itemLabel="Centro-RJ" itemDescription="Acre"
@@ -120,7 +123,7 @@
 												<f:selectItem itemLabel="Tijuca-RJ" itemDescription="Bahia"
 													itemValue="BA" />
 												<f:selectItem itemLabel="Nenhuma anterior"
-													itemDescription="Nenhuma" itemValue="0" />
+													itemDescription="Nenhuma" itemValue="0" /> -->
 											</p:selectOneMenu>
 										</div>
 
