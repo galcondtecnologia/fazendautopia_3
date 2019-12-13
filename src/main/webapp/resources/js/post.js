@@ -65,9 +65,10 @@ function criarPedido(form) {
       }
     }
     let produtos = localStorage.getItem('Pedidos');
-   pedido.produtos = JSON.parse(produtos);
+   pedido.itens = JSON.parse(produtos);
     pedido.observacao = obs.value;
     pedido.regiao = enderecoStoragePedidos.regiao;
+    pedido.retirada = pedido.enderecoEntrega.slice(0,8) == "Retirada";
     console.log(pedido);
   }
 criarPedido(form);
