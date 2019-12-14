@@ -5,14 +5,15 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
+  _pedido = converterItensEmString(pedido);
+  console.log(_pedido);
   pedido = JSON.stringify(pedido);
-  //console.log(pedido);
+  // console.log(pedido);
   enviarParaServidor(pedido);
 });
 
 
 function enviarParaServidor(_pedido) {
-    console.log(_pedido);
     fetch('http://localhost:8080/fazendautopia/rest/pedido', {
 	    method: 'POST',
 	    body: _pedido
@@ -71,6 +72,19 @@ function criarPedido(form) {
     pedido.retirada = pedido.enderecoEntrega.slice(0,8) == "Retirada";
   }
 criarPedido(form);
+
+function converterItensEmString(pedido){
+    //debugger;
+    let total = pedido.itens.length;
+    let i = indice =0;
+    for(i; i<total; i++){
+	let stringItens = pedido.itens[i]._produtos;
+	pedido.itens[i]._produtos = stringItens.toString();
+	//pedido.itens[i] = pedido.itens[i].toString();
+    }
+    console.log(pedido);
+    return pedido;
+}
 
 
 
