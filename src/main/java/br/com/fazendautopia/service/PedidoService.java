@@ -1,5 +1,6 @@
 package br.com.fazendautopia.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -45,6 +46,7 @@ public class PedidoService {
 		Pedido pedido = gson.fromJson(json, Pedido.class);
 
 		PedidoDAO dao = new PedidoDAO();
+		pedido.setDataeHora(new Date());
 		pedido = dao.merge(pedido);
 
 		String jsonSaida = gson.toJson(pedido);
