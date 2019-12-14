@@ -13,14 +13,14 @@ form.addEventListener('submit', function (e) {
 function enviarParaServidor() {
     fetch('http://localhost:8080/fazendautopia/rest/fazendautopia', {
 	    method: 'POST',
-	    body: pedido
+	    body: JSON.stringify(pedido)
 	  })
 	    .then(function (response) {
 	      return response.json();
 	    })
 	    .then(function (response) {
 	      console.log(response);
-	      alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
+	      alert('Resposta de sucesso do servidor: ' + response);
 	    });
 }
 
