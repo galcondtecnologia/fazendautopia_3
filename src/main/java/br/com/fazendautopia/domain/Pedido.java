@@ -10,39 +10,24 @@ import javax.persistence.Entity;
 public class Pedido extends GenericDomain {
 	private Date dataeHora;
 	private Cliente cliente;
-	private ArrayList<String> cestas;
-	private ArrayList<String> produtosAdicionais;
+	private ArrayList<String> itens;
 	private boolean ecoBag;
-	private Double valorTotal;
+	private Double totalPedido;
 	private Double valorFrete;
-	private String modoPagamento;
-	private String observacoes;
+	private String tipoPagamento;
+	private String observacao;
 	private int plano;
-	private String endereco;
+	private String enderecoEntrega;
 	private String regiao;
+	private boolean retirada;
+	private String nomeRecebedor;
 
-	public String getRegiao() {
-		return regiao;
+	public String getNomeRecebedor() {
+		return nomeRecebedor;
 	}
 
-	public void setRegiao(String regiao) {
-		this.regiao = regiao;
-	}
-
-	public ArrayList<String> getCestas() {
-		return cestas;
-	}
-
-	public void setCestas(ArrayList<String> cestas) {
-		this.cestas = cestas;
-	}
-
-	public ArrayList<String> getProdutosAdicionais() {
-		return produtosAdicionais;
-	}
-
-	public void setProdutosAdicionais(ArrayList<String> produtosAdicionais) {
-		this.produtosAdicionais = produtosAdicionais;
+	public void setNomeRecebedor(String nomeRecebedor) {
+		this.nomeRecebedor = nomeRecebedor;
 	}
 
 	public Date getDataeHora() {
@@ -61,6 +46,14 @@ public class Pedido extends GenericDomain {
 		this.cliente = cliente;
 	}
 
+	public ArrayList<String> getItens() {
+		return itens;
+	}
+
+	public void setItens(ArrayList<String> itens) {
+		this.itens = itens;
+	}
+
 	public boolean isEcoBag() {
 		return ecoBag;
 	}
@@ -69,12 +62,12 @@ public class Pedido extends GenericDomain {
 		this.ecoBag = ecoBag;
 	}
 
-	public Double getValorTotal() {
-		return valorTotal;
+	public Double getTotalPedido() {
+		return totalPedido;
 	}
 
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setTotalPedido(Double totalPedido) {
+		this.totalPedido = totalPedido;
 	}
 
 	public Double getValorFrete() {
@@ -85,20 +78,20 @@ public class Pedido extends GenericDomain {
 		this.valorFrete = valorFrete;
 	}
 
-	public String getModoPagamento() {
-		return modoPagamento;
+	public String getTipoPagamento() {
+		return tipoPagamento;
 	}
 
-	public void setModoPagamento(String modoPagamento) {
-		this.modoPagamento = modoPagamento;
+	public void setTipoPagamento(String tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public int getPlano() {
@@ -109,12 +102,28 @@ public class Pedido extends GenericDomain {
 		this.plano = plano;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getEnderecoEntrega() {
+		return enderecoEntrega;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setEnderecoEntrega(String enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
+	}
+
+	public String getRegiao() {
+		return regiao;
+	}
+
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
+	}
+
+	public boolean isRetirada() {
+		return retirada;
+	}
+
+	public void setRetirada(boolean retirada) {
+		this.retirada = retirada;
 	}
 
 }

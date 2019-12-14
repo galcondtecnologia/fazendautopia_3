@@ -49,7 +49,7 @@ function criarPedido(form) {
             switch (input.name) {
 	    case 'enderecoEntrega':
 		pedido.regiao = enderecoStoragePedidos.regiao;
-	    case 'nomeUsuario':
+	    case 'nomeRecebedor':
 		pedido[input.name] = input.value;
 		break;
 	    case 'totalPedido':
@@ -65,7 +65,7 @@ function criarPedido(form) {
       }
     }
     let produtos = localStorage.getItem('Pedidos');
-   pedido.itens = JSON.parse(produtos);
+    pedido.itens = JSON.parse(produtos);
     pedido.observacao = obs.value;
     pedido.regiao = enderecoStoragePedidos.regiao;
     pedido.retirada = pedido.enderecoEntrega.slice(0,8) == "Retirada";

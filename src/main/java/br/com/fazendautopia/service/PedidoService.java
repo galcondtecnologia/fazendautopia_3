@@ -48,6 +48,8 @@ public class PedidoService {
 		pedido = dao.merge(pedido);
 
 		String jsonSaida = gson.toJson(pedido);
+		
+		System.out.println(jsonSaida);
 		// retornar o objeto ou o codigo 200
 		return jsonSaida;
 
