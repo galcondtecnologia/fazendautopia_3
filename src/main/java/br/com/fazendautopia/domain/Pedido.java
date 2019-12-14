@@ -2,7 +2,6 @@ package br.com.fazendautopia.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 
@@ -20,6 +19,15 @@ public class Pedido extends GenericDomain {
 	private String observacoes;
 	private int plano;
 	private String endereco;
+	private String regiao;
+
+	public String getRegiao() {
+		return regiao;
+	}
+
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
+	}
 
 	public ArrayList<String> getCestas() {
 		return cestas;
