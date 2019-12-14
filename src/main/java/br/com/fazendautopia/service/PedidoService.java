@@ -44,7 +44,6 @@ public class PedidoService {
 	// http://localhost:8080/fazendautopia_3/rest/pedido
 	@POST
 	public String salvar(String json) {
-		ArrayList<Itens> intess;
 		Gson gson = new Gson();
 		Pedido pedido = gson.fromJson(json, Pedido.class);
 		System.out.println(pedido);

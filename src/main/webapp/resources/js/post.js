@@ -80,7 +80,7 @@ function converterItensEmString(pedido){
     for(i; i<total; i++){
 	let stringItens = pedido.itens[i]._produtos;
 	pedido.itens[i]._produtos = stringItens.toString();
-	//pedido.itens[i] = pedido.itens[i].toString();
+	//pedido.itens[i] = JSON.stringify(pedido.itens[i]);
     }
     console.log(pedido);
     return pedido;

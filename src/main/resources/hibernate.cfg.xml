@@ -40,6 +40,7 @@
 		<mapping class="br.com.fazendautopia.domain.Usuario" />
 		<mapping class="br.com.fazendautopia.domain.Cliente" />
 		<mapping class="br.com.fazendautopia.domain.Pedido" />
+		<mapping class="br.com.fazendautopia.domain.Itens" />
 
 	</session-factory>
 </hibernate-configuration>

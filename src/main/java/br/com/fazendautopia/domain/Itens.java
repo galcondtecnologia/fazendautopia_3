@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 public class Itens implements Serializable {
 
 	private String _preco;
-	private String _produtos;
+	private ArrayList<String> _produtos;
 	private String _qtd;
 	private String _titulo;
 
@@ -22,11 +22,11 @@ public class Itens implements Serializable {
 		this._preco = _preco;
 	}
 
-	public String get_produtos() {
+	public ArrayList<String> get_produtos() {
 		return _produtos;
 	}
 
-	public void set_produtos(String _produtos) {
+	public void set_produtos(ArrayList<String> _produtos) {
 		this._produtos = _produtos;
 	}
 
