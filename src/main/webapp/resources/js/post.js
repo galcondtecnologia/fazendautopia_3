@@ -5,22 +5,22 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
-  pedido = pedido;
-  enviarParaServidor();
+  pedido = JSON.stringify(pedido);
+  //console.log(pedido);
+  enviarParaServidor(pedido);
 });
 
 
-function enviarParaServidor() {
+function enviarParaServidor(_pedido) {
+    console.log(_pedido);
     fetch('http://localhost:8080/fazendautopia/rest/pedido', {
 	    method: 'POST',
-	    body: JSON.stringify(pedido)
+	    body: _pedido
 	  })
 	    .then(function (response) {
-	      return response.json();
-	    })
-	    .then(function (response) {
-	      console.log(response);
-	      alert('Resposta de sucesso do servidor: ' + response);
+	     return response.json();
+	    }).then(function (response){
+		alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
 	    });
 }
 
@@ -69,7 +69,6 @@ function criarPedido(form) {
     pedido.observacao = obs.value;
     pedido.regiao = enderecoStoragePedidos.regiao;
     pedido.retirada = pedido.enderecoEntrega.slice(0,8) == "Retirada";
-    console.log(pedido);
   }
 criarPedido(form);
 
