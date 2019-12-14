@@ -1,5 +1,6 @@
 package br.com.fazendautopia.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import com.google.gson.Gson;
 
 import br.com.fazendautopia.dao.PedidoDAO;
+import br.com.fazendautopia.domain.Itens;
 import br.com.fazendautopia.domain.Pedido;
 
 @Path("pedido")
@@ -42,15 +44,17 @@ public class PedidoService {
 	// http://localhost:8080/fazendautopia_3/rest/pedido
 	@POST
 	public String salvar(String json) {
+		ArrayList<Itens> intess;
 		Gson gson = new Gson();
 		Pedido pedido = gson.fromJson(json, Pedido.class);
-
+		System.out.println(pedido);
+		
 		PedidoDAO dao = new PedidoDAO();
 		pedido.setDataeHora(new Date());
 		pedido = dao.merge(pedido);
 
 		String jsonSaida = gson.toJson(pedido);
-		
+
 		System.out.println(jsonSaida);
 		// retornar o objeto ou o codigo 200
 		return jsonSaida;
