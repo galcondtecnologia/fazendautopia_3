@@ -2,6 +2,7 @@ package br.com.fazendautopia.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 
@@ -10,7 +11,7 @@ import javax.persistence.Entity;
 public class Itens extends GenericDomain {
 
 	private String _preco;
-	private ArrayList<String> _produtos;
+	private String _produtos;
 	private String _qtd;
 	private String _titulo;
 
@@ -22,11 +23,12 @@ public class Itens extends GenericDomain {
 		this._preco = _preco;
 	}
 
-	public ArrayList<String> get_produtos() {
+
+	public String get_produtos() {
 		return _produtos;
 	}
 
-	public void set_produtos(ArrayList<String> _produtos) {
+	public void set_produtos(String _produtos) {
 		this._produtos = _produtos;
 	}
 

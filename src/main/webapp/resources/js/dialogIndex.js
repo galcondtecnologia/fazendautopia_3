@@ -234,7 +234,10 @@ function notificar(mensagem) {
 }
 
 function salvarEmLocalStored(item, mensagem) {
-    salvarItemNoBanco(item);
+    //debugger;
+    item[0]._produtos = item[0]._produtos.toString();
+    console.log(item);
+    salvarItemNoBanco(JSON.stringify(item));
     let emPedidos = lerPedidosEmLocalStarage();
     if (emPedidos == null) {
 	let _item2 = JSON.stringify(item);
@@ -246,7 +249,7 @@ function salvarEmLocalStored(item, mensagem) {
     }
     arrayDeProdutosDaCesta = [];
     notificar(mensagem);
-    atualizarPagina();
+    //atualizarPagina();
 }
 
 function lerPedidosEmLocalStarage() {
