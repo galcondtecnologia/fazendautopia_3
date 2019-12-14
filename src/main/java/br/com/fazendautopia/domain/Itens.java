@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 @SuppressWarnings("serial")
 @Entity
-public class Itens implements Serializable {
+public class Itens extends GenericDomain {
 
 	private String _preco;
 	private ArrayList<String> _produtos;

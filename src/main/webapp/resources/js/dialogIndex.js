@@ -147,10 +147,14 @@ botaoColocarNoCarrinho
 		});
 
 var listaDePedidos = [];
+
 function adicionarProdutoNaCesta(_cesta) {
+
     listaDePedidos.push(_cesta);
     salvarEmLocalStored(listaDePedidos, 'Cesta adicionada');
 }
+
+
 
 function cesta(titulo, produtos, preco, qtd) {
     this._titulo = titulo;
@@ -230,6 +234,7 @@ function notificar(mensagem) {
 }
 
 function salvarEmLocalStored(item, mensagem) {
+    salvarItemNoBanco(item);
     let emPedidos = lerPedidosEmLocalStarage();
     if (emPedidos == null) {
 	let _item2 = JSON.stringify(item);
@@ -250,12 +255,12 @@ function lerPedidosEmLocalStarage() {
     return localStoragePedidos;
 }
 
-function atualizarPagina() {
+/*function atualizarPagina() {
     setInterval(() => {
 	    location.reload();
     }, 2000);
 }
-
+*/
 
 function atribuirQtdProdutoNoIconeCarrinho() {
     let pedidos = lerPedidosEmLocalStarage();
@@ -277,6 +282,22 @@ atribuirQtdProdutoNoIconeCarrinho();
 
 function imprimir(prod) {
     console.log(prod);
+}
+
+
+
+
+
+function salvarItemNoBanco(item) {
+    fetch('http://localhost:8080/fazendautopia/rest/item', {
+	    method: 'POST',
+	    body: item
+	  })
+	    .then(function (response) {
+	     return response.json();
+	    }).then(function (response){
+		alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
+	    });
 }
 
 
