@@ -22,24 +22,24 @@ public class FazendaUtopiaService {
 //		return "Curso de Java";
 //	}
 
-//	@GET
-//	public String gerarlista() {
-//		UnidadeMedidaDAO unidadeMedidasDao = new UnidadeMedidaDAO();
-//		List<UnidadeMedida> unidades = unidadeMedidasDao.listar();
-//
-//		Gson gson = new Gson();
-//		String json = gson.toJson(unidades);
-//
-//		return json;
-//	}
+	@GET
+	public String gerarlista() {
+		UnidadeMedidaDAO unidadeMedidasDao = new UnidadeMedidaDAO();
+		List<UnidadeMedida> unidades = unidadeMedidasDao.listar();
 
-	@POST
-	public String salvarpedido(String dados) {
 		Gson gson = new Gson();
+		String json = gson.toJson(unidades);
 
-		String saida = gson.toJson(dados);
-		return saida;
-
+		return json;
 	}
+
+//	@POST
+//	public String salvarpedido(String dados) {
+//		Gson gson = new Gson();
+//
+//		String saida = gson.toJson(dados);
+//		return saida;
+//
+//	}
 
 }
