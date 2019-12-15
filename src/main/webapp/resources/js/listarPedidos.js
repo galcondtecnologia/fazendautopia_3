@@ -59,7 +59,7 @@ function criarCard(listaDePedidos) {
 	carrinhoVazio();
     }else{
     for(var indice = 0; indice<listaDePedidos[0].length; indice++){
-	let _titulo = criarTitulo(listaDePedidos.map(e => e[indice]._titulo), listaDePedidos.map(e =>e[indice]._preco),indice);
+	let _titulo = criarTitulo(listaDePedidos.map(e => e[indice]._titulo), listaDePedidos.map(e =>e[indice]._preco),indice, listaDePedidos.map(e =>e[indice]._cod),indice);
 	let _produtosList = criarListaDeItens(listaDePedidos.map(e =>e[indice]._produtos),indice);
 	let _rodapeHtml = criarRodape(listaDePedidos.map(e =>e[indice]._qtd),indice);
 	listaNaPagina.innerHTML = listaNaPagina.innerHTML + _titulo + _produtosList.innerHTML + _rodapeHtml;
@@ -69,8 +69,8 @@ function criarCard(listaDePedidos) {
 }
 
 
-function criarTitulo(descricao, preco, indice) {
-    var titulo =  `<div class="card" style="width: 100%;">
+function criarTitulo(descricao, preco, indice, codigoItem) {
+    var titulo =  `<div class="card" style="width: 100%;"><input type="hidden" class="input-codigoItem" value="${codigoItem}">
     <div class="card-body">
     <input type="text" class="card-title descricao-titulo" readonly="readonly" value="${descricao}" name="produtodescricao${indice}"></input>
     <input class="card-text preco-do-item" readonly="readonly" value="R$ ${preco}" name="produtopreco${indice}"></input>
@@ -85,12 +85,12 @@ function criarListaDeItens(listaDeProdutos, indice) {
     let ul = criarUl();
     for (var qtdItem = 0; qtdItem < lista.length; qtdItem++) {
 	let li = criarLi();
-	//li.textContent = lista[qtdItem];
-	//-----------
+	// li.textContent = lista[qtdItem];
+	// -----------
 	
 	li.innerHTML = `<input type="text" class="itensDaLista" readonly="readonly" value="${lista[qtdItem]}" name="produto${indice}item${qtdItem}"></input>`
 	
-	//-----------
+	// -----------
 	ul.appendChild(li);
     }
     return ul;
@@ -138,27 +138,32 @@ function addListenerNaLista(){
 
 
 function somarMaisUm(e) {
-    //Capturar todos os cards da lista 
+    // Capturar todos os cards da lista
     let cards = divCards.querySelectorAll('.card');
-    //Criar um array iteravel do array, pegando cada card
+    // Criar um array iteravel do array, pegando cada card
     let cardList = [...cards];
     
-    //Identificar onde foi clicado
+    // Identificar onde foi clicado
     let btn = e.target;
-    //Identificar o card a ser alterado
+    // Identificar o card a ser alterado
     let card = btn.offsetParent;
-    //Capturar o input campo que possui o valor de quantidade
+    // Capturar o input campo que possui o valor de quantidade
     let inputQtd = card.querySelector('.input-qtd');
-    //Atribuir o valor do campo input quantidade, somando mais 1 por ter clicado no botao +
+    // Atribuir o valor do campo input quantidade, somando mais 1 por ter
+    // clicado no botao +
     inputQtd.value = parseInt(inputQtd.value)+1
     
-    //Identificar qual é o indice do card na lista 
+    // Identificar qual é o indice do card na lista
     let indice = cardList.indexOf(card);
     
-    //------------------
-    //Alterar a lista a quantidade do item no localStored 
+    // Capturar o codigo do item
+    let codigoItem = card.querySelector('.input-codigoItem');
+    
+    // ------------------
+    // Alterar a lista a quantidade do item no localStored
     listaDePedidos[0][indice]._qtd = inputQtd.value
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
+    alterarQuantidadeDeItensNoBanco(inputQtd.value, codigoItem, listaDePedidos[0]);
     atualizarPrecoTotal();
 }
 
@@ -176,10 +181,16 @@ function diminuirUm(e) {
     }
     
     let indice = cardList.indexOf(card);
-    
-    //-------------------
+
+    // --------------------
     listaDePedidos[0][indice]._qtd = inputQtd.value
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
+    
+    // -------------------Atualizar no banco a quantidade de item
+    let codigoItem = card.querySelector('.input-codigoItem');
+    alterarQuantidadeDeItensNoBanco(inputQtd.value, codigoItem, listaDePedidos[0]);
+    
+    
     atualizarPrecoTotal();
 }
 
@@ -192,6 +203,11 @@ function excluirItem(e) {
    
     listaDePedidos[0].splice(indice,1);
     alterarPedidoEmLocalStarage(listaDePedidos[0]);
+    
+    let codigoItem = card.querySelector('.input-codigoItem');
+
+    excluirItemNoBanco(codigoItem, listaDePedidos[0]);
+    
     card.remove(card);
     if(listaDePedidos[0] == ''){
 	carrinhoVazio();
@@ -200,7 +216,7 @@ function excluirItem(e) {
 }
 
 
-//Função que salva os dados alterados no local stored
+// Função que salva os dados alterados no local stored
 function alterarPedidoEmLocalStarage(novaLista) {
     let _novaLista = JSON.stringify(novaLista);
     localStorage.setItem('Pedidos', _novaLista);
@@ -231,23 +247,23 @@ function calcularValorTotal(listaDePedidos) {
     subtotal = preco * qtd;
     soma = subtotal + soma;
     }
-    //-----------------------
+    // -----------------------
     frete = parseFloat(frete.textContent);
     soma = soma + frete;
     
-    //---Verificar o calculo ao retirar a cesta 
+    // ---Verificar o calculo ao retirar a cesta
     if(ecobag.checked){
 	soma = soma + 6;
     }
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
     total.value = soma.toFixed(2);
     precoTotalEmPedido = total.value;
     
-    //Calcular a taxa de cartão de credito
+    // Calcular a taxa de cartão de credito
     if(taxaCartao != 0){
 	verificarTaxa(taxaCartao);	
     }
-    //location.reload();
+    // location.reload();
 }
 
 $ecobag.addEventListener('click', function() {
@@ -291,5 +307,67 @@ function qtdDeComprasAdicionarEcobag() {
 lerPedidosEmLocalStarage();
 
 
+
+
+
+function alterarQuantidadeDeItensNoBanco(qtd, codigoItem, listaDeItens){
+    alert("Chamou a função atualizar o codigo no banco: " + qtd + " "+ codigoItem.value);
+   console.log(listaDeItens);
+   let  codigo = parseInt(codigoItem.value);
+   
+   let itemToSave = {};
+   for(let item of [...listaDeItens]){
+       if(item._cod == codigo){
+	   itemToSave = item;
+       }
+   }
+   
+   console.log(itemToSave);
+   
+   
+	  itemToSave = JSON.stringify(itemToSave);
+
+	    fetch(`http://localhost:8080/fazendautopia/rest/item/${codigo}`, {
+		    method: 'PUT',
+		    body: itemToSave
+		  })
+		    .then(function (response) {
+		     return response.json();
+		    }).then(function (response){
+			alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
+		    });
+
+}
+
+
+
+function excluirItemNoBanco(codigoItem, listaDeItens){
+    alert("Chamou a função atualizar o codigo no banco: " + codigoItem.value);
+   console.log(listaDeItens);
+   let  codigo = parseInt(codigoItem.value);
+   
+   let itemToDel = {};
+   for(let item of [...listaDeItens]){
+       if(item._cod == codigo){
+	   itemToDel = item;
+       }
+   }
+   
+   console.log(itemToDel);
+   
+   
+   itemToDel = JSON.stringify(itemToDel);
+
+	    fetch(`http://localhost:8080/fazendautopia/rest/item/${codigo}`, {
+		    method: 'DELETE',
+		    body: codigo
+		  })
+		    .then(function (response) {
+		     return response.json();
+		    }).then(function (response){
+			alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
+		    });
+
+}
 
 

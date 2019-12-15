@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -59,5 +60,17 @@ public class ItensService {
 		String json = gson.toJson(iten);
 		return json;
 	}
+	
 
+	@PUT
+	@Path("{codigoBusca}")
+	public String editar(@PathParam("codigoBusca") Long codigo, String json) {
+		Gson gson = new Gson();
+		ItensDAO dao = new ItensDAO();
+		Itens itenEditado = gson.fromJson(json, Itens.class);
+		Itens iten = dao.Buscar(codigo);
+		iten = dao.merge(itenEditado);
+		String jsonSaida = gson.toJson(iten);
+		return jsonSaida;
+	}
 }
