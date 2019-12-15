@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 public class Pedido extends GenericDomain {
 	private Date dataeHora;
 	private Cliente cliente;
-	private ArrayList<Itens> itens = new ArrayList<Itens>();
+	private ArrayList<Integer> itens = new ArrayList<Integer>();
 	private boolean ecoBag;
 	private Double totalPedido;
 	private Double valorFrete;
@@ -46,11 +46,11 @@ public class Pedido extends GenericDomain {
 		this.cliente = cliente;
 	}
 
-	public ArrayList<Itens> getItens() {
+	public ArrayList<Integer> getItens() {
 		return itens;
 	}
 
-	public void setItens(ArrayList<Itens> itens) {
+	public void setItens(ArrayList<Integer> itens) {
 		this.itens = itens;
 	}
 

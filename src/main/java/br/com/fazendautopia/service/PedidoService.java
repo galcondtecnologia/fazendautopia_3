@@ -11,6 +11,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import org.primefaces.json.JSONArray;
+import org.primefaces.json.JSONObject;
+
 import com.google.gson.Gson;
 
 import br.com.fazendautopia.dao.PedidoDAO;
@@ -44,10 +47,16 @@ public class PedidoService {
 	// http://localhost:8080/fazendautopia_3/rest/pedido
 	@POST
 	public String salvar(String json) {
+
+		JSONObject compra = new JSONObject(json);
+		System.out.println(compra);
+		JSONArray arrayItens = compra.getJSONArray("itens");
+		System.out.println(arrayItens);
+
 		Gson gson = new Gson();
 		Pedido pedido = gson.fromJson(json, Pedido.class);
 		System.out.println(pedido);
-		
+
 		PedidoDAO dao = new PedidoDAO();
 		pedido.setDataeHora(new Date());
 		pedido = dao.merge(pedido);
