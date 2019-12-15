@@ -44,7 +44,8 @@ public class ItensService {
 
 		String jsonSaida = gson.toJson(itens);
 		System.out.println(jsonSaida);
-		return jsonSaida;
+		Long cod = itens.getCodigo();
+		return cod.toString();
 
 	}
 

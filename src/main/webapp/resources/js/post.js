@@ -5,8 +5,8 @@ let obs = document.querySelector('textarea');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   criarPedido(form);
-  _pedido = converterItensEmString(pedido);
-  console.log(_pedido);
+  //_pedido = converterItensEmString(pedido);
+  console.log(pedido);
   pedido = JSON.stringify(pedido);
   // console.log(pedido);
   enviarParaServidor(pedido);
@@ -65,7 +65,9 @@ function criarPedido(form) {
         default:
       }
     }
-    let produtos = localStorage.getItem('Pedidos');
+    //let produtos = localStorage.getItem('Pedidos');
+    //pedido.itens = JSON.parse(produtos);
+    let produtos = localStorage.getItem('CodItens');
     pedido.itens = JSON.parse(produtos);
     pedido.observacao = obs.value;
     pedido.regiao = enderecoStoragePedidos.regiao;

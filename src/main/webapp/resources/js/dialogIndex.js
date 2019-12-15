@@ -4,7 +4,8 @@ var qtdProdutosInseridos = 0;
 var alerta = document.querySelector("#dialogCestaAlerta");
 var lista = document.querySelector("#produtosList ul");
 var $precoCesta = document.getElementById("preco-cesta");
-var $infoNutricionais = document.querySelector("#informacoes-nutricionais-dialog-produto");
+var $infoNutricionais = document
+	.querySelector("#informacoes-nutricionais-dialog-produto");
 
 var botaoColocarNoCarrinho = document
 	.querySelector(".botao-colocar-no-carrinho");
@@ -149,18 +150,16 @@ botaoColocarNoCarrinho
 var listaDePedidos = [];
 
 function adicionarProdutoNaCesta(_cesta) {
-
     listaDePedidos.push(_cesta);
     salvarEmLocalStored(listaDePedidos, 'Cesta adicionada');
 }
-
-
 
 function cesta(titulo, produtos, preco, qtd) {
     this._titulo = titulo;
     this._produtos = produtos;
     this._preco = preco;
     this._qtd = qtd
+    this._cod = '';
 }
 // -----------------------------------------
 
@@ -193,6 +192,7 @@ function produto(descricao, precoTotal, qtd) {
     this._preco = precoTotal;
     this._qtd = qtd;
     this._produtos = new Array(descricao);
+    this._cod = '';
 }
 
 function capturarProdutoClicado(a) {
@@ -217,7 +217,8 @@ function capturarProdutoClicadoDesktop(a) {
     let descricaoProdutoClicado = produtoClicado
 	    .querySelector('.descricao-produto');
     let precoProdutoClicado = produtoClicado.querySelector('.preco-produto');
-    let infoNutricionalProdutoClicado = produtoClicado.querySelector('.informacoes-nutricionais');
+    let infoNutricionalProdutoClicado = produtoClicado
+	    .querySelector('.informacoes-nutricionais');
 
     // popular o dialog com os dados do produto clicado
     $descricaoDoProduto.textContent = descricaoProdutoClicado.textContent;
@@ -234,23 +235,16 @@ function notificar(mensagem) {
 }
 
 function salvarEmLocalStored(item, mensagem) {
-    //debugger;
-    item[0]._produtos = item[0]._produtos.toString();
-    console.log(item);
-    salvarItemNoBanco(JSON.stringify(item));
-    let emPedidos = lerPedidosEmLocalStarage();
-    if (emPedidos == null) {
-	let _item2 = JSON.stringify(item);
-	localStorage.setItem('Pedidos', _item2);
-    } else {
-	let listaCompleta = item.concat(emPedidos);
-	let _item = JSON.stringify(listaCompleta);
-	localStorage.setItem('Pedidos', _item);
-    }
-    arrayDeProdutosDaCesta = [];
-    notificar(mensagem);
-    //atualizarPagina();
-}
+    // debugger;
+    // item[0]._produtos = item[0]._produtos.toString();
+    salvarItemNoBanco(item);
+    /*
+     * let emPedidos = lerPedidosEmLocalStarage(); if (emPedidos == null) { let
+     * _item2 = JSON.stringify(item); localStorage.setItem('Pedidos', _item2); }
+     * else { let listaCompleta = item.concat(emPedidos); let _item =
+     * JSON.stringify(listaCompleta); localStorage.setItem('Pedidos', _item); }
+     * arrayDeProdutosDaCesta = []; notificar(mensagem); // atualizarPagina();
+     */}
 
 function lerPedidosEmLocalStarage() {
     let localStoragePedidos = localStorage.getItem('Pedidos');
@@ -258,26 +252,25 @@ function lerPedidosEmLocalStarage() {
     return localStoragePedidos;
 }
 
-/*function atualizarPagina() {
-    setInterval(() => {
-	    location.reload();
-    }, 2000);
+function atualizarPagina() {
+    // setInterval(() => {
+    location.reload();
+    // }, 2000);
 }
-*/
 
 function atribuirQtdProdutoNoIconeCarrinho() {
     let pedidos = lerPedidosEmLocalStarage();
-    if(pedidos != null){
-    let qtd = pedidos.length;
-    let iconeQtdDesktop = document.querySelector('#carrinho-desktop');
-    let iconeQtdMobile = document.querySelector('#carrinho-mobile');
-    
-    if(qtd != 0 && qtd != !isNaN){
-    iconeQtdDesktop.textContent = ' ' + qtd;
-    iconeQtdMobile.textContent = ' ' + qtd;
-    iconeQtdDesktop.classList.add('carrinho-com-produto');
-    iconeQtdMobile.classList.add('carrinho-com-produto');
-    }
+    if (pedidos != null) {
+	let qtd = pedidos.length;
+	let iconeQtdDesktop = document.querySelector('#carrinho-desktop');
+	let iconeQtdMobile = document.querySelector('#carrinho-mobile');
+
+	if (qtd != 0 && qtd != !isNaN) {
+	    iconeQtdDesktop.textContent = ' ' + qtd;
+	    iconeQtdMobile.textContent = ' ' + qtd;
+	    iconeQtdDesktop.classList.add('carrinho-com-produto');
+	    iconeQtdMobile.classList.add('carrinho-com-produto');
+	}
     }
 }
 
@@ -287,47 +280,65 @@ function imprimir(prod) {
     console.log(prod);
 }
 
-
-
-
-
 function salvarItemNoBanco(item) {
+    // item = item.slice(1,item.length-1);
+    item = JSON.stringify(item[0]);
+    JSON.parse(item);
+    console.log(item);
     fetch('http://localhost:8080/fazendautopia/rest/item', {
-	    method: 'POST',
-	    body: item
-	  })
-	    .then(function (response) {
-	     return response.json();
-	    }).then(function (response){
-		alert('Resposta de sucesso do servidor: ' + JSON.stringify(response));
-	    });
+	method : 'POST',
+	body : item
+    }).then(function(response) {
+	return response.json();
+    }).then(function(response) {
+	adicionarCodigoEmLocalSotage(response, item);
+    });
 }
 
+function adicionarCodigoEmLocalSotage(codigo, item) {
+    let codigos = [];
+    let emPedidos = lerPedidosEmLocalStarage();
+    let arrayDeProdutosDoCarrinho = [];
+    if (localStorage.getItem("CodItens")) {
+	//debugger;
+	codigos = localStorage.getItem("CodItens");
+	codigos = JSON.parse(codigos);
+	codigos.push(codigo);
+	codigos = JSON.stringify(codigos);
+	localStorage.setItem("CodItens", codigos);
 
+	let itemPedido = JSON.parse(item);
+	itemPedido._cod = codigo;
+	
+	for(let produt of [...emPedidos]){
+	    arrayDeProdutosDoCarrinho.push(produt);
+	}
+	
+	arrayDeProdutosDoCarrinho.push(itemPedido);
+	localStorage.setItem('Pedidos', "");
+	let _item = JSON.stringify(arrayDeProdutosDoCarrinho);
+	localStorage.setItem('Pedidos', _item);
 
+	arrayDeProdutosDaCesta = [];
+	notificar('Iten adicionado com sucesso');
 
+	atualizarPagina();
+    } else {
+	codigos.push(codigo);
+	codigos = JSON.stringify(codigos);
+	localStorage.setItem("CodItens", codigos);
 
+	let item2 = JSON.parse(item);
+	item2._cod = codigo;
+	arrayDeProdutosDoCarrinho = [];
+	arrayDeProdutosDoCarrinho.push(item2)
+	let _item2 = JSON.stringify(arrayDeProdutosDoCarrinho);
+	
+	localStorage.setItem('Pedidos', [_item2]);
 
+	arrayDeProdutosDaCesta = [];
+	notificar('Iten adicionado com sucesso');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	atualizarPagina();
+    }
+}
