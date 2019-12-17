@@ -33,8 +33,7 @@ public class Produto extends GenericDomain {
 	private UnidadeMedida unidadeMedida;
 	private String[] fornecedor;
 	private boolean status;
-	private int tipoproduto;
-	
+	private int tipoproduto;	
 	@Column(length = 2)
 	private int multiplicador;
 

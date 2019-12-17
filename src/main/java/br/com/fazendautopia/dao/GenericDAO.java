@@ -141,12 +141,7 @@ public class GenericDAO<Entidade> {
 		Transaction transacao = null;
 		try {
 			transacao = sessao.beginTransaction();
-			Entidade retorno = (Entidade) sessao.merge(entidade); // merge faz
-																	// todas as
-																	// funcoes
-																	// do salvar
-																	// e
-			// outros
+			Entidade retorno = (Entidade) sessao.merge(entidade); 
 			transacao.commit();
 			return retorno;
 		} catch (RuntimeException erro) {

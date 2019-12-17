@@ -60,16 +60,20 @@ public class ItensService {
 		String json = gson.toJson(iten);
 		return json;
 	}
-	
 
 	@PUT
 	@Path("{codigoBusca}")
 	public String editar(@PathParam("codigoBusca") Long codigo, String json) {
 		Gson gson = new Gson();
 		ItensDAO dao = new ItensDAO();
-		Itens itenEditado = gson.fromJson(json, Itens.class);
 		Itens iten = dao.Buscar(codigo);
-		iten = dao.merge(itenEditado);
+		Itens itenEditado = gson.fromJson(json, Itens.class);
+
+		ItensDAO dao1 = new ItensDAO();
+		iten = itenEditado;
+		iten.setCodigo(codigo);
+		dao1.editar(iten);
+
 		String jsonSaida = gson.toJson(iten);
 		return jsonSaida;
 	}
