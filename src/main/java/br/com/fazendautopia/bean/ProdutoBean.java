@@ -191,7 +191,7 @@ public class ProdutoBean implements Serializable {
 		}
 	}
 	
-	@Named
+	
 	public void selecionar(ActionEvent event) {
 		try {
 			produtoSelecionado = (Produto) event.getComponent().getAttributes().get("produtoSelecionado");

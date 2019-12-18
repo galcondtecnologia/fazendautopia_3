@@ -7,29 +7,413 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>LOGIN TESTE</title>
+	<title>Fazenda Utopia</title>
+	<link rel="shortcut icon" href="./resources/images/icons/logo.png" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
+	<h:outputStylesheet library="css" name="/main.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/cssformulariocontato.css" />
+
 </h:head>
-<h:body>
-	     <h:form id="frm">
-				<p:panelGrid columns="1" styleClass="grid-login" layout="grid"
-					style="text-align:left">
+<h:body class="container">
+	<!-- Sessao do cabeçalho com banner -->
+	<div class="header">
 
-					<p:outputLabel for="cpf" value="CPF" />
-					<p:inputText id="cpf"  
-						required="true" requiredMessage="Campo CPF é obrigatório!!"
-						value="#{autenticacaoBean.usuario.email}" />
+		<ui:insert name="menu-superior">
+			<ui:include src="/pages/template/menu-superior.xhtml" />
+		</ui:insert>
 
-					<p:outputLabel value="Senha" for="senha" />
-					<p:password id="senha"  maxlength="8" required="true"
-						requiredMessage="Campo Senha é obrigatório!!"
-						value="#{autenticacaoBean.usuario.senha}" />
+		<div id="banner">
+			<ui:insert name="banners">
+				<ui:include src="/pages/template/banners.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+	<!-- Sessao do cabeçalho -->
 
-					<h:panelGroup />
-					<p:commandButton value="Entrar"
-						style="width:100%; text-align:center"
-						actionListener="#{autenticacaoBean.autenticar()}" />
+	<h:form id="form" prependId="false" enctype="multipart/form-data">
+		<div class="main">
+			<p:dataView value="#{cestaBean.cestas}" var="cesta" rows="3"
+				paginator="true" rowsPerPageTemplate="3,6,9"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				gridIcon="fa fa-th" listIcon="fa fa-th-list"
+				style="width:95%; margin:auto; padding:0;">
+				<p:dataViewGridItem styleClass="viewGrid" class="viewCard">
+					<p:panel header="#{cesta.codigo}" style="text-align:center;">
 
-				</p:panelGrid>
-			</h:form>
+						<h:panelGrid columns="1"
+							style="width:88%; border:1px solid #ccc; border-radius:10px; padding:0">
+
+							<h:graphicImage value="#{cesta.imagemnome}"
+								class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+							<h:outputText value="#{cesta.descricao}" />
+
+							<p:commandButton update=":form:cestaDetail"
+								oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
+								styleClass="btn-lista-de-itens">
+								<f:setPropertyActionListener value="#{cesta}"
+									target="#{cestaBean.cesta}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</p:panel>
+				</p:dataViewGridItem>
+
+
+				<p:dataViewListItem>
+
+					<h:panelGrid columns="2">
+						<h:panelGrid style="width:10%;">
+							<h:graphicImage value="#{cesta.imagemnome}"
+								class="imagem-tamanho-p" />
+
+						</h:panelGrid>
+						<p:outputPanel>
+							<h:panelGrid style="width:98%">
+								<h:outputText value="#{cesta.descricao}" />
+
+								<h:outputText value="#{cesta.quantItens}" />
+								<div style="margin: 1em"></div>
+
+								<h:outputText value="#{cesta.dualListModelProdu.target}"
+									style="font-size:1em;text-transform: lowercase;" />
+
+								<h:outputText value="R$ #{cesta.precovenda}0"
+									style="font-size:1.5em; font-weight:bold" />
+
+							</h:panelGrid>
+						</p:outputPanel>
+						<p:commandButton update=":form:cestaDetail"
+							oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
+							styleClass="btn-lista-de-itens">
+							<f:setPropertyActionListener value="#{cesta}"
+								target="#{cestaBean.cesta}"></f:setPropertyActionListener>
+
+						</p:commandButton>
+					</h:panelGrid>
+				</p:dataViewListItem>
+			</p:dataView>
+
+
+			<!-- Sessao dialog da cesta selecionada -->
+			<p:dialog header="Selecionado" widgetVar="dlgCesta"
+				minimizable="true" minHeight="540" minWidth="480" modal="true"
+				maximizable="true" id="dialog" closeOnEscape="true"
+				responsive="true" resizable="true"
+				style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+				position="top" fitViewport="true">
+				<p:outputPanel id="cestaDetail">
+					<!-- Formulario da cesta selecionada -->
+					<p:panelGrid rendered="#{not empty cestaBean.cestas}">
+						<!-- Inserir a imagem aqui_______________ -->
+						<h:graphicImage value="#{cestaBean.cesta.imagemnome}"
+							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+
+						<h:outputText value="#{cestaBean.cesta.descricao}" />
+
+						<h:outputText value="R$ #{cestaBean.cesta.precovenda}"
+							style="font-size:1.5em; font-weight:bold" />
+					</p:panelGrid>
+					<!-- Botao calcular frete desabilitado -->
+					<p:commandButton value="" id="calcular-frete-cesta"
+						style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white display: none; width: 0; height: 0;"></p:commandButton>
+
+					<div class="calcular-frete displaynone"
+						id="div-calcular-frete-cesta"
+						style="display: none; width: 0; height: 0;">
+						<p:selectOneMenu id="select-calcular-frete-cesta" value="9.22"
+							style="width:200px">
+							<f:selectItem itemLabel="Selecione sua região" itemValue=""></f:selectItem>
+							<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
+							<f:selectItem itemLabel="Região dois" itemValue="9.20"></f:selectItem>
+							<f:selectItem itemLabel="Região tres" itemValue="9.15"></f:selectItem>
+							<f:selectItems value="" itemLabel="" itemValue=""></f:selectItems>
+						</p:selectOneMenu>
+						<div style="padding: 0.5em 0 0.8em 0">
+							<p:outputLabel value="Frete R$ 9.15" id="label-frete-cesta"></p:outputLabel>
+						</div>
+					</div>
+
+					<div
+						style="display: inline-block; margin: auto; width: 100%; text-align: center">
+
+						<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
+						<h:outputText value=" Total R$">
+						</h:outputText>
+						<h:outputText value="50.90"
+							style="font-weight: bold; padding:0.2em; font-size: 1.3em"
+							class="preco-produto" id="total-cesta" />
+
+						<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
+						<p:commandButton value="-" id="bt-dialog-menos-cesta"
+							style="background-color:white"></p:commandButton>
+
+						<p:inputNumber id="input-qtd-cesta" value="1" minValue="1"
+							maxValue="99" disabled="true"></p:inputNumber>
+
+						<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
+						<p:commandButton value="+" id="bt-dialog-mais-cesta"
+							style="background-color:white"></p:commandButton>
+					</div>
+					<div class="btn-inserir-no-carrinho"
+						style="display: inline-block; width: 100%; text-align: center;">
+						<p:commandButton value="Colocar no carrinho"
+							class="botao-colocar-no-carrinho"
+							oncomplete="PF('dlgCesta').hide()"></p:commandButton>
+					</div>
+
+				</p:outputPanel>
+			</p:dialog>
+
+
+
+
+			<!-- inicio produto -->
+
+
+
+
+			<div>
+				<p:dataView value="#{produtoBean.produtos}" rows="3" var="produto"
+					paginator="true" rowsPerPageTemplate="3,6,9"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					gridIcon="fa fa-th" listIcon="fa fa-th-list"
+					style="width:95%; margin:auto; padding:0;">
+
+
+					<p:dataViewGridItem styleClass="viewGrid" class="viewCard">
+						<p:panel header="#{produto.codigo}" style="text-align:center;">
+
+							<h:panelGrid columns="1"
+								style="width:88%; border:1px solid #ccc; border-radius:10px; padding:0">
+
+								<h:graphicImage value="#{produto.imagemnome}"
+									class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+								<div style="display: grid">
+									<h:outputText value="#{produto.descricao}"
+										style="font-size:1.2em;" />
+
+									<h:outputText value="R$ #{produto.precoVenda}"
+										style="font-size:1.5em; font-weight:bold" />
+								</div>
+								<p:commandButton update=":form:prodSelecionado"
+									oncomplete="PF('dlgProduto').show()" title="Detalhes"
+									styleClass="btn-lista-de-itens">
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{produtoBean.produto}"></f:setPropertyActionListener>
+								</p:commandButton>
+							</h:panelGrid>
+						</p:panel>
+					</p:dataViewGridItem>
+
+					<p:dataViewListItem>
+
+						<h:panelGrid columns="2">
+							<h:panelGrid style="width:10%;">
+								<h:graphicImage value="#{produto.imagemnome}"
+									class="imagem-tamanho-p" />
+
+							</h:panelGrid>
+							<h:panelGrid style="width:98%">
+								<h:outputText value="#{produto.descricao}" />
+
+								<h:outputText value="R$ #{produto.precoVenda}"
+									style="font-size:1.2em; font-weight:bold;" />
+								<p:commandButton update=":form:prodSelecionado"
+									oncomplete="PF('dlgProduto').show()" title="Detalhes"
+									styleClass="btn-lista-de-itens">
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{produtoBean.produto}"></f:setPropertyActionListener>
+								</p:commandButton>
+
+							</h:panelGrid>
+						</h:panelGrid>
+					</p:dataViewListItem>
+
+				</p:dataView>
+
+
+				<!-- DIALOG PRODUTO -->
+				<!-- Sessao dialog produto selecionado -->
+				<p:dialog header="Selecionado" widgetVar="dlgProduto"
+					minimizable="true" minHeight="540" minWidth="480" modal="true"
+					maximizable="true" id="dialog-produto" closeOnEscape="true"
+					responsive="true" resizable="true"
+					style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+					position="top" fitViewport="true">
+					<p:outputPanel id="prodSelecionado">
+
+						<p:panelGrid rendered="#{not empty produtoBean.produtos}">
+
+							<h:graphicImage value="#{produtoBean.produto.imagemnome}" />
+							<div style="display: grid">
+								<h:outputText value="#{produtoBean.produto.descricao}" />
+
+								<h:outputText value="R$ #{produtoBean.produto.precoVenda}"
+									style="font-size:1.5em; font-weight:bold" />
+							</div>
+						</p:panelGrid>
+						<h:form prependId="false" id="formProduto"
+							enctype="multipart/form-data">
+
+							<div
+								style="display: inline-block; margin: auto; width: 100%; text-align: center">
+
+								<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
+								<h:outputLabel style="padding:0.9em" value="Total R$"></h:outputLabel>
+								<h:outputText value=""
+									style="font-weight: bold; padding:0.2em; font-size:1.3em"
+									class="preco-produto" id="total-produto" />
+
+								<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
+								<p:commandButton value="-" id="bt-dialog-menos-produto"
+									style="background-color:white"></p:commandButton>
+
+								<p:inputNumber id="input-qtd-produto" value="1" minValue="1"
+									maxValue="99" disabled="true"></p:inputNumber>
+
+								<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
+								<p:commandButton value="+" id="bt-dialog-mais-produto"
+									style="background-color:white"></p:commandButton>
+							</div>
+							<div
+								style="display: inline-block; width: 100%; text-align: center; margin-bottom: 0.2em;">
+								<p:commandButton value="Colocar no carrinho"
+									class="botao-colocar-no-carrinho"
+									id="botao-colocar-produto-extra-no-carrinho"
+									oncomplete="PF('dlgProduto').hide()"></p:commandButton>
+							</div>
+						</h:form>
+					</p:outputPanel>
+				</p:dialog>
+			</div>
+		</div>
+	</h:form>
+	<!-- fim dialog produto selecionado________________________________________________________________ -->
+
+
+	<div class="separador"></div>
+
+	<!-- Sessao sobre a empresa -->
+	<div class="sessao-sobre" id="sobre">
+		<h1>Sobre nós</h1>
+		<h4>Quem somos</h4>
+		<div class="div-somos">
+			<p class="p-texto-somos">
+				Somos uma iniciativa que engloba um grupo de produtores parceiros
+				(agricultores familiares locais), todos devidamente certificados no
+				<strong>cultivo orgânico</strong> dos alimentos e fazemos a ligação
+				entre as lavouras e a sua mesa. Levando comida de verdade, <strong>livre
+					de venenos</strong> para sua casa e ao mesmo tempo incentivando os pequenos
+				produtores.
+			</p>
+
+			<div class="separador"></div>
+		</div>
+		<div id="galeria_mobile" style="width: 100%">
+			<ui:insert name="galeria">
+				<ui:include src="/pages/template/galeria_mobile.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="galeria_desktop" style="width: 100%">
+			<ui:insert name="galeria">
+				<ui:include src="/pages/template/galeria_desktop.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+	<!-- fim da sessao sobre a empresa________________________________________________________________ -->
+
+	<div class="separador"></div>
+	<div class="separador"></div>
+
+	<!-- Sessao missao da empresa -->
+	<div class="main" style="width: 80%; color: #4f5e38">
+		<h1>Nossa Missão</h1>
+		<p>
+			Levar até você toda semana opções de <strong>produtos
+				orgânicos</strong>, plantados e colhidos com todo carinho.
+		</p>
+		<div style="width: 30%; background-color: #d3eaac; height: 1em;"></div>
+	</div>
+	<!-- fim Sessao missao________________________________________________________________ -->
+
+	<div class="separador"></div>
+	<div class="separador"></div>
+
+	<!-- Sessao de feedback -->
+	<div class="sessao-feedbacks">
+		<h1>O que nossos clientes dizem</h1>
+		<h4>feedbacks</h4>
+		<div class="container-feedback" id="feedback">
+			<div class="container-card">
+				<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+					style="width: 50px" />
+				<h5>
+					<b>Sheila Jbv</b>
+				</h5>
+				<q>Recomendo, excelentes produtos e atendimento excepcional.</q>
+			</div>
+
+			<div class="container-card">
+				<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+					style="width: 50px" />
+				<h5>
+					<b>Viviane Paganini Polido</b>
+				</h5>
+				<q>Orgânicos de qualidade e ótimas variedades.</q>
+			</div>
+
+			<div class="container-card">
+				<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+					style="width: 50px" />
+				<h5>
+					<b>Nathália Netto</b>
+				</h5>
+				<q>Muito bom, adorei em todos os sentidos. Higiene, organização,
+					fresquinhos e preço justo.</q>
+			</div>
+
+			<div class="container-card">
+				<img src="./resources/images/icons/Clientes.jpg" alt="Avatar"
+					style="width: 50px" />
+				<h5>
+					<b>Liliane Senra</b>
+				</h5>
+				<q>Ótimos produtos, excelente qualidade e um ótimo atendimento!</q>
+			</div>
+
+		</div>
+	</div>
+	<!-- fim Sessao de feedbacks________________________________________________________________ -->
+
+	<div class="separador"></div>
+	<div class="separador"></div>
+
+
+
+	<!--  contato section goes here -->
+	<!-- Rodape buscando base template -->
+	<div id="contato" class="background-formulario-contato">
+		<ui:insert name="contato">
+			<ui:include src="/pages/template/contato.xhtml" />
+		</ui:insert>
+	</div>
+
+	<!-- Rodape buscando base template -->
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/pages/template/footer.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<!-- Recurso java script adicionado comentario -->
+	<script src="./resources/js/dadosLoginUsuario.js"></script>
+	<script src="./resources/js/app.js"></script>
+	<script src="./resources/js/dialogIndex.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </h:body>
 </html>

@@ -1,5 +1,7 @@
 package br.com.fazendautopia.domain;
 
+import java.util.Arrays;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -104,5 +106,14 @@ public class Cesta extends GenericDomain {
 	public void setPrecovenda(Double precovenda) {
 		this.precovenda = precovenda;
 	}
+
+	@Override
+	public String toString() {
+		return "Cesta [imagemnome=" + imagemnome + ", imagemformato=" + imagemformato + ", imagemBase64="
+				+ Arrays.toString(imagemBase64) + ", descricao=" + descricao + ", categoriaCesta=" + categoriaCesta
+				+ ", dualListModelProdu=" + dualListModelProdu + ", status=" + status + ", quantItens=" + quantItens
+				+ ", precovenda=" + precovenda + "]";
+	}
+	
 
 }

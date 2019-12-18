@@ -16,7 +16,7 @@
 	<h:outputStylesheet library="css" name="/main.css" />
 	<link rel="stylesheet" type="text/css"
 		href="./resources/css/cssformulariocontato.css" />
-	
+
 </h:head>
 <h:body class="container">
 
@@ -85,7 +85,7 @@
 				<p>Selecione a cesta ideal para você e sua família</p>
 			</div>
 			<div class="container-cesta-semana">
-				<h:outputText value="#{autentiacacaoBean.usuarioLogado.email}" />
+				<!-- 				<h:outputText value="#{autentiacacaoBean.usuarioLogado.email}" /> -->
 				<h:form id="form" prependId="false">
 					<p:dataView var="cesta" value="#{cestaBean.cestas}" rows="3"
 						paginator="true" rowsPerPageTemplate="3,6,9"
@@ -115,9 +115,9 @@
 										<h:outputText value="R$ #{cesta.precovenda}0"
 											style="font-size:1.5em; font-weight:bold" />
 									</div>
-									<p:commandButton update=":formCesta"
-										oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
-										styleClass="btn-lista-de-itens"
+									<p:commandButton oncomplete="PF('dlgCesta').show()"
+										title="Ver Detalhes" styleClass="btn-lista-de-itens"
+										update=":formCesta"
 										actionListener="#{cestaBean.selecionarCesta}">
 										<f:attribute name="cestaSelecionada" value="#{cesta}" />
 										<f:actionListener
@@ -381,7 +381,7 @@
 			<div class="container-cesta-semana">
 				<h:form id="form-produto" prependId="false"
 					enctype="multipart/form-data">
-					<p:dataView var="produto" value="#{produtoBean.produtos}" rows="3"
+					<p:dataView value="#{produtoBean.produtos}" rows="3" var="produto"
 						paginator="true" rowsPerPageTemplate="3,6,9"
 						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						gridIcon="fa fa-th" listIcon="fa fa-th-list"
@@ -389,7 +389,7 @@
 
 
 						<p:dataViewGridItem styleClass="viewGrid" class="viewCard">
-							<p:panel header="Produto Extra" style="text-align:center;">
+							<p:panel header="#{produto.codigo}" style="text-align:center;">
 
 								<h:panelGrid columns="1"
 									style="width:88%; border:1px solid #ccc; border-radius:10px; padding:0">
@@ -410,11 +410,10 @@
 									</div>
 									<p:commandButton update=":formCadastro"
 										oncomplete="PF('dlgProduto').show()" title="Ver Detalhes"
-										styleClass="btn-lista-de-itens"
-										actionListener="#{produtoBean.selecionar}">
+										styleClass="btn-lista-de-itens">
 										<f:attribute name="produtoSelecionado" value="#{produto}" />
-										<f:actionListener
-											type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+										<f:setPropertyActionListener value="#{produto}"
+											target="#{produtoBean.produto}"></f:setPropertyActionListener>
 									</p:commandButton>
 								</h:panelGrid>
 							</p:panel>
@@ -468,8 +467,6 @@
 
 
 
-
-
 					<!-- DIALOG PRODUTO -->
 					<!-- Sessao dialog produto selecionado -->
 					<p:dialog header="Selecionado" widgetVar="dlgProduto"
@@ -478,83 +475,17 @@
 						responsive="true" resizable="true"
 						style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
 						position="top" fitViewport="true">
+						<p:outputPanel>
+
+							<p:panelGrid rendered="#{not empty produtoBean.produtos}">
+								<h:outputText value="#{produtoBean.produto.descricao}" />
+							</p:panelGrid>
+
+						</p:outputPanel>
 
 						<!-- Formulario do produto selecionada -->
 						<h:form prependId="false" id="formProduto"
 							enctype="multipart/form-data">
-							<div class="centralizar-imagem">
-
-								<!-- Imagem do produto selecionado -->
-								<img src="./resources/images/upload/azeite.png"
-									alt="imagem do produto"
-									class="centralizar-imagem imagem-tamanho-m"
-									id="imagem-produto-dialog" />
-							</div>
-							<div class="div-titulo-dialog" style="margin-bottom: 0.5em">
-
-								<!-- Informações do produto selecionado (Descrição + qtd itens) -->
-								<h:outputLabel style="padding:0.9em" class="descricao-produto"
-									id="descricao-produto" value="Azeite 200ml Und"></h:outputLabel>
-
-								<!-- Informações do produto selecionado (Preço com cifrão o padrão deve ser R$ 99,99) -->
-								<h:outputLabel style="padding:0.9em;">R$</h:outputLabel>
-								<h:outputLabel style="padding:0.9em;" id="preco-produto"
-									value="#{produtoBean.produto.precoVenda} 1.00"></h:outputLabel>
-
-							</div>
-							<div style="margin-bottom: 1em">
-								<h:outputText value="Especiais"
-									style="padding:1em; font-size:0.9em" />
-								<div style="width: 90%; padding: 1em; text-align: left;">
-									<h:outputText
-										value="Produtos 100% orgânicos. Cultivados sem agrotóxicos. Selecionados e com selo de qualidade"
-										style="font-size:0.8em;"
-										id="informacoes-nutricionais-dialog-produto" />
-								</div>
-
-								<!-- Botao calcular frete desabilitado -->
-								<p:commandButton value="" id="calcular-frete-produto"
-									style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white; display: none; width: 0; height: 0;"></p:commandButton>
-
-
-								<div class="calcular-frete displaynone"
-									id="div-calcular-frete-produto">
-									<p:selectOneMenu id="select-calcular-frete-produto"
-										value="9.22" autoWidth="false">
-										<f:selectItem itemLabel="Selecione sua região"
-											noSelectionOption="true" style="width:1em"></f:selectItem>
-										<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
-										<f:selectItem itemLabel="Região dois" itemValue="9.20"></f:selectItem>
-										<f:selectItem itemLabel="Região tres" itemValue="9.15"></f:selectItem>
-										<f:selectItems value="" itemLabel="" itemValue=""></f:selectItems>
-									</p:selectOneMenu>
-									<div style="padding: 0.5em 0 0.8em 0">
-										<p:outputLabel value="Frete R$ 9.15" id="label-frete-produto"></p:outputLabel>
-									</div>
-								</div>
-
-							</div>
-
-							<div
-								style="display: inline-block; margin: auto; width: 100%; text-align: center">
-
-								<!-- Total (Soma do preço qtd de itens x preço de cada iten) -->
-								<h:outputLabel style="padding:0.9em" value="Total R$"></h:outputLabel>
-								<h:outputText value="12.90"
-									style="font-weight: bold; padding:0.2em; font-size:1.3em"
-									class="preco-produto" id="total-produto" />
-
-								<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
-								<p:commandButton value="-" id="bt-dialog-menos-produto"
-									style="background-color:white"></p:commandButton>
-
-								<p:inputNumber id="input-qtd-produto" value="1" minValue="1"
-									maxValue="99" disabled="true"></p:inputNumber>
-
-								<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
-								<p:commandButton value="+" id="bt-dialog-mais-produto"
-									style="background-color:white"></p:commandButton>
-							</div>
 							<div
 								style="display: inline-block; width: 100%; text-align: center; margin-bottom: 0.2em;">
 								<p:commandButton value="Colocar no carrinho"
@@ -564,10 +495,14 @@
 							</div>
 						</h:form>
 					</p:dialog>
+
+
 					<!-- fim dialog produto selecionado________________________________________________________________ -->
 
 					<!-- fim dialog cesta selecionada________________________________________________________________ -->
 				</h:form>
+
+
 			</div>
 
 
