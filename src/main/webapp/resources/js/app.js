@@ -19,7 +19,7 @@
 		});
 		
 		
-		//Variaveis da pagina inicial
+		// Variaveis da pagina inicial
 
 		var $btmaisCesta = document.getElementById("bt-dialog-mais-cesta");
 		var $btmenosCesta = document.getElementById("bt-dialog-menos-cesta");
@@ -35,8 +35,9 @@
 		
 		
 
-		//Função adicionar mais um item cesta
-		$btmaisCesta.addEventListener("click", function() {
+		// Função adicionar mais um item cesta
+		$btmaisCesta.addEventListener("click", function(e) {
+		    e.preventDefault();
 			var qtd = (parseInt($inputqtdCesta.value)) + 1;
 			$inputqtdCesta.value = qtd;
 			var precoItem = tratarPreco($precoCesta.textContent)
@@ -44,8 +45,21 @@
 			$totalCesta.innerHTML = resultado.toFixed(2);
 		});
 		
-		//Função diminuir um item cesta
-		$btmenosCesta.addEventListener("click", function() {
+		function adicionarMaisUm() {
+			// Função adicionar mais um item cesta
+			
+		    console.log("ENTROU NA FUNCAO ADICIONAR")
+				var qtd = (parseInt($inputqtdCesta.value)) + 1;
+				$inputqtdCesta.value = qtd;
+				var precoItem = tratarPreco($precoCesta.textContent)
+				var resultado = calcularTotal(qtd, precoItem);
+				$totalCesta.innerHTML = resultado.toFixed(2);
+	
+		}
+		
+		// Função diminuir um item cesta
+		$btmenosCesta.addEventListener("click", function(e) {
+		    e.preventDefault();
 			if (parseInt($inputqtdCesta.value) == 1) {
 				return
 			}
@@ -59,9 +73,27 @@
 			
 		});
 		
+		function dimiuirUm(){
+			// Função diminuir um item cesta
+			
+		console.log("ENTROU NA FUNCAO DIMINUIR")
+				if (parseInt($inputqtdCesta.value) == 1) {
+					return
+				}
+				
+				var qtd = (parseInt($inputqtdCesta.value)) - 1;
+				$inputqtdCesta.value = qtd;
+				var precoItem = 0;
+				precoItem = tratarPreco($precoCesta.textContent)
+				var resultado = calcularTotal(qtd, precoItem);
+				$totalCesta.innerHTML = resultado.toFixed(2);
+				
 		
-		//--------------------
-		//Função adicionar mais um item de produto
+		}
+		
+		
+		// --------------------
+		// Função adicionar mais um item de produto
 		$btmaisProduto.addEventListener("click", function() {
 			var qtd = 0;
 			qtd = (parseInt($inputqtdProduto.value)) + 1;
@@ -73,9 +105,9 @@
 			
 		});
 		
-		//Função diminuir um item de produto
+		// Função diminuir um item de produto
 		$btmenosProduto.addEventListener("click", function() {
-		    //debugger;
+		    // debugger;
 			if (parseInt($inputqtdProduto.value) == 1) {
 				return
 			}
@@ -96,19 +128,19 @@
 		
 		
 		
-		//Função calcular o total 
+		// Função calcular o total
 		function calcularTotal(qtd, valor) {
 			var total = 0;
 			total = qtd * valor;
 			return total
 		}
 		
-		//Função tratar o preço transformar string em numero
+		// Função tratar o preço transformar string em numero
 		function tratarPreco(str) {
 			var numero = 0;
-			//numero = str.replace(",",".");
-			//numero = numero.slice(3,8);
-			//numero = parseFloat(numero);
+			// numero = str.replace(",",".");
+			// numero = numero.slice(3,8);
+			// numero = parseFloat(numero);
 			numero = parseFloat(str);
 			return numero;
 		}
@@ -117,7 +149,7 @@
 		
 		
 		
-		//-------------------------Calcular frete----------------------
+		// -------------------------Calcular frete----------------------
 		
 		var $btnCalcularFreteCesta = document.getElementById("calcular-frete-cesta");
 		var $btnCalcularFreteProduto = document.getElementById("calcular-frete-produto");
@@ -130,13 +162,13 @@
 		
 		
 		
-		$btnCalcularFreteCesta.addEventListener("click", function(){
-			$divCalcularFreteCesta.classList.toggle("displaynone");
-		})
-		
-		$btnCalcularFreteProduto.addEventListener("click", function(){
-			$divCalcularFreteProduto.classList.toggle("displaynone");
-		})
+/*
+ * $btnCalcularFreteCesta.addEventListener("click", function(){
+ * $divCalcularFreteCesta.classList.toggle("displaynone"); })
+ * 
+ * $btnCalcularFreteProduto.addEventListener("click", function(){
+ * $divCalcularFreteProduto.classList.toggle("displaynone"); })
+ */
 		
 		
 		

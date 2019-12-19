@@ -34,7 +34,7 @@
 	</div>
 	<!-- Sessao do cabeçalho -->
 
-	<h:form id="form" prependId="false" enctype="multipart/form-data">
+	<h:form id="form" prependId="false">
 		<div class="main">
 			<p:dataView value="#{cestaBean.cestas}" var="cesta" rows="3"
 				paginator="true" rowsPerPageTemplate="3,6,9"
@@ -42,7 +42,7 @@
 				gridIcon="fa fa-th" listIcon="fa fa-th-list"
 				style="width:95%; margin:auto; padding:0;">
 				<p:dataViewGridItem styleClass="viewGrid" class="viewCard">
-					<p:panel header="#{cesta.codigo}" style="text-align:center;">
+					<p:panel header="#{cesta.categoriaCesta.descricao}" style="text-align:center;">
 
 						<h:panelGrid columns="1"
 							style="width:88%; border:1px solid #ccc; border-radius:10px; padding:0">
@@ -52,7 +52,7 @@
 							<h:outputText value="#{cesta.descricao}" />
 
 							<p:commandButton update=":form:cestaDetail"
-								oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
+								oncomplete="PF('dlgCesta').show()" title="Detalhes"
 								styleClass="btn-lista-de-itens">
 								<f:setPropertyActionListener value="#{cesta}"
 									target="#{cestaBean.cesta}" />
@@ -74,7 +74,7 @@
 							<h:panelGrid style="width:98%">
 								<h:outputText value="#{cesta.descricao}" />
 
-								<h:outputText value="#{cesta.quantItens}" />
+								<h:outputText value="#{cesta.quantItens} PRODUTOS" />
 								<div style="margin: 1em"></div>
 
 								<h:outputText value="#{cesta.dualListModelProdu.target}"
@@ -86,7 +86,7 @@
 							</h:panelGrid>
 						</p:outputPanel>
 						<p:commandButton update=":form:cestaDetail"
-							oncomplete="PF('dlgCesta').show()" title="Ver Detalhes"
+							oncomplete="PF('dlgCesta').show()" title="Detalhes"
 							styleClass="btn-lista-de-itens">
 							<f:setPropertyActionListener value="#{cesta}"
 								target="#{cestaBean.cesta}"></f:setPropertyActionListener>
@@ -108,33 +108,26 @@
 					<!-- Formulario da cesta selecionada -->
 					<p:panelGrid rendered="#{not empty cestaBean.cestas}">
 						<!-- Inserir a imagem aqui_______________ -->
-						<h:graphicImage value="#{cestaBean.cesta.imagemnome}"
-							class="icone-imagens-cestas .centralizar-imagem imagem-tamanho-p" />
+						<div
+							style="display: inline-block; margin: auto; width: 100%; text-align: center">
 
-						<h:outputText value="#{cestaBean.cesta.descricao}" />
-
-						<h:outputText value="R$ #{cestaBean.cesta.precovenda}"
-							style="font-size:1.5em; font-weight:bold" />
-					</p:panelGrid>
-					<!-- Botao calcular frete desabilitado -->
-					<p:commandButton value="" id="calcular-frete-cesta"
-						style="margin:1.2em 0 0.5em 1.5em; font-size:0.7em; font-weight:normal; background-color:white display: none; width: 0; height: 0;"></p:commandButton>
-
-					<div class="calcular-frete displaynone"
-						id="div-calcular-frete-cesta"
-						style="display: none; width: 0; height: 0;">
-						<p:selectOneMenu id="select-calcular-frete-cesta" value="9.22"
-							style="width:200px">
-							<f:selectItem itemLabel="Selecione sua região" itemValue=""></f:selectItem>
-							<f:selectItem itemLabel="Região um" itemValue="9.00"></f:selectItem>
-							<f:selectItem itemLabel="Região dois" itemValue="9.20"></f:selectItem>
-							<f:selectItem itemLabel="Região tres" itemValue="9.15"></f:selectItem>
-							<f:selectItems value="" itemLabel="" itemValue=""></f:selectItems>
-						</p:selectOneMenu>
-						<div style="padding: 0.5em 0 0.8em 0">
-							<p:outputLabel value="Frete R$ 9.15" id="label-frete-cesta"></p:outputLabel>
+							<h:graphicImage value="#{cestaBean.cesta.imagemnome}"
+								class="centralizar-imagem imagem-tamanho-m" />
 						</div>
-					</div>
+						<div class="div-titulo-dialog">
+							<h:outputLabel value="#{cestaBean.cesta.descricao}"
+								id="label-cesta-descricao" style="padding:0.9em" />
+
+							<h:outputLabel style="padding:0.9em">R$</h:outputLabel>
+							<h:outputLabel style="padding:0.9em" id="preco-cesta"
+								value="#{cestaBean.cesta.precovenda}"></h:outputLabel>
+
+
+						</div>
+
+
+					</p:panelGrid>
+
 
 					<div
 						style="display: inline-block; margin: auto; width: 100%; text-align: center">
@@ -147,15 +140,21 @@
 							class="preco-produto" id="total-cesta" />
 
 						<!-- Botão para diminuir 1 (uma) unidade na quantidade de item -->
-						<p:commandButton value="-" id="bt-dialog-menos-cesta"
-							style="background-color:white"></p:commandButton>
+						<h:commandButton value="-" id="bt-dialog-menos-cesta"
+							style="background-color:white">
+							<f:ajax event="click" listener="dimiuirUm()"></f:ajax>
+							<f:ajax event="change" update="@this"></f:ajax>
+							</h:commandButton>
 
 						<p:inputNumber id="input-qtd-cesta" value="1" minValue="1"
 							maxValue="99" disabled="true"></p:inputNumber>
 
 						<!-- Botão para aumentar 1 (uma) unidade na quantidade de item -->
-						<p:commandButton value="+" id="bt-dialog-mais-cesta"
-							style="background-color:white"></p:commandButton>
+						<h:commandButton value="+" id="bt-dialog-mais-cesta"
+							style="background-color:white">
+							<f:ajax event="click" listener="adicionarMaisUm()"></f:ajax>
+							<f:ajax event="change" update="@this"></f:ajax>
+							</h:commandButton>
 					</div>
 					<div class="btn-inserir-no-carrinho"
 						style="display: inline-block; width: 100%; text-align: center;">
@@ -247,16 +246,31 @@
 
 						<p:panelGrid rendered="#{not empty produtoBean.produtos}">
 
-							<h:graphicImage value="#{produtoBean.produto.imagemnome}" />
-							<div style="display: grid">
-								<h:outputText value="#{produtoBean.produto.descricao}" />
+						<!-- Inserir a imagem aqui_______________ -->
+						<div
+							style="display: inline-block; margin: auto; width: 100%; text-align: center">
 
-								<h:outputText value="R$ #{produtoBean.produto.precoVenda}"
-									style="font-size:1.5em; font-weight:bold" />
+							<h:graphicImage value="#{produtoBean.produto.imagemnome}"
+								class="centralizar-imagem imagem-tamanho-m" />
+						</div>
+						<div class="div-titulo-dialog">
+							<h:outputLabel value="#{produtoBean.produto.descricao}"
+								id="label-produto-descricao" style="padding:0.9em" />
+
+							<h:outputLabel style="padding:0.9em">R$</h:outputLabel>
+							<h:outputLabel style="padding:0.9em" id="preco-produto"
+								value="#{produtoBean.produto.precoVenda}"></h:outputLabel>
+
+						</div>
+						<div
+							style="display: inline-block; margin: auto; width: 70%; text-align: left; padding: 3em">
+							<h:outputLabel value="#{produtoBean.produto.informacoes}"></h:outputLabel>
 							</div>
-						</p:panelGrid>
-						<h:form prependId="false" id="formProduto"
-							enctype="multipart/form-data">
+
+
+					</p:panelGrid>
+
+						<h:form prependId="false" id="formProduto">
 
 							<div
 								style="display: inline-block; margin: auto; width: 100%; text-align: center">
@@ -290,6 +304,58 @@
 				</p:dialog>
 			</div>
 		</div>
+
+
+		<!-- dialog lista de produtos adicionais para seleção________________________________________________________________ -->
+		<p:dialog header="Selecione" widgetVar="dlgProdutosParaSelecao"
+			minimizable="true" minHeight="540" minWidth="480" modal="true"
+			maximizable="true" id="dialogListaProdutosParaSelecao"
+			closeOnEscape="true" responsive="true" resizable="true"
+			style="width: 100vw !important; z-index: 9000; margin:0; padding:0"
+			position="top" fitViewport="true">
+
+			<!-- Formulario da cesta selecionada -->
+			<h:form prependId="false" id="formProdutosSelecao">
+				<div class="div-titulo-dialog">
+
+					<!-- Informações da cesta selecionada (Descrição + qtd itens) -->
+					<h:outputLabel style="padding:0.9em"
+						id="label-produto-selecao-descricao">Produto que você deseja adicionar</h:outputLabel>
+
+
+				</div>
+				<div style="margin-bottom: 1em">
+					<p:dataScroller value="#{cestaBean.produtos}" var="Produtos"
+						chunkSize="10" class="main__produtos" id="data-produtos-selecao">
+						<p:panelGrid columns="3">
+							<i class="fa fa-product-hunt"></i>
+							<p:outputPanel>
+								<h:panelGrid columns="4" cellpadding="10"
+									onclick="PF('dlgProdutosParaSelecao').hide()">
+
+									<!-- Informações dos produtos da cesta (Descrição) -->
+									<h:outputText value="#{Produtos.descricao}"
+										class="descricao-produto" id="lista-produtos-para-selecao" />
+
+									<h:outputText class="multiplicador" style="display: none"
+										value="1" />
+
+									<!-- Icone para alterar o produto da cesta -->
+									<i class="fa fa-plus" style="padding-left: 3em;"></i>
+
+
+								</h:panelGrid>
+							</p:outputPanel>
+						</p:panelGrid>
+					</p:dataScroller>
+				</div>
+			</h:form>
+		</p:dialog>
+		<!-- fim dialog lista de produtos para seleção________________________________________________________________ -->
+
+
+
+
 	</h:form>
 	<!-- fim dialog produto selecionado________________________________________________________________ -->
 
